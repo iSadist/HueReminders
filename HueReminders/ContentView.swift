@@ -7,15 +7,30 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
+
+    @ObservedObject private var listViewModel = ListViewModel()
+
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            VStack(alignment: .center, spacing: 10) {
+                List(listViewModel.reminders) { reminder in
+                    ReminderRow(reminder: reminder)
+                }.navigationBarItems(trailing: NavigationLink(destination: NewReminder(onAddReminder: { (reminder) in
+                    self.listViewModel.reminders.append(reminder)
+                }), label: {
+                    Text("Add")
+                }))
+                .navigationBarTitle("Reminders")
+            }
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
