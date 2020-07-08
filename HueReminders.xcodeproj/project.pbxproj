@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */; };
+		59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */; };
+		59C82D0424B5A26B0088ACD1 /* HueReminders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0224B5A26B0088ACD1 /* HueReminders.xcdatamodeld */; };
+		59C82D0624B5A26B0088ACD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0524B5A26B0088ACD1 /* ContentView.swift */; };
+		59C82D0824B5A26C0088ACD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C82D0724B5A26C0088ACD1 /* Assets.xcassets */; };
+		59C82D0B24B5A26C0088ACD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C82D0A24B5A26C0088ACD1 /* Preview Assets.xcassets */; };
+		59C82D0E24B5A26C0088ACD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */; };
+		59C82D1924B5A26C0088ACD1 /* HueRemindersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D1824B5A26C0088ACD1 /* HueRemindersTests.swift */; };
+		59C82D2424B5A26D0088ACD1 /* HueRemindersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D2324B5A26D0088ACD1 /* HueRemindersUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		59C82D1524B5A26C0088ACD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59C82CF324B5A26B0088ACD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59C82CFA24B5A26B0088ACD1;
+			remoteInfo = HueReminders;
+		};
+		59C82D2024B5A26C0088ACD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59C82CF324B5A26B0088ACD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59C82CFA24B5A26B0088ACD1;
+			remoteInfo = HueReminders;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		59C82CFB24B5A26B0088ACD1 /* HueReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HueReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		59C82D0324B5A26B0088ACD1 /* HueReminders.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueReminders.xcdatamodel; sourceTree = "<group>"; };
+		59C82D0524B5A26B0088ACD1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		59C82D0724B5A26C0088ACD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		59C82D0A24B5A26C0088ACD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		59C82D0D24B5A26C0088ACD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		59C82D0F24B5A26C0088ACD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59C82D1424B5A26C0088ACD1 /* HueRemindersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HueRemindersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		59C82D1824B5A26C0088ACD1 /* HueRemindersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueRemindersTests.swift; sourceTree = "<group>"; };
+		59C82D1A24B5A26C0088ACD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59C82D1F24B5A26C0088ACD1 /* HueRemindersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HueRemindersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		59C82D2324B5A26D0088ACD1 /* HueRemindersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueRemindersUITests.swift; sourceTree = "<group>"; };
+		59C82D2524B5A26D0088ACD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		59C82CF824B5A26B0088ACD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C82D1124B5A26C0088ACD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C82D1C24B5A26C0088ACD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		59C82CF224B5A26B0088ACD1 = {
+			isa = PBXGroup;
+			children = (
+				59C82CFD24B5A26B0088ACD1 /* HueReminders */,
+				59C82D1724B5A26C0088ACD1 /* HueRemindersTests */,
+				59C82D2224B5A26D0088ACD1 /* HueRemindersUITests */,
+				59C82CFC24B5A26B0088ACD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		59C82CFC24B5A26B0088ACD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				59C82CFB24B5A26B0088ACD1 /* HueReminders.app */,
+				59C82D1424B5A26C0088ACD1 /* HueRemindersTests.xctest */,
+				59C82D1F24B5A26C0088ACD1 /* HueRemindersUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		59C82CFD24B5A26B0088ACD1 /* HueReminders */ = {
+			isa = PBXGroup;
+			children = (
+				59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */,
+				59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */,
+				59C82D0524B5A26B0088ACD1 /* ContentView.swift */,
+				59C82D0724B5A26C0088ACD1 /* Assets.xcassets */,
+				59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */,
+				59C82D0F24B5A26C0088ACD1 /* Info.plist */,
+				59C82D0224B5A26B0088ACD1 /* HueReminders.xcdatamodeld */,
+				59C82D0924B5A26C0088ACD1 /* Preview Content */,
+			);
+			path = HueReminders;
+			sourceTree = "<group>";
+		};
+		59C82D0924B5A26C0088ACD1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				59C82D0A24B5A26C0088ACD1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		59C82D1724B5A26C0088ACD1 /* HueRemindersTests */ = {
+			isa = PBXGroup;
+			children = (
+				59C82D1824B5A26C0088ACD1 /* HueRemindersTests.swift */,
+				59C82D1A24B5A26C0088ACD1 /* Info.plist */,
+			);
+			path = HueRemindersTests;
+			sourceTree = "<group>";
+		};
+		59C82D2224B5A26D0088ACD1 /* HueRemindersUITests */ = {
+			isa = PBXGroup;
+			children = (
+				59C82D2324B5A26D0088ACD1 /* HueRemindersUITests.swift */,
+				59C82D2524B5A26D0088ACD1 /* Info.plist */,
+			);
+			path = HueRemindersUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		59C82CFA24B5A26B0088ACD1 /* HueReminders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59C82D2824B5A26D0088ACD1 /* Build configuration list for PBXNativeTarget "HueReminders" */;
+			buildPhases = (
+				59C82CF724B5A26B0088ACD1 /* Sources */,
+				59C82CF824B5A26B0088ACD1 /* Frameworks */,
+				59C82CF924B5A26B0088ACD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HueReminders;
+			productName = HueReminders;
+			productReference = 59C82CFB24B5A26B0088ACD1 /* HueReminders.app */;
+			productType = "com.apple.product-type.application";
+		};
+		59C82D1324B5A26C0088ACD1 /* HueRemindersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59C82D2B24B5A26D0088ACD1 /* Build configuration list for PBXNativeTarget "HueRemindersTests" */;
+			buildPhases = (
+				59C82D1024B5A26C0088ACD1 /* Sources */,
+				59C82D1124B5A26C0088ACD1 /* Frameworks */,
+				59C82D1224B5A26C0088ACD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59C82D1624B5A26C0088ACD1 /* PBXTargetDependency */,
+			);
+			name = HueRemindersTests;
+			productName = HueRemindersTests;
+			productReference = 59C82D1424B5A26C0088ACD1 /* HueRemindersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		59C82D1E24B5A26C0088ACD1 /* HueRemindersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59C82D2E24B5A26D0088ACD1 /* Build configuration list for PBXNativeTarget "HueRemindersUITests" */;
+			buildPhases = (
+				59C82D1B24B5A26C0088ACD1 /* Sources */,
+				59C82D1C24B5A26C0088ACD1 /* Frameworks */,
+				59C82D1D24B5A26C0088ACD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59C82D2124B5A26C0088ACD1 /* PBXTargetDependency */,
+			);
+			name = HueRemindersUITests;
+			productName = HueRemindersUITests;
+			productReference = 59C82D1F24B5A26C0088ACD1 /* HueRemindersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		59C82CF324B5A26B0088ACD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Jan Svensson";
+				TargetAttributes = {
+					59C82CFA24B5A26B0088ACD1 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					59C82D1324B5A26C0088ACD1 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 59C82CFA24B5A26B0088ACD1;
+					};
+					59C82D1E24B5A26C0088ACD1 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 59C82CFA24B5A26B0088ACD1;
+					};
+				};
+			};
+			buildConfigurationList = 59C82CF624B5A26B0088ACD1 /* Build configuration list for PBXProject "HueReminders" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 59C82CF224B5A26B0088ACD1;
+			productRefGroup = 59C82CFC24B5A26B0088ACD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				59C82CFA24B5A26B0088ACD1 /* HueReminders */,
+				59C82D1324B5A26C0088ACD1 /* HueRemindersTests */,
+				59C82D1E24B5A26C0088ACD1 /* HueRemindersUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		59C82CF924B5A26B0088ACD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C82D0E24B5A26C0088ACD1 /* LaunchScreen.storyboard in Resources */,
+				59C82D0B24B5A26C0088ACD1 /* Preview Assets.xcassets in Resources */,
+				59C82D0824B5A26C0088ACD1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C82D1224B5A26C0088ACD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C82D1D24B5A26C0088ACD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		59C82CF724B5A26B0088ACD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */,
+				59C82D0424B5A26B0088ACD1 /* HueReminders.xcdatamodeld in Sources */,
+				59C82D0624B5A26B0088ACD1 /* ContentView.swift in Sources */,
+				59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C82D1024B5A26C0088ACD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C82D1924B5A26C0088ACD1 /* HueRemindersTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59C82D1B24B5A26C0088ACD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59C82D2424B5A26D0088ACD1 /* HueRemindersUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		59C82D1624B5A26C0088ACD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59C82CFA24B5A26B0088ACD1 /* HueReminders */;
+			targetProxy = 59C82D1524B5A26C0088ACD1 /* PBXContainerItemProxy */;
+		};
+		59C82D2124B5A26C0088ACD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59C82CFA24B5A26B0088ACD1 /* HueReminders */;
+			targetProxy = 59C82D2024B5A26C0088ACD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59C82D0D24B5A26C0088ACD1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		59C82D2624B5A26D0088ACD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		59C82D2724B5A26D0088ACD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		59C82D2924B5A26D0088ACD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HueReminders/Preview Content\"";
+				DEVELOPMENT_TEAM = Q9L559MT2U;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HueReminders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.HueReminders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		59C82D2A24B5A26D0088ACD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HueReminders/Preview Content\"";
+				DEVELOPMENT_TEAM = Q9L559MT2U;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HueReminders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.HueReminders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		59C82D2C24B5A26D0088ACD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9L559MT2U;
+				INFOPLIST_FILE = HueRemindersTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.HueRemindersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HueReminders.app/HueReminders";
+			};
+			name = Debug;
+		};
+		59C82D2D24B5A26D0088ACD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9L559MT2U;
+				INFOPLIST_FILE = HueRemindersTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.HueRemindersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HueReminders.app/HueReminders";
+			};
+			name = Release;
+		};
+		59C82D2F24B5A26D0088ACD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9L559MT2U;
+				INFOPLIST_FILE = HueRemindersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.HueRemindersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HueReminders;
+			};
+			name = Debug;
+		};
+		59C82D3024B5A26D0088ACD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9L559MT2U;
+				INFOPLIST_FILE = HueRemindersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.HueRemindersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HueReminders;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		59C82CF624B5A26B0088ACD1 /* Build configuration list for PBXProject "HueReminders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59C82D2624B5A26D0088ACD1 /* Debug */,
+				59C82D2724B5A26D0088ACD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59C82D2824B5A26D0088ACD1 /* Build configuration list for PBXNativeTarget "HueReminders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59C82D2924B5A26D0088ACD1 /* Debug */,
+				59C82D2A24B5A26D0088ACD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59C82D2B24B5A26D0088ACD1 /* Build configuration list for PBXNativeTarget "HueRemindersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59C82D2C24B5A26D0088ACD1 /* Debug */,
+				59C82D2D24B5A26D0088ACD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59C82D2E24B5A26D0088ACD1 /* Build configuration list for PBXNativeTarget "HueRemindersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59C82D2F24B5A26D0088ACD1 /* Debug */,
+				59C82D3024B5A26D0088ACD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		59C82D0224B5A26B0088ACD1 /* HueReminders.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				59C82D0324B5A26B0088ACD1 /* HueReminders.xcdatamodel */,
+			);
+			currentVersion = 59C82D0324B5A26B0088ACD1 /* HueReminders.xcdatamodel */;
+			path = HueReminders.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 59C82CF324B5A26B0088ACD1 /* Project object */;
+}
