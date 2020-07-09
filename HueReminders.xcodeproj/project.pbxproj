@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59173A9E24B764800009A73C /* InspectReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59173A9D24B764800009A73C /* InspectReminder.swift */; };
 		59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */; };
 		59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */; };
 		59C82D0424B5A26B0088ACD1 /* HueReminders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0224B5A26B0088ACD1 /* HueReminders.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		59173A9D24B764800009A73C /* InspectReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectReminder.swift; sourceTree = "<group>"; };
 		59C82CFB24B5A26B0088ACD1 /* HueReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HueReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		59173A9B24B763E50009A73C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				59C82D0524B5A26B0088ACD1 /* ContentView.swift */,
+				59C82D3724B61DD70088ACD1 /* NewReminderView.swift */,
+				59173A9D24B764800009A73C /* InspectReminder.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		59173A9C24B763F50009A73C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				59C82D3124B5A65F0088ACD1 /* NewReminderViewModel.swift */,
+				59C82D3924B629560088ACD1 /* ListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		59C82CF224B5A26B0088ACD1 = {
 			isa = PBXGroup;
 			children = (
@@ -109,13 +130,11 @@
 		59C82CFD24B5A26B0088ACD1 /* HueReminders */ = {
 			isa = PBXGroup;
 			children = (
+				59173A9C24B763F50009A73C /* ViewModels */,
+				59173A9B24B763E50009A73C /* Views */,
 				59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */,
 				59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */,
-				59C82D0524B5A26B0088ACD1 /* ContentView.swift */,
-				59C82D3724B61DD70088ACD1 /* NewReminderView.swift */,
 				59C82D3524B61D730088ACD1 /* Reminder.swift */,
-				59C82D3124B5A65F0088ACD1 /* NewReminderViewModel.swift */,
-				59C82D3924B629560088ACD1 /* ListViewModel.swift */,
 				59C82D0724B5A26C0088ACD1 /* Assets.xcassets */,
 				59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */,
 				59C82D0F24B5A26C0088ACD1 /* Info.plist */,
@@ -284,6 +303,7 @@
 			files = (
 				59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */,
 				59C82D3624B61D730088ACD1 /* Reminder.swift in Sources */,
+				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */,
 				59C82D0424B5A26B0088ACD1 /* HueReminders.xcdatamodeld in Sources */,
 				59C82D0624B5A26B0088ACD1 /* ContentView.swift in Sources */,
