@@ -8,23 +8,37 @@
 
 import SwiftUI
 
+enum WeekDay: String, CaseIterable {
+    case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+}
+
+enum Color: String, CaseIterable {
+    case White, Blue, Red, Green, Yellow, Pink, Purple, Orange
+}
+
 struct Reminder: Identifiable {
     var id = UUID()
     var name: String
-    var color: String
-    var day: String
-    var time: String
+    var color: Int
+    var day: Int
+    var time: Date
 }
 
 struct ReminderRow: View {
     var reminder: Reminder
     
+    var formatter: DateFormatter = {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "hh:mm"
+        return timeFormatter
+    }()
+    
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             Text(reminder.name)
-            Text(reminder.color)
-            Text(reminder.day)
-            Text(reminder.time)
+            Text(Color.allCases[reminder.color].rawValue)
+            Text(WeekDay.allCases[reminder.day].rawValue)
+            Text("\(formatter.string(from: reminder.time))")
         }
     }
 }

@@ -14,14 +14,25 @@ struct NewReminder: View {
     var onAddReminder: ((Reminder) -> Void)?
 
     @Environment(\.presentationMode) var presentation
-
     @ObservedObject private var newReminderViewModel = NewReminderViewModel()
+    
+    private var cancellables = Set<AnyCancellable>()
     
     func addPressed() {
         // TODO: Add to a Core Data model instead
         let newReminder = Reminder(name: newReminderViewModel.name, color: newReminderViewModel.color, day: newReminderViewModel.day, time: newReminderViewModel.time)
         onAddReminder?(newReminder)
         self.presentation.wrappedValue.dismiss()
+    }
+    
+    init(onAddReminder: ((Reminder) -> Void)?) {
+        self.onAddReminder = onAddReminder
+        
+        // Setup subscriber
+        newReminderViewModel.isNameValid
+            .receive(on: RunLoop.main)
+            .assign(to: \.valid, on: newReminderViewModel)
+            .store(in: &cancellables)
     }
     
     var body: some View {
@@ -31,18 +42,27 @@ struct NewReminder: View {
                     .autocapitalization(.none)
             }
             Section {
-                TextField("Color", text: $newReminderViewModel.color)
+                // Swap for the color picker in iOS 14. Currently in beta
+                Picker("Color", selection: $newReminderViewModel.color) {
+                    ForEach(0 ..< Color.allCases.count) { index in
+                        Text(Color.allCases[index].rawValue)
+                    }
+                }
             }
             Section {
-                TextField("Day", text: $newReminderViewModel.day)
+                Picker("Day", selection: $newReminderViewModel.day) {
+                    ForEach(0 ..< WeekDay.allCases.count) { index in
+                        Text(WeekDay.allCases[index].rawValue)
+                    }
+                }
             }
             Section {
-                TextField("Time", text: $newReminderViewModel.time)
+                DatePicker("Time", selection: $newReminderViewModel.time, displayedComponents: .hourAndMinute)
             }
             Section {
                 Button(action: addPressed) {
                     Text("Add").bold()
-                }.disabled(!newReminderViewModel.isValid)
+                }.disabled(!newReminderViewModel.valid)
             }
         }.navigationBarTitle("New reminder")
     }
