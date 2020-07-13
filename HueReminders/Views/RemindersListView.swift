@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-struct ContentView: View {
+struct RemindersListView: View {
 
     @ObservedObject private var listViewModel = ListViewModel()
 
@@ -38,6 +38,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        RemindersListView()
     }
 }
