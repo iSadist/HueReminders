@@ -25,7 +25,7 @@ struct InspectReminderView: View {
         Form {
             Section {
                 Text("Color").bold()
-                Text(Color.allCases[reminder.color].rawValue)
+                Text(ReminderColor.allCases[reminder.color].rawValue)
             }
             Section {
                 Text("Day").bold()

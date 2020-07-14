@@ -22,12 +22,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        let contentView = RemindersListView().environment(\.managedObjectContext, context)
+        let connectView = ConnectView().environment(\.managedObjectContext, context)
+        let reminderListView = RemindersListView().environment(\.managedObjectContext, context)
+        
+        #if DEBUG
+        let hasBridgeBeenDiscovered = true
+        #else
+        let hasBridgeBeenDiscovered = UserDefaults.standard.bool(forKey: "HueBridgeDiscovered")
+        #endif
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            
+            if hasBridgeBeenDiscovered {
+                window.rootViewController = UIHostingController(rootView: reminderListView)
+            } else {
+                window.rootViewController = UIHostingController(rootView: connectView)
+            }
+            
             self.window = window
             window.makeKeyAndVisible()
         }

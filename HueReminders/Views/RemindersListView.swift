@@ -10,28 +10,22 @@ import SwiftUI
 import Combine
 
 struct RemindersListView: View {
-
     @ObservedObject private var listViewModel = ListViewModel()
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 10) {
-                List(listViewModel.reminders) { reminder in
-                    NavigationLink(destination: InspectReminderView(reminder)) {
-                        ReminderRow(reminder: reminder)
-                            .onTapGesture {
-                                print(reminder.name)
-                            }
-                    }
-                }
-                .navigationBarItems(trailing:
-                    NavigationLink(destination: NewReminder(onAddReminder: { (reminder) in
-                        self.listViewModel.reminders.append(reminder)
-                    }), label: {
-                    Text("Add")
-                }))
-                .navigationBarTitle("Reminders")
+            List(listViewModel.reminders) { reminder in
+//                NavigationLink(destination: InspectReminderView(reminder)) {
+                    ReminderRow(reminder: reminder)
+//                }
             }
+            .navigationBarItems(trailing:
+                NavigationLink(destination: NewReminder(onAddReminder: { (reminder) in
+                    self.listViewModel.reminders.append(reminder)
+                }), label: {
+                    Text("Add")
+            }))
+            .navigationBarTitle("Reminders")
         }
     }
 }

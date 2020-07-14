@@ -44,8 +44,8 @@ struct NewReminder: View {
             Section {
                 // Swap for the color picker in iOS 14. Currently in beta
                 Picker("Color", selection: $newReminderViewModel.color) {
-                    ForEach(0 ..< Color.allCases.count) { index in
-                        Text(Color.allCases[index].rawValue)
+                    ForEach(0 ..< ReminderColor.allCases.count) { index in
+                        Text(ReminderColor.allCases[index].rawValue)
                     }
                 }
             }
