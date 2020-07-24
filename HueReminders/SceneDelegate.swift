@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let reminderListView = RemindersListView().environment(\.managedObjectContext, context)
         
         #if DEBUG
-        let hasBridgeBeenDiscovered = true
+        let hasBridgeBeenDiscovered = false
         #else
         let hasBridgeBeenDiscovered = UserDefaults.standard.bool(forKey: "HueBridgeDiscovered")
         #endif

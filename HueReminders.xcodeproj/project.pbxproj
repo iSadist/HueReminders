@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		59173A9E24B764800009A73C /* InspectReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59173A9D24B764800009A73C /* InspectReminder.swift */; };
+		592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B427124C9839200D73CFF /* ConnectViewModel.swift */; };
 		59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6F924BC6F8600A8F258 /* ConnectView.swift */; };
 		59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */; };
 		59C6C6FF24BC7A4F00A8F258 /* ConnectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6FE24BC7A4F00A8F258 /* ConnectController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		59173A9D24B764800009A73C /* InspectReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectReminder.swift; sourceTree = "<group>"; };
+		592B427124C9839200D73CFF /* ConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewModel.swift; sourceTree = "<group>"; };
 		59C6C6F924BC6F8600A8F258 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
 		59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		59C6C6FE24BC7A4F00A8F258 /* ConnectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				59C82D3124B5A65F0088ACD1 /* NewReminderViewModel.swift */,
 				59C82D3924B629560088ACD1 /* ListViewModel.swift */,
+				592B427124C9839200D73CFF /* ConnectViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */,
 				59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */,
 				59C82D3624B61D730088ACD1 /* Reminder.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,

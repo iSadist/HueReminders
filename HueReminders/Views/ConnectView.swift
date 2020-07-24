@@ -7,31 +7,101 @@
 //
 
 import SwiftUI
+import Combine
 import CoreGraphics
 
-struct ConnectView: View {
+struct HueError: Codable {
+    var type: Int
+    var address: String
+    var description: String
+}
 
-    @State var ipAddress = ""
-    @State var isAnimating = false
+struct HueSuccess: Codable {
+    var username: String
+}
+
+struct HueConnectResponse: Codable {
+    var success: HueSuccess?
+    var error: HueError?
+}
+
+struct ConnectView: View {
+    @ObservedObject var connectViewModel = ConnectViewModel()
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        connectViewModel.connectedPublisher
+            .receive(on: RunLoop.main)
+            .assign(to: \.isConnected, on: connectViewModel)
+            .store(in: &cancellables)
+    }
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 15) {
-                if isAnimating {
+                Text(connectViewModel.informationMessage)
+                
+                if connectViewModel.isAnimating {
                     ActivityIndicator()
                         .frame(width: 25, height: 25)
                         .foregroundColor(.orange)
+                } else {
+                    ActivityIndicator()
+                        .frame(width: 25, height: 25)
+                        .hidden()
                 }
                 
                 Button(action: {
-                    print("Find the hue bridge now!")
-                    self.ipAddress = "123.45.678.90"
-                    self.isAnimating = !self.isAnimating
+                    self.connectViewModel.isAnimating = true
+                    if let url = URL(string: "http://\(self.connectViewModel.ipAddress)/api") {
+                        var request = URLRequest(url: url)
+                        request.httpMethod = "POST"
+
+                        let parameterDictionary = ["devicetype" : "huereminders"]
+                        let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
+                        request.httpBody = httpBody
+                        
+                        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                            self.connectViewModel.isAnimating = false
+                            guard let data = data else {
+                                self.connectViewModel.informationMessage = "Could not connect"
+                                return
+                            }
+                            if let dataResponses = try? JSONDecoder().decode([HueConnectResponse].self, from: data) {
+                                let firstResponse = dataResponses.first
+                                
+                                if let error = firstResponse?.error {
+                                    switch error.type {
+                                    case 101:
+                                        self.connectViewModel.informationMessage = "The link button was not pressed"
+                                    default:
+                                        self.connectViewModel.informationMessage = "Unknown error in response"
+                                    }
+                                } else if let username = firstResponse?.success?.username {
+                                    self.connectViewModel.usernameID = username
+                                    self.connectViewModel.isConnected = true
+                                    self.connectViewModel.informationMessage = "Connection successful"
+                                }
+                            } else {
+                                self.connectViewModel.informationMessage = "Could not connect"
+                            }
+                        }
+                        
+                        task.resume()
+                    } else {
+                        self.connectViewModel.informationMessage = "Not a valid ip address"
+                    }
                 }) {
                     Text("Connect to Hue Bridge")
                 }
                 
-                TextField("Hue Bridge address", text: $ipAddress)
+                TextField("Hue Bridge address", text: $connectViewModel.ipAddress)
+                
+                if connectViewModel.isConnected {
+                    Text("Username")
+                    TextField("Username", text: $connectViewModel.usernameID)
+                }
             }
         }.navigationBarTitle("Connect")
     }
