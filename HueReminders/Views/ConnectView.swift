@@ -27,16 +27,16 @@ struct HueConnectResponse: Codable {
 
 struct ConnectView: View {
     @ObservedObject var connectViewModel = ConnectViewModel()
-    
+
     private var cancellables = Set<AnyCancellable>()
-    
+
     init() {
         connectViewModel.connectedPublisher
             .receive(on: RunLoop.main)
             .assign(to: \.isConnected, on: connectViewModel)
             .store(in: &cancellables)
     }
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 15) {
@@ -44,7 +44,7 @@ struct ConnectView: View {
                     .scaleEffect(0.5)
                     .edgesIgnoringSafeArea(.top)
                     .padding(EdgeInsets(top: -50, leading: 0, bottom: -100, trailing: 0))
-                
+
                 Text("Before you can start to set reminders you need to connect to a Hue Bridge")
                     .font(.subheadline)
                     .bold()
@@ -52,7 +52,7 @@ struct ConnectView: View {
                     .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25))
                 
                 Text(connectViewModel.informationMessage)
-                
+
                 if connectViewModel.isAnimating {
                     ActivityIndicator()
                         .frame(width: 25, height: 25)
@@ -62,20 +62,20 @@ struct ConnectView: View {
                         .frame(width: 25, height: 25)
                         .hidden()
                 }
-                
+
                 TextField("Hue Bridge address", text: $connectViewModel.ipAddress)
                     .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25))
-                
+
                 Button(action: {
                     self.connectViewModel.isAnimating = true
                     if let url = URL(string: "http://\(self.connectViewModel.ipAddress)/api") {
                         var request = URLRequest(url: url)
                         request.httpMethod = "POST"
 
-                        let parameterDictionary = ["devicetype" : "huereminders"]
+                        let parameterDictionary = ["devicetype": "huereminders"]
                         let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
                         request.httpBody = httpBody
-                        
+
                         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                             // TODO: State should not be updated on the main thread
                             self.connectViewModel.isAnimating = false
@@ -85,7 +85,7 @@ struct ConnectView: View {
                             }
                             if let dataResponses = try? JSONDecoder().decode([HueConnectResponse].self, from: data) {
                                 let firstResponse = dataResponses.first
-                                
+
                                 if let error = firstResponse?.error {
                                     switch error.type {
                                     case 101:
@@ -102,7 +102,6 @@ struct ConnectView: View {
                                 self.connectViewModel.informationMessage = "Could not connect"
                             }
                         }
-                        
                         task.resume()
                     } else {
                         self.connectViewModel.informationMessage = "Not a valid ip address"
@@ -110,10 +109,19 @@ struct ConnectView: View {
                 }) {
                     Text("Connect")
                 }
-                
+
                 if connectViewModel.isConnected { // TODO: Remove this eventually. Should just save the username in the data model
                     Text("Username")
                     TextField("Username", text: $connectViewModel.usernameID)
+
+                    Button(action: {
+                        print("Continue")
+
+//                        let rem = HueReminders
+
+                    }) {
+                        Text("Next")
+                    }
                 }
                 Spacer()
             }

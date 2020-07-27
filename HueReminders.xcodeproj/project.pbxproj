@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		59173A9E24B764800009A73C /* InspectReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59173A9D24B764800009A73C /* InspectReminder.swift */; };
 		592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B427124C9839200D73CFF /* ConnectViewModel.swift */; };
+		595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */; };
 		59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6F924BC6F8600A8F258 /* ConnectView.swift */; };
 		59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */; };
 		59C6C6FF24BC7A4F00A8F258 /* ConnectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6FE24BC7A4F00A8F258 /* ConnectController.swift */; };
 		59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */; };
 		59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */; };
-		59C82D0424B5A26B0088ACD1 /* HueReminders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0224B5A26B0088ACD1 /* HueReminders.xcdatamodeld */; };
 		59C82D0624B5A26B0088ACD1 /* RemindersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D0524B5A26B0088ACD1 /* RemindersListView.swift */; };
 		59C82D0824B5A26C0088ACD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C82D0724B5A26C0088ACD1 /* Assets.xcassets */; };
 		59C82D0B24B5A26C0088ACD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C82D0A24B5A26C0088ACD1 /* Preview Assets.xcassets */; };
@@ -48,13 +48,13 @@
 /* Begin PBXFileReference section */
 		59173A9D24B764800009A73C /* InspectReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectReminder.swift; sourceTree = "<group>"; };
 		592B427124C9839200D73CFF /* ConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewModel.swift; sourceTree = "<group>"; };
+		595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueBridge.xcdatamodel; sourceTree = "<group>"; };
 		59C6C6F924BC6F8600A8F258 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
 		59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		59C6C6FE24BC7A4F00A8F258 /* ConnectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectController.swift; sourceTree = "<group>"; };
 		59C82CFB24B5A26B0088ACD1 /* HueReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HueReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		59C82D0324B5A26B0088ACD1 /* HueReminders.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueReminders.xcdatamodel; sourceTree = "<group>"; };
 		59C82D0524B5A26B0088ACD1 /* RemindersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersListView.swift; sourceTree = "<group>"; };
 		59C82D0724B5A26C0088ACD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59C82D0A24B5A26C0088ACD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -169,8 +169,8 @@
 				59C82D0724B5A26C0088ACD1 /* Assets.xcassets */,
 				59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */,
 				59C82D0F24B5A26C0088ACD1 /* Info.plist */,
-				59C82D0224B5A26B0088ACD1 /* HueReminders.xcdatamodeld */,
 				59C82D0924B5A26C0088ACD1 /* Preview Content */,
+				595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */,
 			);
 			path = HueReminders;
 			sourceTree = "<group>";
@@ -211,6 +211,7 @@
 				59C82CF724B5A26B0088ACD1 /* Sources */,
 				59C82CF824B5A26B0088ACD1 /* Frameworks */,
 				59C82CF924B5A26B0088ACD1 /* Resources */,
+				595D61ED24CECD6300F93423 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -327,6 +328,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		595D61ED24CECD6300F93423 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		59C82CF724B5A26B0088ACD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -340,8 +361,8 @@
 				59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */,
 				59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */,
 				59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */,
-				59C82D0424B5A26B0088ACD1 /* HueReminders.xcdatamodeld in Sources */,
 				59C82D0624B5A26B0088ACD1 /* RemindersListView.swift in Sources */,
+				595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */,
 				59C6C6FF24BC7A4F00A8F258 /* ConnectController.swift in Sources */,
 				59C82D3224B5A65F0088ACD1 /* NewReminderViewModel.swift in Sources */,
 				59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */,
@@ -672,13 +693,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		59C82D0224B5A26B0088ACD1 /* HueReminders.xcdatamodeld */ = {
+		595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				59C82D0324B5A26B0088ACD1 /* HueReminders.xcdatamodel */,
+				595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */,
 			);
-			currentVersion = 59C82D0324B5A26B0088ACD1 /* HueReminders.xcdatamodel */;
-			path = HueReminders.xcdatamodeld;
+			currentVersion = 595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */;
+			path = HueBridge.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -9,11 +9,11 @@
 import SwiftUI
 
 enum WeekDay: String, CaseIterable {
-    case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+    case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday // swiftlint:disable identifier_name
 }
 
 enum ReminderColor: String, CaseIterable {
-    case White, Blue, Red, Green, Yellow, Pink, Purple, Orange
+    case White, Blue, Red, Green, Yellow, Pink, Purple, Orange // swiftlint:disable identifier_name
 }
 
 struct Reminder: Identifiable {
