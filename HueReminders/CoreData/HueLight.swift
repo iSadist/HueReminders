@@ -1,5 +1,5 @@
 //
-//  HueBridge.swift
+//  HueLight.swift
 //  HueReminders
 //
 //  Created by Jan Svensson on 2020-07-27.
@@ -8,10 +8,10 @@
 
 import CoreData
 
-final class HueBridge: NSManagedObject, Identifiable, Findable {
-    class func findAll() -> NSFetchRequest<HueBridge> {
+final class HueLight: NSManagedObject, Findable {
+    class func findAll() -> NSFetchRequest<HueLight> {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        let request: NSFetchRequest<HueBridge> = HueBridge.fetchRequest()
+        let request: NSFetchRequest<HueLight> = HueLight.fetchRequest()
         request.sortDescriptors = [sortDescriptor]
         return request
     }

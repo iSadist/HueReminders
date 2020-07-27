@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0A24CF70A4000265BB /* HueLight.swift */; };
+		5909BD0D24CF70C0000265BB /* Findable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0C24CF70C0000265BB /* Findable.swift */; };
 		59173A9E24B764800009A73C /* InspectReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59173A9D24B764800009A73C /* InspectReminder.swift */; };
 		592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B427124C9839200D73CFF /* ConnectViewModel.swift */; };
 		595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */; };
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5909BD0A24CF70A4000265BB /* HueLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueLight.swift; sourceTree = "<group>"; };
+		5909BD0C24CF70C0000265BB /* Findable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Findable.swift; sourceTree = "<group>"; };
 		59173A9D24B764800009A73C /* InspectReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectReminder.swift; sourceTree = "<group>"; };
 		592B427124C9839200D73CFF /* ConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewModel.swift; sourceTree = "<group>"; };
 		595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueBridge.xcdatamodel; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 			children = (
 				595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */,
 				595D61EF24CED6C900F93423 /* HueBridge.swift */,
+				5909BD0A24CF70A4000265BB /* HueLight.swift */,
+				5909BD0C24CF70C0000265BB /* Findable.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -367,6 +373,7 @@
 				592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */,
 				59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */,
 				59C82D3624B61D730088ACD1 /* Reminder.swift in Sources */,
+				5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */,
 				59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */,
@@ -377,6 +384,7 @@
 				59C6C6FF24BC7A4F00A8F258 /* ConnectController.swift in Sources */,
 				59C82D3224B5A65F0088ACD1 /* NewReminderViewModel.swift in Sources */,
 				59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */,
+				5909BD0D24CF70C0000265BB /* Findable.swift in Sources */,
 				595D61F024CED6C900F93423 /* HueBridge.swift in Sources */,
 				59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */,
 			);
