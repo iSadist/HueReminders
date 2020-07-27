@@ -40,6 +40,17 @@ struct ConnectView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 15) {
+                Image("hue_logo")
+                    .scaleEffect(0.5)
+                    .edgesIgnoringSafeArea(.top)
+                    .padding(EdgeInsets(top: -50, leading: 0, bottom: -100, trailing: 0))
+                
+                Text("Before you can start to set reminders you need to connect to a Hue Bridge")
+                    .font(.subheadline)
+                    .bold()
+                    .foregroundColor(.secondary)
+                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25))
+                
                 Text(connectViewModel.informationMessage)
                 
                 if connectViewModel.isAnimating {
@@ -52,6 +63,9 @@ struct ConnectView: View {
                         .hidden()
                 }
                 
+                TextField("Hue Bridge address", text: $connectViewModel.ipAddress)
+                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25))
+                
                 Button(action: {
                     self.connectViewModel.isAnimating = true
                     if let url = URL(string: "http://\(self.connectViewModel.ipAddress)/api") {
@@ -63,6 +77,7 @@ struct ConnectView: View {
                         request.httpBody = httpBody
                         
                         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                            // TODO: State should not be updated on the main thread
                             self.connectViewModel.isAnimating = false
                             guard let data = data else {
                                 self.connectViewModel.informationMessage = "Could not connect"
@@ -93,15 +108,14 @@ struct ConnectView: View {
                         self.connectViewModel.informationMessage = "Not a valid ip address"
                     }
                 }) {
-                    Text("Connect to Hue Bridge")
+                    Text("Connect")
                 }
                 
-                TextField("Hue Bridge address", text: $connectViewModel.ipAddress)
-                
-                if connectViewModel.isConnected {
+                if connectViewModel.isConnected { // TODO: Remove this eventually. Should just save the username in the data model
                     Text("Username")
                     TextField("Username", text: $connectViewModel.usernameID)
                 }
+                Spacer()
             }
         }.navigationBarTitle("Connect")
     }
