@@ -27,6 +27,8 @@ struct HueConnectResponse: Codable {
 
 struct ConnectView: View {
     @ObservedObject var connectViewModel = ConnectViewModel()
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(fetchRequest: HueBridge.findAll()) var bridges: FetchedResults<HueBridge>
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -50,7 +52,7 @@ struct ConnectView: View {
                     .bold()
                     .foregroundColor(.secondary)
                     .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25))
-                
+
                 Text(connectViewModel.informationMessage)
 
                 if connectViewModel.isAnimating {
@@ -97,6 +99,14 @@ struct ConnectView: View {
                                     self.connectViewModel.usernameID = username
                                     self.connectViewModel.isConnected = true
                                     self.connectViewModel.informationMessage = "Connection successful"
+
+                                    let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+                                    let context = container.viewContext
+                                    let bridge = HueBridge(context: context)
+                                    bridge.username = self.connectViewModel.usernameID
+                                    bridge.address = self.connectViewModel.ipAddress
+                                    bridge.name = "Bridge \(self.bridges.count)"
+                                    try? context.save()
                                 }
                             } else {
                                 self.connectViewModel.informationMessage = "Could not connect"
@@ -109,23 +119,17 @@ struct ConnectView: View {
                 }) {
                     Text("Connect")
                 }
-
-                if connectViewModel.isConnected { // TODO: Remove this eventually. Should just save the username in the data model
-                    Text("Username")
-                    TextField("Username", text: $connectViewModel.usernameID)
-
-                    Button(action: {
-                        print("Continue")
-
-//                        let rem = HueReminders
-
-                    }) {
-                        Text("Next")
+                
+                List(bridges) {bridge in
+                    HStack {
+                        Text(bridge.name ?? "")
+                        Text(bridge.address ?? "")
+                        Text("\(bridge.username ?? "")")
                     }
                 }
                 Spacer()
             }
-        }.navigationBarTitle("Connect")
+        }
     }
 }
 
