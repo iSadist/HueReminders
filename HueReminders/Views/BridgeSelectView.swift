@@ -8,30 +8,20 @@
 
 import SwiftUI
 
-struct Bridge: Identifiable {
-    var id = UUID()
-    var name = ""
-    var username = ""
-}
-
-struct BridgeRow: View {
-    var body: some View {
-        Text("Sample text")
-    }
-}
-
 struct BridgeSelectView: View {
-    @State var bridges: [Bridge] = []
-    
-    init(bridges: [Bridge]) {
-        self.bridges = bridges
-    }
-    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(fetchRequest: HueBridge.findAll()) var bridges: FetchedResults<HueBridge>
+
     var body: some View {
-        VStack {
-            Text("Bridges")
-            List(bridges) { bridge in
-                Text(bridge.name)
+        NavigationView {
+            VStack {
+                List(bridges) { bridge in
+                    BridgeRowView(bridge, onRemove: { username in
+                        if let item = self.bridges.first(where: { $0.username == username }) {
+                            self.managedObjectContext.delete(item)
+                        }
+                    })
+                }
             }
         }
     }
@@ -39,6 +29,6 @@ struct BridgeSelectView: View {
 
 struct BridgeSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        BridgeSelectView(bridges: [])
+        BridgeSelectView()
     }
 }

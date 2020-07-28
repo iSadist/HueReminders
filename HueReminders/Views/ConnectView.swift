@@ -78,7 +78,7 @@ struct ConnectView: View {
                         let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
                         request.httpBody = httpBody
 
-                        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
                             // TODO: State should not be updated on the main thread
                             self.connectViewModel.isAnimating = false
                             guard let data = data else {
@@ -100,8 +100,7 @@ struct ConnectView: View {
                                     self.connectViewModel.isConnected = true
                                     self.connectViewModel.informationMessage = "Connection successful"
 
-                                    let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
-                                    let context = container.viewContext
+                                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
                                     let bridge = HueBridge(context: context)
                                     bridge.username = self.connectViewModel.usernameID
                                     bridge.address = self.connectViewModel.ipAddress
@@ -119,8 +118,8 @@ struct ConnectView: View {
                 }) {
                     Text("Connect")
                 }
-                
-                List(bridges) {bridge in
+
+                List(bridges) { bridge in
                     HStack {
                         Text(bridge.name ?? "")
                         Text(bridge.address ?? "")

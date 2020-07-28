@@ -26,21 +26,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Fetch the connected HueBridges here and depenind on that decide which view to show
 //        let bridgeSelectView = BridgeSelectView(bridges: []).environment(\.managedObjectContext, context)
 
-        let connectView = ConnectView().environment(\.managedObjectContext, context)
-        let reminderListView = RemindersListView().environment(\.managedObjectContext, context)
+        let hueBridges = try! context.fetch(HueBridge.findAll())
 
-        #if DEBUG
-        let hasBridgeBeenDiscovered = false
-        #else
-        let hasBridgeBeenDiscovered = UserDefaults.standard.bool(forKey: "HueBridgeDiscovered")
-        #endif
+        let connectView = ConnectView().environment(\.managedObjectContext, context)
+        let bridgeSelectView = BridgeSelectView().environment(\.managedObjectContext, context)
+        let reminderListView = RemindersListView().environment(\.managedObjectContext, context)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
 
-            if hasBridgeBeenDiscovered {
-                window.rootViewController = UIHostingController(rootView: reminderListView)
+            if hueBridges.count > 0 {
+                window.rootViewController = UIHostingController(rootView: bridgeSelectView)
             } else {
                 window.rootViewController = UIHostingController(rootView: connectView)
             }
