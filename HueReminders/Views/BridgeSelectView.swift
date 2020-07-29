@@ -14,15 +14,22 @@ struct BridgeSelectView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                List(bridges) { bridge in
-                    BridgeRowView(bridge, onRemove: { username in
-                        if let item = self.bridges.first(where: { $0.username == username }) {
-                            self.managedObjectContext.delete(item)
-                        }
-                    })
+            List {
+                ForEach(bridges) { bridge in
+                    BridgeRowView(bridge)
+                }.onDelete { indexSet in
+                    let bridge = self.bridges[indexSet.first!]
+                    self.managedObjectContext.delete(bridge)
+                    try? self.managedObjectContext.save()
+                }
+                .onTapGesture {
+                    print("tap")
                 }
             }
+            .navigationBarTitle("Hue Bridges")
+            .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: ConnectView()) {
+                Text("Connect another")
+            })
         }
     }
 }
