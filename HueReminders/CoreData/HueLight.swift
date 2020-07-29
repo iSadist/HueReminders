@@ -8,7 +8,7 @@
 
 import CoreData
 
-final class HueLight: NSManagedObject, Findable {
+final class HueLight: NSManagedObject, Identifiable, Findable {
     class func findAll() -> NSFetchRequest<HueLight> {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         let request: NSFetchRequest<HueLight> = HueLight.fetchRequest()

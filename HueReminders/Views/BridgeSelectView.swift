@@ -16,19 +16,19 @@ struct BridgeSelectView: View {
         NavigationView {
             List {
                 ForEach(bridges) { bridge in
-                    BridgeRowView(bridge)
+                    NavigationLink(destination: LightsListView(["Spotlight 1", "Lamp 2"])) {
+                        BridgeRowView(bridge)
+                    }
                 }.onDelete { indexSet in
                     let bridge = self.bridges[indexSet.first!]
                     self.managedObjectContext.delete(bridge)
                     try? self.managedObjectContext.save()
                 }
-                .onTapGesture {
-                    print("tap")
-                }
             }
             .navigationBarTitle("Hue Bridges")
             .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: ConnectView()) {
-                Text("Connect another")
+                Image(systemName: "plus.circle.fill")
+                    .imageScale(.large)
             })
         }
     }

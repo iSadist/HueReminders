@@ -31,6 +31,7 @@
 		59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3724B61DD70088ACD1 /* NewReminderView.swift */; };
 		59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3924B629560088ACD1 /* ListViewModel.swift */; };
 		59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */; };
+		59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7839524D18B2B0010D0CF /* LightsListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		59C82D3724B61DD70088ACD1 /* NewReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderView.swift; sourceTree = "<group>"; };
 		59C82D3924B629560088ACD1 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSelectView.swift; sourceTree = "<group>"; };
+		59E7839524D18B2B0010D0CF /* LightsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */,
 				59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */,
 				5909BD1024D057A6000265BB /* BridgeRowView.swift */,
+				59E7839524D18B2B0010D0CF /* LightsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */,
 				59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */,
+				59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */,
 				59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */,
 				59C82D0624B5A26B0088ACD1 /* RemindersListView.swift in Sources */,
 				595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */,
