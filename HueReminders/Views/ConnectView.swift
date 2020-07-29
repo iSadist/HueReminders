@@ -41,19 +41,14 @@ struct ConnectView: View {
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 15) {
-                Image("hue_logo")
-                    .scaleEffect(0.5)
-                    .edgesIgnoringSafeArea(.top)
-                    .padding(EdgeInsets(top: -50, leading: 0, bottom: -100, trailing: 0))
-
+            VStack {
                 Text("Before you can start to set reminders you need to connect to a Hue Bridge")
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(.secondary)
-                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25))
-
                 Text(connectViewModel.informationMessage)
+                    .font(.subheadline)
+                    .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
 
                 if connectViewModel.isAnimating {
                     ActivityIndicator()
@@ -66,68 +61,50 @@ struct ConnectView: View {
                 }
 
                 TextField("Hue Bridge address", text: $connectViewModel.ipAddress)
-                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25))
-
+                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 25, trailing: 25))
+                Spacer()
                 Button(action: {
                     self.connectViewModel.isAnimating = true
-                    if let url = URL(string: "http://\(self.connectViewModel.ipAddress)/api") {
-                        var request = URLRequest(url: url)
-                        request.httpMethod = "POST"
-
-                        let parameterDictionary = ["devicetype": "huereminders"]
-                        let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
-                        request.httpBody = httpBody
-
-                        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
-                            // TODO: State should not be updated on the main thread
-                            self.connectViewModel.isAnimating = false
-                            guard let data = data else {
-                                self.connectViewModel.informationMessage = "Could not connect"
-                                return
-                            }
-                            if let dataResponses = try? JSONDecoder().decode([HueConnectResponse].self, from: data) {
-                                let firstResponse = dataResponses.first
-
-                                if let error = firstResponse?.error {
-                                    switch error.type {
-                                    case 101:
-                                        self.connectViewModel.informationMessage = "The link button was not pressed"
-                                    default:
-                                        self.connectViewModel.informationMessage = "Unknown error in response"
-                                    }
-                                } else if let username = firstResponse?.success?.username {
-                                    self.connectViewModel.usernameID = username
-                                    self.connectViewModel.isConnected = true
-                                    self.connectViewModel.informationMessage = "Connection successful"
-
-                                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                                    let bridge = HueBridge(context: context)
-                                    bridge.username = self.connectViewModel.usernameID
-                                    bridge.address = self.connectViewModel.ipAddress
-                                    bridge.name = "Bridge \(self.bridges.count)"
-                                    try? context.save()
-                                }
-                            } else {
-                                self.connectViewModel.informationMessage = "Could not connect"
-                            }
+                    HueAPI.connect(to: self.connectViewModel.ipAddress, completion: { (data, error) in
+                        // TODO: State should not be updated on the main thread
+                        self.connectViewModel.isAnimating = false
+                        guard let data = data else {
+                            self.connectViewModel.informationMessage = "Could not connect"
+                            return
                         }
-                        task.resume()
-                    } else {
-                        self.connectViewModel.informationMessage = "Not a valid ip address"
-                    }
+                        if let dataResponses = try? JSONDecoder().decode([HueConnectResponse].self, from: data) {
+                            let firstResponse = dataResponses.first
+
+                            if let error = firstResponse?.error {
+                                switch error.type {
+                                case 101:
+                                    self.connectViewModel.informationMessage = "The link button was not pressed"
+                                default:
+                                    self.connectViewModel.informationMessage = "Unknown error in response"
+                                }
+                            } else if let username = firstResponse?.success?.username {
+                                self.connectViewModel.usernameID = username
+                                self.connectViewModel.isConnected = true
+                                self.connectViewModel.informationMessage = "Connection successful"
+
+                                let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+                                let context = appDelegate.persistentContainer.viewContext
+                                let bridge = HueBridge(context: context)
+                                bridge.username = self.connectViewModel.usernameID
+                                bridge.address = self.connectViewModel.ipAddress
+                                bridge.name = "Bridge \(self.bridges.count)"
+                                try? context.save()
+                            }
+                        } else {
+                            self.connectViewModel.informationMessage = "Could not connect"
+                        }
+                    })
                 }) {
                     Text("Connect")
                 }
-
-                List(bridges) { bridge in
-                    HStack {
-                        Text(bridge.name ?? "")
-                        Text(bridge.address ?? "")
-                        Text("\(bridge.username ?? "")")
-                    }
-                }
                 Spacer()
             }
+            Spacer()
         }
     }
 }
