@@ -16,7 +16,7 @@ struct BridgeSelectView: View {
         NavigationView {
             List {
                 ForEach(bridges) { bridge in
-                    NavigationLink(destination: LightsListView(["Spotlight 1", "Lamp 2"])) {
+                    NavigationLink(destination: LightsListView(HueAPI.getLights(bridge: bridge))) {
                         BridgeRowView(bridge)
                     }
                 }.onDelete { indexSet in

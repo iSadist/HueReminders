@@ -1,27 +1,22 @@
-//
-//  LightsListView.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-07-29.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
+import Combine
 
 struct LightsListView: View {
-    var lights: [HueLight]
-    
-    init(_ lights: [String]) {
-        self.lights = lights.map({ str -> HueLight in
-            let hue = HueLight()
-//            hue.name = str
-            return hue
-        })
+    @ObservedObject var viewModel: LightListViewModel
+
+    private var cancellables = Set<AnyCancellable>()
+
+    init(_ request: URLRequest) {
+        viewModel = LightListViewModel(request: request)
+        viewModel.lightsDataTask
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.lights, on: viewModel)
+            .store(in: &cancellables)
     }
-    
+
     var body: some View {
-        List(lights) { light in
-            Text("Hello")
+        List(viewModel.lights) { light in
+            Text("\(light.id) \(light.name)")
         }
     }
 }
