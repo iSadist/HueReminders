@@ -37,6 +37,11 @@ struct ConnectView: View {
             .receive(on: RunLoop.main)
             .assign(to: \.isConnected, on: connectViewModel)
             .store(in: &cancellables)
+
+        connectViewModel.validIPAddressPublisher
+            .receive(on: RunLoop.main)
+            .assign(to: \.canConnect, on: connectViewModel)
+            .store(in: &cancellables)
     }
 
     var body: some View {
@@ -102,6 +107,7 @@ struct ConnectView: View {
                 }) {
                     Text("Connect")
                 }
+                .disabled(!self.connectViewModel.canConnect)
                 Spacer()
             }
             Spacer()
