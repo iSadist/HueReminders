@@ -10,7 +10,6 @@ struct LightsListView: View {
     init(_ request: URLRequest, hueBridge: HueBridge) {
         lightsRequest = request
         bridge = hueBridge
-
         viewModel = LightListViewModel(request: request)
     }
 
@@ -20,8 +19,6 @@ struct LightsListView: View {
                 .onTapGesture {
                     guard let ip = self.bridge.address, let username = self.bridge.username else { return }
                     let url = URL(string: "http://\(ip)/api/\(username)/lights/\(light.id)/state")!
-                    print(url)
-                    print(light.on)
                     var request = URLRequest(url: url)
                     request.httpMethod = "PUT"
 
@@ -47,11 +44,5 @@ struct LightsListView: View {
                     .foregroundColor(.gray)
             }
         }
-    }
-}
-
-struct LightsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

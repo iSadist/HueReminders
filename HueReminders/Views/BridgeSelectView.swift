@@ -26,10 +26,7 @@ struct BridgeSelectView: View {
                 }
             }
             .navigationBarTitle("Hue Bridges")
-            .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: ConnectView()) {
-                Image(systemName: "plus.circle.fill")
-                    .imageScale(.large)
-            })
+            .navigationBarItems(leading: EditButton())
         }
     }
 }

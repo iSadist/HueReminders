@@ -12,35 +12,28 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
 
         // Get the managed object context from the shared persistent container.
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-        // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
-        // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-
-        // Fetch the connected HueBridges here and depenind on that decide which view to show
-//        let bridgeSelectView = BridgeSelectView(bridges: []).environment(\.managedObjectContext, context)
-
-        let hueBridges = try! context.fetch(HueBridge.findAll())
-
-        let connectView = ConnectView().environment(\.managedObjectContext, context)
-        let bridgeSelectView = BridgeSelectView().environment(\.managedObjectContext, context)
-        let reminderListView = RemindersListView().environment(\.managedObjectContext, context)
-
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
+            let hueBridges = try! context.fetch(HueBridge.findAll())
+
+            var selectedView = 0
 
             if hueBridges.count > 0 {
-                window.rootViewController = UIHostingController(rootView: bridgeSelectView)
+                selectedView = 0
             } else {
-                window.rootViewController = UIHostingController(rootView: connectView)
+                selectedView = 1
             }
+
+            let mainView = MainContainerView(selectedView: selectedView).environment(\.managedObjectContext, context)
+            window.rootViewController = UIHostingController(rootView: mainView)
 
             self.window = window
             window.makeKeyAndVisible()
