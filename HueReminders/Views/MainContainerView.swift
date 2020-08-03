@@ -8,30 +8,40 @@
 
 import SwiftUI
 
+enum MainTab: String {
+    case Bridge, Reminders, Connect
+}
+
 struct MainContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    
-    private var initialView: Int = 0
-    @State private var selectedView: Int = 0
 
-    init(selectedView: Int) {
-        self.initialView = selectedView
+    private var initialView: MainTab = .Bridge
+    @State private var selectedView: MainTab = .Bridge
+
+    init(_ initialView: MainTab) {
+        self.initialView = initialView
     }
 
     var body: some View {
         TabView(selection: $selectedView) {
             BridgeSelectView()
                 .tabItem {
-                    Image(systemName: "1.circle")
+                    Image(systemName: "b.circle")
                     Text("Bridges")
                 }
-                .tag(0)
+                .tag(MainTab.Bridge)
+            RemindersListView()
+                .tabItem {
+                    Image(systemName: "alarm")
+                    Text("Reminders")
+                }
+                .tag(MainTab.Reminders)
             ConnectView()
                 .tabItem {
-                    Image(systemName: "2.circle")
+                    Image(systemName: "link")
                     Text("Connect")
                 }
-                .tag(1)
+                .tag(MainTab.Connect)
         }.onAppear {
             self.selectedView = self.initialView
         }
@@ -40,6 +50,6 @@ struct MainContainerView: View {
 
 struct MainContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        MainContainerView(selectedView: 1)
+        MainContainerView(MainTab.Bridge)
     }
 }
