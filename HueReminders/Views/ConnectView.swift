@@ -35,9 +35,7 @@ struct ConnectView: View {
     init() {
         connectViewModel.validIPAddressPublisher
             .combineLatest(connectViewModel.validBridgeNamePublisher)
-            .map({ res -> Bool in
-                return res.0 && res.1
-            })
+            .map { $0 && $1 }
             .receive(on: RunLoop.main)
             .assign(to: \.canConnect, on: connectViewModel)
             .store(in: &cancellables)
