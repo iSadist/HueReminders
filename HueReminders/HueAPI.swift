@@ -1,19 +1,14 @@
 import Foundation
 
-class HueAPI { // TODO: Is there a way to do this with Combine instead?
-    static func connect(to ipaddress: String, completion: @escaping (Data?, Error?) -> Void) {
+class HueAPI {
+    static func connect(to ipaddress: String) -> URLRequest {
         let url = URL(string: "http://\(ipaddress)/api")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-
         let parameterDictionary = ["devicetype": "huereminders"]
         let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
         request.httpBody = httpBody
-
-        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
-            completion(data, error)
-        }
-        task.resume()
+        return request
     }
 
     static func getLights(bridge: HueBridge) -> URLRequest {

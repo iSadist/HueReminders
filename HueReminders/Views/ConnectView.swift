@@ -33,12 +33,11 @@ struct ConnectView: View {
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        connectViewModel.connectedPublisher
-            .receive(on: RunLoop.main)
-            .assign(to: \.isConnected, on: connectViewModel)
-            .store(in: &cancellables)
-
         connectViewModel.validIPAddressPublisher
+            .combineLatest(connectViewModel.validBridgeNamePublisher)
+            .map({ res -> Bool in
+                return res.0 && res.1
+            })
             .receive(on: RunLoop.main)
             .assign(to: \.canConnect, on: connectViewModel)
             .store(in: &cancellables)
@@ -46,16 +45,15 @@ struct ConnectView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .center, spacing: 25) {
                 Text("Before you can start to set reminders you need to connect to a Hue Bridge")
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(.secondary)
                 Text(connectViewModel.informationMessage)
                     .font(.subheadline)
-                    .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
 
-                if connectViewModel.isAnimating {
+                if connectViewModel.isLoading {
                     ActivityIndicator()
                         .frame(width: 25, height: 25)
                         .foregroundColor(.orange)
@@ -65,52 +63,17 @@ struct ConnectView: View {
                         .hidden()
                 }
 
+                TextField("Bridge name", text: $connectViewModel.bridgeName)
                 TextField("Hue Bridge address", text: $connectViewModel.ipAddress)
-                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 25, trailing: 25))
                 Spacer()
                 Button(action: {
-                    self.connectViewModel.isAnimating = true
-                    HueAPI.connect(to: self.connectViewModel.ipAddress, completion: { (data, error) in
-                        // TODO: State should not be updated on the main thread
-                        self.connectViewModel.isAnimating = false
-                        guard let data = data else {
-                            self.connectViewModel.informationMessage = "Could not connect"
-                            return
-                        }
-                        if let dataResponses = try? JSONDecoder().decode([HueConnectResponse].self, from: data) {
-                            let firstResponse = dataResponses.first
-
-                            if let error = firstResponse?.error {
-                                switch error.type {
-                                case 101:
-                                    self.connectViewModel.informationMessage = "The link button was not pressed"
-                                default:
-                                    self.connectViewModel.informationMessage = "Unknown error in response"
-                                }
-                            } else if let username = firstResponse?.success?.username {
-                                self.connectViewModel.usernameID = username
-                                self.connectViewModel.isConnected = true
-                                self.connectViewModel.informationMessage = "Connection successful"
-
-                                let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-                                let context = appDelegate.persistentContainer.viewContext
-                                let bridge = HueBridge(context: context)
-                                bridge.username = self.connectViewModel.usernameID
-                                bridge.address = self.connectViewModel.ipAddress
-                                bridge.name = "Bridge \(self.bridges.count)"
-                                try? context.save()
-                            }
-                        } else {
-                            self.connectViewModel.informationMessage = "Could not connect"
-                        }
-                    })
+                    self.connectViewModel.connect(request: HueAPI.connect(to: self.connectViewModel.ipAddress))
                 }) {
                     Text("Connect")
                 }
                 .disabled(!self.connectViewModel.canConnect)
-                Spacer()
             }
-            Spacer()
+            .padding(25)
         }
     }
 }

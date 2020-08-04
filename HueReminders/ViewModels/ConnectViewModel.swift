@@ -1,15 +1,18 @@
-import Foundation
+import UIKit
 import Combine
 
 class ConnectViewModel: ObservableObject {
     @Published var ipAddress = ""
-    @Published var isAnimating = false
-    @Published var usernameID = ""
+    @Published var isLoading = false
+    @Published var bridgeName = ""
     @Published var informationMessage = ""
 
     @Published var bridgeSelectViewVisible = false
-    @Published var isConnected = false
     @Published var canConnect = false
+    
+    var connectDataTask: AnyPublisher<String, Never>?
+    
+    private var cancellables = Set<AnyCancellable>()
 
     var validIPAddressPublisher: AnyPublisher<Bool, Never> {
         $ipAddress
@@ -21,12 +24,54 @@ class ConnectViewModel: ObservableObject {
             }
             .eraseToAnyPublisher()
     }
-
-    var connectedPublisher: AnyPublisher<Bool, Never> {
-        $usernameID
+    
+    var validBridgeNamePublisher: AnyPublisher<Bool, Never> {
+        $bridgeName
             .map { name in
                 return name.count > 0
             }
             .eraseToAnyPublisher()
+    }
+    
+    func connect(request: URLRequest) {
+        self.isLoading = true
+        connectDataTask = URLSession.shared.dataTaskPublisher(for: request)
+            .map { $0.data }
+            .decode(type: [HueConnectResponse].self, decoder: JSONDecoder())
+            .map({ dictionary -> String in
+                let firstResponse = dictionary.first
+                var message = ""
+                
+                if let error = firstResponse?.error {
+                    switch error.type {
+                    case 101:
+                        message = "The link button was not pressed"
+                    default:
+                        message = "Unknown error in response"
+                    }
+                } else if let username = firstResponse?.success?.username {
+                    message = "Connection successful"
+
+                    let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+                    let context = appDelegate.persistentContainer.viewContext
+                    let bridge = HueBridge(context: context)
+                    bridge.username = username
+                    bridge.address = self.ipAddress
+                    bridge.name = self.bridgeName
+                    try? context.save()
+                }
+                
+                return message
+            })
+            .replaceError(with: "Could not connect")
+            .eraseToAnyPublisher()
+        
+        connectDataTask?
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { message in
+                self.informationMessage = message
+                self.isLoading = false
+            })
+            .store(in: &cancellables)
     }
 }
