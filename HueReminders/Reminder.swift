@@ -33,9 +33,7 @@ struct ReminderRow: View {
     @State var active = true
     
     var color: Color {
-        get {
-            return active ? Color.green : Color.red
-        }
+        return active ? Color.green : Color.red
     }
     
     var formatter: DateFormatter = {

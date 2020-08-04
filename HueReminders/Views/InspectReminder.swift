@@ -38,4 +38,3 @@ struct InspectReminderView: View {
         }.navigationBarTitle(reminder.name)
     }
 }
-

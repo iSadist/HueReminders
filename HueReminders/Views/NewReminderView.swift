@@ -20,7 +20,10 @@ struct NewReminder: View {
     
     func addPressed() {
         // TODO: Add to a Core Data model instead
-        let newReminder = Reminder(name: newReminderViewModel.name, color: newReminderViewModel.color, day: newReminderViewModel.day, time: newReminderViewModel.time)
+        let newReminder = Reminder(name: newReminderViewModel.name,
+                                   color: newReminderViewModel.color,
+                                   day: newReminderViewModel.day,
+                                   time: newReminderViewModel.time)
         onAddReminder?(newReminder)
         self.presentation.wrappedValue.dismiss()
     }
