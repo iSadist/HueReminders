@@ -10,19 +10,18 @@ import SwiftUI
 import Combine
 
 struct RemindersListView: View {
+    @FetchRequest(fetchRequest: Reminder.findAll()) var reminders: FetchedResults<Reminder>
     @ObservedObject private var listViewModel = ListViewModel()
 
     var body: some View {
         NavigationView {
-            List(listViewModel.reminders) { reminder in
+            List(reminders) { reminder in
 //                NavigationLink(destination: InspectReminderView(reminder)) {
                     ReminderRow(reminder: reminder)
 //                }
             }
             .navigationBarItems(trailing:
-                NavigationLink(destination: NewReminder(onAddReminder: { (reminder) in
-                    self.listViewModel.reminders.append(reminder)
-                }), label: {
+                NavigationLink(destination: NewReminderView(), label: {
                     Text("Add")
             }))
             .navigationBarTitle("Reminders")

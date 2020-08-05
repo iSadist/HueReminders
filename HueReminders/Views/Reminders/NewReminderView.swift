@@ -10,27 +10,26 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct NewReminder: View {
-    var onAddReminder: ((Reminder) -> Void)?
-
+struct NewReminderView: View {
     @Environment(\.presentationMode) var presentation
+    @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject private var newReminderViewModel = NewReminderViewModel()
     
     private var cancellables = Set<AnyCancellable>()
     
     func addPressed() {
-        // TODO: Add to a Core Data model instead
-        let newReminder = Reminder(name: newReminderViewModel.name,
-                                   color: newReminderViewModel.color,
-                                   day: newReminderViewModel.day,
-                                   time: newReminderViewModel.time)
-        onAddReminder?(newReminder)
+        let newReminder = Reminder(context: managedObjectContext)
+        newReminder.name = newReminderViewModel.name
+        newReminder.color = Int16(newReminderViewModel.color)
+        newReminder.day = Int16(newReminderViewModel.day)
+        newReminder.time = newReminderViewModel.time
+        newReminder.active = false
+        
+        try? managedObjectContext.save()
         self.presentation.wrappedValue.dismiss()
     }
     
-    init(onAddReminder: ((Reminder) -> Void)?) {
-        self.onAddReminder = onAddReminder
-        
+    init() {
         // Setup subscriber
         newReminderViewModel.isNameValid
             .receive(on: RunLoop.main)

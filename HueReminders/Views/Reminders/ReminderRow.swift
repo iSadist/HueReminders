@@ -16,21 +16,13 @@ enum ReminderColor: String, CaseIterable {
     case White, Blue, Red, Green, Yellow, Pink, Purple, Orange // swiftlint:disable identifier_name
 }
 
-struct Reminder: Identifiable {
-    var id = UUID()
-    var name: String
-    var color: Int
-    var day: Int
-    var time: Date
-}
-
 private let rectWidth: CGFloat = 100
 
 struct ReminderRow: View {
     var reminder: Reminder
     
     @State var offset = CGSize(width: -rectWidth, height: 0)
-    @State var active = true
+    @State var active = false
     
     var color: Color {
         return active ? Color.green : Color.red
@@ -45,14 +37,14 @@ struct ReminderRow: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             Text("")
-            .frame(width: rectWidth, height: 50, alignment: .center)
-            .background(color)
-            .foregroundColor(Color.black)
+                .frame(width: rectWidth, height: 50, alignment: .center)
+                .background(color)
+                .foregroundColor(Color.black)
             
-            Text(reminder.name)
-            Text(ReminderColor.allCases[reminder.color].rawValue)
-            Text(WeekDay.allCases[reminder.day].rawValue)
-            Text("\(formatter.string(from: reminder.time))")
+            Text(reminder.name!)
+            Text(ReminderColor.allCases[Int(reminder.color)].rawValue)
+            Text(WeekDay.allCases[Int(reminder.day)].rawValue)
+            Text("\(formatter.string(from: reminder.time!))")
         }
         .animation(.interactiveSpring())
         .gesture(
@@ -68,11 +60,15 @@ struct ReminderRow: View {
                 if gesture.translation.width > 100 {
                     self.offset.width = -rectWidth
                     self.active = !self.active
+                    self.reminder.active = self.active
                     return
                 }
                 
                 self.offset.width = -rectWidth
             })
         ).offset(x: self.offset.width, y: 0)
+        .onAppear {
+            self.active = self.reminder.active
+        }
     }
 }

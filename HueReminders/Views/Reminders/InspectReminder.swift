@@ -25,16 +25,16 @@ struct InspectReminderView: View {
         Form {
             Section {
                 Text("Color").bold()
-                Text(ReminderColor.allCases[reminder.color].rawValue)
+                Text(ReminderColor.allCases[Int(reminder.color)].rawValue)
             }
             Section {
                 Text("Day").bold()
-                Text(WeekDay.allCases[reminder.day].rawValue)
+                Text(WeekDay.allCases[Int(reminder.day)].rawValue)
             }
             Section {
                 Text("Time").bold()
-                Text(reminder.time.description)
+                Text(reminder.time!.description)
             }
-        }.navigationBarTitle(reminder.name)
+        }.navigationBarTitle(reminder.name!)
     }
 }

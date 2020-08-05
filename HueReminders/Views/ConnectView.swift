@@ -28,7 +28,6 @@ struct HueConnectResponse: Codable {
 struct ConnectView: View {
     @ObservedObject var connectViewModel = ConnectViewModel()
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(fetchRequest: HueBridge.findAll()) var bridges: FetchedResults<HueBridge>
 
     private var cancellables = Set<AnyCancellable>()
 

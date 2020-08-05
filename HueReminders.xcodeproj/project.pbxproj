@@ -14,6 +14,7 @@
 		590F453A24D8351300F38AD7 /* MainContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F453924D8351300F38AD7 /* MainContainerView.swift */; };
 		59173A9E24B764800009A73C /* InspectReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59173A9D24B764800009A73C /* InspectReminder.swift */; };
 		592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B427124C9839200D73CFF /* ConnectViewModel.swift */; };
+		592BFC5624DA8C9800FF19A9 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592BFC5524DA8C9800FF19A9 /* Reminder.swift */; };
 		595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */; };
 		595D61F024CED6C900F93423 /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EF24CED6C900F93423 /* HueBridge.swift */; };
 		599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599824B224D1D37100AB4A41 /* LightsListViewModel.swift */; };
@@ -29,7 +30,7 @@
 		59C82D1924B5A26C0088ACD1 /* HueRemindersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D1824B5A26C0088ACD1 /* HueRemindersTests.swift */; };
 		59C82D2424B5A26D0088ACD1 /* HueRemindersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D2324B5A26D0088ACD1 /* HueRemindersUITests.swift */; };
 		59C82D3224B5A65F0088ACD1 /* NewReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3124B5A65F0088ACD1 /* NewReminderViewModel.swift */; };
-		59C82D3624B61D730088ACD1 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3524B61D730088ACD1 /* Reminder.swift */; };
+		59C82D3624B61D730088ACD1 /* ReminderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3524B61D730088ACD1 /* ReminderRow.swift */; };
 		59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3724B61DD70088ACD1 /* NewReminderView.swift */; };
 		59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3924B629560088ACD1 /* ListViewModel.swift */; };
 		59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */; };
@@ -61,6 +62,7 @@
 		590F453924D8351300F38AD7 /* MainContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerView.swift; sourceTree = "<group>"; };
 		59173A9D24B764800009A73C /* InspectReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectReminder.swift; sourceTree = "<group>"; };
 		592B427124C9839200D73CFF /* ConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewModel.swift; sourceTree = "<group>"; };
+		592BFC5524DA8C9800FF19A9 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueBridge.xcdatamodel; sourceTree = "<group>"; };
 		595D61EF24CED6C900F93423 /* HueBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueBridge.swift; sourceTree = "<group>"; };
 		599824B224D1D37100AB4A41 /* LightsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListViewModel.swift; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		59C82D2324B5A26D0088ACD1 /* HueRemindersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueRemindersUITests.swift; sourceTree = "<group>"; };
 		59C82D2524B5A26D0088ACD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59C82D3124B5A65F0088ACD1 /* NewReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderViewModel.swift; sourceTree = "<group>"; };
-		59C82D3524B61D730088ACD1 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		59C82D3524B61D730088ACD1 /* ReminderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRow.swift; sourceTree = "<group>"; };
 		59C82D3724B61DD70088ACD1 /* NewReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderView.swift; sourceTree = "<group>"; };
 		59C82D3924B629560088ACD1 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSelectView.swift; sourceTree = "<group>"; };
@@ -117,9 +119,7 @@
 		59173A9B24B763E50009A73C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				59C82D0524B5A26B0088ACD1 /* RemindersListView.swift */,
-				59C82D3724B61DD70088ACD1 /* NewReminderView.swift */,
-				59173A9D24B764800009A73C /* InspectReminder.swift */,
+				592BFC5724DA94B200FF19A9 /* Reminders */,
 				59C6C6F924BC6F8600A8F258 /* ConnectView.swift */,
 				59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */,
 				59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */,
@@ -141,12 +141,24 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		592BFC5724DA94B200FF19A9 /* Reminders */ = {
+			isa = PBXGroup;
+			children = (
+				59C82D0524B5A26B0088ACD1 /* RemindersListView.swift */,
+				59C82D3724B61DD70088ACD1 /* NewReminderView.swift */,
+				59173A9D24B764800009A73C /* InspectReminder.swift */,
+				59C82D3524B61D730088ACD1 /* ReminderRow.swift */,
+			);
+			path = Reminders;
+			sourceTree = "<group>";
+		};
 		595D61EE24CED64300F93423 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */,
 				595D61EF24CED6C900F93423 /* HueBridge.swift */,
 				5909BD0A24CF70A4000265BB /* HueLight.swift */,
+				592BFC5524DA8C9800FF19A9 /* Reminder.swift */,
 				5909BD0C24CF70C0000265BB /* Findable.swift */,
 			);
 			path = CoreData;
@@ -189,7 +201,6 @@
 				59173A9B24B763E50009A73C /* Views */,
 				59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */,
 				59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */,
-				59C82D3524B61D730088ACD1 /* Reminder.swift */,
 				5909BD0E24CF761E000265BB /* HueAPI.swift */,
 				59C82D0724B5A26C0088ACD1 /* Assets.xcassets */,
 				59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */,
@@ -379,7 +390,8 @@
 			files = (
 				592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */,
 				59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */,
-				59C82D3624B61D730088ACD1 /* Reminder.swift in Sources */,
+				59C82D3624B61D730088ACD1 /* ReminderRow.swift in Sources */,
+				592BFC5624DA8C9800FF19A9 /* Reminder.swift in Sources */,
 				590F453A24D8351300F38AD7 /* MainContainerView.swift in Sources */,
 				5909BD0F24CF761E000265BB /* HueAPI.swift in Sources */,
 				5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */,
