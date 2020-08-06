@@ -25,3 +25,11 @@ struct ActivityIndicator: View {
     }
   }
 }
+
+struct ActivityIndicator_Previews: PreviewProvider {
+    static var previews: some View {
+        ActivityIndicator()
+            .frame(width: 50, height: 50)
+            .foregroundColor(.orange)
+    }
+}

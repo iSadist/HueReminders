@@ -13,6 +13,15 @@ struct BridgeSelectView: View {
     @FetchRequest(fetchRequest: HueBridge.findAll()) var bridges: FetchedResults<HueBridge>
 
     var body: some View {
+        BridgeSelectViewContent(bridges: bridges.sorted())
+    }
+}
+
+struct BridgeSelectViewContent: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    var bridges: [HueBridge]
+    
+    var body: some View {
         NavigationView {
             List {
                 ForEach(bridges) { bridge in
@@ -33,6 +42,17 @@ struct BridgeSelectView: View {
 
 struct BridgeSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        BridgeSelectView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let bridge = HueBridge(context: context)
+        bridge.address = "192.168.1.2"
+        bridge.name = "Office bridge"
+        bridge.username = "abcd1234"
+        
+        let bridge2 = HueBridge(context: context)
+        bridge2.address = "192.168.1.3"
+        bridge2.name = "Second bridge"
+        bridge2.username = "abcd12345"
+        
+        return BridgeSelectViewContent(bridges: [bridge, bridge2])
     }
 }

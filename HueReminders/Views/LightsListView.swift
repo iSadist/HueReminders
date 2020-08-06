@@ -15,7 +15,7 @@ struct LightsListView: View {
 
     var body: some View {
         List(viewModel.lights) { light in
-            Text("\(light.name)")
+            LightRowView(light)
                 .onTapGesture {
                     guard let ip = self.bridge.address, let username = self.bridge.username else { return }
                     let url = URL(string: "http://\(ip)/api/\(username)/lights/\(light.id)/state")!
@@ -31,18 +31,16 @@ struct LightsListView: View {
 
                     self.viewModel.fetchData(request: self.lightsRequest)
             }
-
-            Spacer()
-
-            if light.on {
-                Image(systemName: "lightbulb.fill")
-                    .imageScale(.large)
-                    .foregroundColor(.yellow)
-            } else {
-                Image(systemName: "lightbulb")
-                    .imageScale(.large)
-                    .foregroundColor(.gray)
-            }
         }
+    }
+}
+
+struct LightsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let bridge = HueBridge(context: context)
+        bridge.name = "Test bridge"
+        bridge.address = "192.168.1.2"
+        return LightsListView(URLRequest(url: URL(string: "http://someurl.com")!), hueBridge: bridge)
     }
 }

@@ -69,3 +69,9 @@ struct NewReminderView: View {
         }.navigationBarTitle("New reminder")
     }
 }
+
+struct NewReminderView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewReminderView()
+    }
+}

@@ -38,3 +38,17 @@ struct InspectReminderView: View {
         }.navigationBarTitle(reminder.name!)
     }
 }
+
+struct InspectReminder_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let reminder = Reminder(context: context)
+        reminder.active = true
+        reminder.color = 1
+        reminder.day = 1
+        reminder.name = "Reminder"
+        reminder.time = Date()
+
+        return InspectReminderView(reminder)
+    }
+}

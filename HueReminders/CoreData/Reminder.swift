@@ -8,7 +8,11 @@
 
 import CoreData
 
-final class Reminder: NSManagedObject, Identifiable, Findable {
+final class Reminder: NSManagedObject, Identifiable, Findable, Comparable {
+    static func < (lhs: Reminder, rhs: Reminder) -> Bool {
+        lhs.name! < rhs.name!
+    }
+    
     class func findAll() -> NSFetchRequest<Reminder> {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         let request: NSFetchRequest<Reminder> = Reminder.fetchRequest()

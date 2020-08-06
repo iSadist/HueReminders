@@ -37,10 +37,10 @@ struct ReminderRow: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             Text("")
-                .frame(width: rectWidth, height: 50, alignment: .center)
+                .frame(width: rectWidth, height: 70, alignment: .center)
                 .background(color)
                 .foregroundColor(Color.black)
-            
+
             Text(reminder.name!)
             Text(ReminderColor.allCases[Int(reminder.color)].rawValue)
             Text(WeekDay.allCases[Int(reminder.day)].rawValue)
@@ -49,26 +49,40 @@ struct ReminderRow: View {
         .animation(.interactiveSpring())
         .gesture(
             DragGesture(minimumDistance: 5)
-            .onChanged { gesture in
-                if gesture.translation.width > rectWidth - 10 {
-                    return
+                .onChanged { gesture in
+                    if gesture.translation.width > rectWidth - 10 {
+                        return
+                    }
+                    
+                    self.offset.width = gesture.translation.width - rectWidth
                 }
-                
-                self.offset.width = gesture.translation.width - rectWidth
-            }
-            .onEnded({ gesture in
-                if gesture.translation.width > 100 {
+                .onEnded({ gesture in
+                    if gesture.translation.width > 100 {
+                        self.offset.width = -rectWidth
+                        self.active = !self.active
+                        self.reminder.active = self.active
+                        return
+                    }
+                    
                     self.offset.width = -rectWidth
-                    self.active = !self.active
-                    self.reminder.active = self.active
-                    return
-                }
-                
-                self.offset.width = -rectWidth
-            })
+                })
         ).offset(x: self.offset.width, y: 0)
         .onAppear {
             self.active = self.reminder.active
         }
+    }
+}
+
+struct ReminderRow_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let reminder = Reminder(context: context)
+        reminder.active = true
+        reminder.color = 1
+        reminder.day = 1
+        reminder.name = "Reminder"
+        reminder.time = Date()
+        return ReminderRow(reminder: reminder)
+            .previewLayout(.fixed(width: 400, height: 70))
     }
 }

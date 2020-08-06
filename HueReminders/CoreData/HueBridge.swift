@@ -8,7 +8,11 @@
 
 import CoreData
 
-final class HueBridge: NSManagedObject, Identifiable, Findable {
+final class HueBridge: NSManagedObject, Identifiable, Findable, Comparable {
+    static func < (lhs: HueBridge, rhs: HueBridge) -> Bool {
+        lhs.address! < rhs.address!
+    }
+    
     class func findAll() -> NSFetchRequest<HueBridge> {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         let request: NSFetchRequest<HueBridge> = HueBridge.fetchRequest()

@@ -14,10 +14,19 @@ struct RemindersListView: View {
     @ObservedObject private var listViewModel = ListViewModel()
 
     var body: some View {
+        RemindersListContent(reminders: reminders.sorted())
+    }
+}
+
+private struct RemindersListContent: View {
+    var reminders: [Reminder]
+    
+    var body: some View {
         NavigationView {
             List(reminders) { reminder in
 //                NavigationLink(destination: InspectReminderView(reminder)) {
                     ReminderRow(reminder: reminder)
+                        .frame(height: 57)
 //                }
             }
             .navigationBarItems(trailing:
@@ -31,6 +40,21 @@ struct RemindersListView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        RemindersListView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let reminder = Reminder(context: context)
+        reminder.active = true
+        reminder.color = 1
+        reminder.day = 1
+        reminder.name = "Wake up"
+        reminder.time = Date()
+        
+        let reminder2 = Reminder(context: context)
+        reminder2.active = false
+        reminder2.color = 1
+        reminder2.day = 1
+        reminder2.name = "Go to bed"
+        reminder2.time = Date()
+        
+        return RemindersListContent(reminders: [reminder, reminder2])
     }
 }

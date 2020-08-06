@@ -18,6 +18,7 @@
 		595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */; };
 		595D61F024CED6C900F93423 /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EF24CED6C900F93423 /* HueBridge.swift */; };
 		599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599824B224D1D37100AB4A41 /* LightsListViewModel.swift */; };
+		59C6ABA424DBEFD9005F611B /* LightRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6ABA324DBEFD9005F611B /* LightRowView.swift */; };
 		59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6F924BC6F8600A8F258 /* ConnectView.swift */; };
 		59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */; };
 		59C6C6FF24BC7A4F00A8F258 /* ConnectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C6C6FE24BC7A4F00A8F258 /* ConnectController.swift */; };
@@ -66,6 +67,7 @@
 		595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueBridge.xcdatamodel; sourceTree = "<group>"; };
 		595D61EF24CED6C900F93423 /* HueBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueBridge.swift; sourceTree = "<group>"; };
 		599824B224D1D37100AB4A41 /* LightsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListViewModel.swift; sourceTree = "<group>"; };
+		59C6ABA324DBEFD9005F611B /* LightRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRowView.swift; sourceTree = "<group>"; };
 		59C6C6F924BC6F8600A8F258 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
 		59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		59C6C6FE24BC7A4F00A8F258 /* ConnectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */,
 				5909BD1024D057A6000265BB /* BridgeRowView.swift */,
 				59E7839524D18B2B0010D0CF /* LightsListView.swift */,
+				59C6ABA324DBEFD9005F611B /* LightRowView.swift */,
 				590F453924D8351300F38AD7 /* MainContainerView.swift */,
 			);
 			path = Views;
@@ -396,6 +399,7 @@
 				5909BD0F24CF761E000265BB /* HueAPI.swift in Sources */,
 				5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */,
 				59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */,
+				59C6ABA424DBEFD9005F611B /* LightRowView.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */,
 				59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */,

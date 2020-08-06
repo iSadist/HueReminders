@@ -50,6 +50,6 @@ struct MainContainerView: View {
 
 struct MainContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        MainContainerView(MainTab.Bridge)
+        MainContainerView(MainTab.Connect)
     }
 }
