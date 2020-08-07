@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5906D6E224DD2D0300CB9294 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5906D6E124DD2D0300CB9294 /* CloudKit.framework */; };
 		5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0A24CF70A4000265BB /* HueLight.swift */; };
 		5909BD0D24CF70C0000265BB /* Findable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0C24CF70C0000265BB /* Findable.swift */; };
 		5909BD0F24CF761E000265BB /* HueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0E24CF761E000265BB /* HueAPI.swift */; };
@@ -58,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5906D6DF24DD2C9200CB9294 /* HueReminders.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HueReminders.entitlements; sourceTree = "<group>"; };
+		5906D6E124DD2D0300CB9294 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		5909BD0A24CF70A4000265BB /* HueLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueLight.swift; sourceTree = "<group>"; };
 		5909BD0C24CF70C0000265BB /* Findable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Findable.swift; sourceTree = "<group>"; };
 		5909BD0E24CF761E000265BB /* HueAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueAPI.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5906D6E224DD2D0300CB9294 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5906D6E024DD2D0300CB9294 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5906D6E124DD2D0300CB9294 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		59173A9B24B763E50009A73C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +199,7 @@
 				59C82D1724B5A26C0088ACD1 /* HueRemindersTests */,
 				59C82D2224B5A26D0088ACD1 /* HueRemindersUITests */,
 				59C82CFC24B5A26B0088ACD1 /* Products */,
+				5906D6E024DD2D0300CB9294 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,6 +216,7 @@
 		59C82CFD24B5A26B0088ACD1 /* HueReminders */ = {
 			isa = PBXGroup;
 			children = (
+				5906D6DF24DD2C9200CB9294 /* HueReminders.entitlements */,
 				595D61EE24CED64300F93423 /* CoreData */,
 				59C6C6FD24BC7A3400A8F258 /* Controllers */,
 				59173A9C24B763F50009A73C /* ViewModels */,
@@ -587,8 +601,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = HueReminders/HueReminders.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HueReminders/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9L559MT2U;
 				ENABLE_PREVIEWS = YES;
@@ -599,7 +614,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.huereminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "JSV-HueReminders-Jan";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -609,8 +624,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = HueReminders/HueReminders.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HueReminders/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9L559MT2U;
 				ENABLE_PREVIEWS = YES;
@@ -621,7 +637,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.huereminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "JSV-HueReminders-Jan";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
