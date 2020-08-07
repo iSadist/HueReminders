@@ -13,6 +13,7 @@ struct BridgeRowView: View {
             Text(bridge.address ?? "")
             Spacer()
         }
+        .padding()
     }
 }
 

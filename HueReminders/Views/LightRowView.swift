@@ -19,6 +19,11 @@ struct LightRowView: View {
         HStack {
             Text("\(light.name)")
             Spacer()
+            MultiColorCircle()
+                .frame(width: 50.0)
+                .onTapGesture {
+                    print("Change the color now of \(self.light.name)")
+                }
             
             if light.on {
                 Image(systemName: "lightbulb.fill")
@@ -30,6 +35,7 @@ struct LightRowView: View {
                     .foregroundColor(.gray)
             }
         }
+        .padding()
     }
 }
 
