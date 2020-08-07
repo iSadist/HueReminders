@@ -19,21 +19,33 @@ struct RemindersListView: View {
 }
 
 private struct RemindersListContent: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     var reminders: [Reminder]
     
     var body: some View {
         NavigationView {
-            List(reminders) { reminder in
+            List {
+                ForEach(reminders) { reminder in
 //                NavigationLink(destination: InspectReminderView(reminder)) {
                     ReminderRow(reminder: reminder)
                         .frame(height: 57)
 //                }
+                }.onDelete { indexSet in
+                    if let index = indexSet.first {
+                        let reminder = self.reminders[index]
+                        self.managedObjectContext.delete(reminder)
+                        try? self.managedObjectContext.save()
+                    }
+                }
             }
-            .navigationBarItems(trailing:
-                NavigationLink(destination: NewReminderView(), label: {
-                    Text("Add")
-            }))
             .navigationBarTitle("Reminders")
+            .navigationBarItems(leading: EditButton(),
+                                trailing: NavigationLink(destination: NewReminderView(),
+                                                         label: {
+                                                            Text("Add")
+                                }
+                )
+            )
         }
     }
 }
