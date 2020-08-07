@@ -1,5 +1,7 @@
 import Combine
+import SwiftUI
 import Foundation
+import UIKit
 
 struct HueLightInfo: Comparable, Identifiable {
     static func < (lhs: HueLightInfo, rhs: HueLightInfo) -> Bool {
@@ -9,6 +11,7 @@ struct HueLightInfo: Comparable, Identifiable {
     var id: String
     var name: String
     var on: Bool
+    var color: Color
 }
 
 struct HueLightResponse: Decodable {
@@ -58,12 +61,20 @@ class LightListViewModel: ObservableObject {
             .map({ dictionary -> [HueLightInfo] in
                 var lights: [HueLightInfo] = []
                 for entry in dictionary {
-                    lights.append(HueLightInfo(id: entry.key, name: entry.value.name, on: entry.value.state.on))
+                    let state = entry.value.state
+                    let color = Color(hue: Double(state.hue) / 65535,
+                                      saturation: Double(state.sat) / 255,
+                                      brightness: Double(state.bri) / 255)
+
+                    lights.append(HueLightInfo(id: entry.key,
+                                               name: entry.value.name,
+                                               on: entry.value.state.on,
+                                               color: color))
                 }
                 lights.sort()
                 return lights
             })
-            .replaceError(with: [HueLightInfo(id: "", name: "", on: false)])
+            .replaceError(with: [HueLightInfo(id: "", name: "", on: false, color: .gray)])
             .eraseToAnyPublisher()
 
         lightsDataTask?

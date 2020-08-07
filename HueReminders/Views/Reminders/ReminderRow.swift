@@ -19,6 +19,7 @@ enum ReminderColor: String, CaseIterable {
 private let rectWidth: CGFloat = 100
 
 struct ReminderRow: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     var reminder: Reminder
     
     @State var offset = CGSize(width: -rectWidth, height: 0)
@@ -61,6 +62,7 @@ struct ReminderRow: View {
                         self.offset.width = -rectWidth
                         self.active = !self.active
                         self.reminder.active = self.active
+                        try? self.managedObjectContext.save()
                         return
                     }
                     
