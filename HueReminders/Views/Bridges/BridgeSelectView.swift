@@ -25,8 +25,14 @@ struct BridgeSelectViewContent: View {
         NavigationView {
             List {
                 ForEach(bridges) { bridge in
-                    NavigationLink(destination: LightsListView(HueAPI.getLights(bridge: bridge), hueBridge: bridge)) {
-                        BridgeRowView(bridge)
+//                    NavigationLink(destination: LightsListView(HueAPI.getLights(bridge: bridge), hueBridge: bridge),
+//                                   tag: bridge.name ?? "",
+//                                   selection: self.setActive()) {
+//                    }
+                    BridgeRowView(bridge)
+                        .onTapGesture {
+                            self.bridges.forEach { $0.active = false }
+                            bridge.active = true
                     }
                 }.onDelete { indexSet in
                     let bridge = self.bridges[indexSet.first!]
@@ -52,6 +58,7 @@ struct BridgeSelectView_Previews: PreviewProvider {
         bridge2.address = "192.168.1.3"
         bridge2.name = "Second bridge"
         bridge2.username = "abcd12345"
+        bridge2.active = true
         
         return BridgeSelectViewContent(bridges: [bridge, bridge2])
     }

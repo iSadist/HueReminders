@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="HueBridge" representedClassName=".HueBridge" syncable="YES" codeGenerationType="category">
+        <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
@@ -16,7 +17,7 @@
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="HueBridge" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="HueBridge" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="HueLight" positionX="-63" positionY="9" width="128" height="58"/>
         <element name="Reminder" positionX="-63" positionY="9" width="128" height="118"/>
     </elements>

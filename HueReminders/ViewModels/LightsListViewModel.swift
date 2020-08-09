@@ -64,7 +64,7 @@ class LightListViewModel: ObservableObject {
                     let state = entry.value.state
                     let color = Color(hue: Double(state.hue) / 65535,
                                       saturation: Double(state.sat) / 255,
-                                      brightness: Double(state.bri) / 255)
+                                      brightness: 1)
 
                     lights.append(HueLightInfo(id: entry.key,
                                                name: entry.value.name,

@@ -137,14 +137,12 @@
 		59173A9B24B763E50009A73C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5938034924DFE78F00565BDC /* Geometry */,
+				5938034824DFE58200565BDC /* Bridges */,
 				594B309924DD7AED00C102ED /* Lights */,
 				592BFC5724DA94B200FF19A9 /* Reminders */,
 				59C6C6F924BC6F8600A8F258 /* ConnectView.swift */,
-				59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */,
-				59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */,
-				5909BD1024D057A6000265BB /* BridgeRowView.swift */,
 				590F453924D8351300F38AD7 /* MainContainerView.swift */,
-				59C6ABA724DC2A52005F611B /* MultiColorCircle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +167,24 @@
 				59C82D3524B61D730088ACD1 /* ReminderRow.swift */,
 			);
 			path = Reminders;
+			sourceTree = "<group>";
+		};
+		5938034824DFE58200565BDC /* Bridges */ = {
+			isa = PBXGroup;
+			children = (
+				59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */,
+				5909BD1024D057A6000265BB /* BridgeRowView.swift */,
+			);
+			path = Bridges;
+			sourceTree = "<group>";
+		};
+		5938034924DFE78F00565BDC /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */,
+				59C6ABA724DC2A52005F611B /* MultiColorCircle.swift */,
+			);
+			path = Geometry;
 			sourceTree = "<group>";
 		};
 		594B309924DD7AED00C102ED /* Lights */ = {
