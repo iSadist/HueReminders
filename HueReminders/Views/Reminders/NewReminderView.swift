@@ -13,6 +13,7 @@ import Combine
 struct NewReminderView: View {
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(fetchRequest: HueBridge.findActiveBridge()) var activeBridge: FetchedResults<HueBridge>
     @ObservedObject private var newReminderViewModel = NewReminderViewModel()
     
     private var cancellables = Set<AnyCancellable>()
@@ -24,6 +25,7 @@ struct NewReminderView: View {
         newReminder.day = Int16(newReminderViewModel.day)
         newReminder.time = newReminderViewModel.time
         newReminder.active = false
+        newReminder.bridge = activeBridge.sorted().first
         
         try? managedObjectContext.save()
         self.presentation.wrappedValue.dismiss()

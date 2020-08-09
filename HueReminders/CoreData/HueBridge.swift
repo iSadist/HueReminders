@@ -19,4 +19,15 @@ final class HueBridge: NSManagedObject, Identifiable, Findable, Comparable {
         request.sortDescriptors = [sortDescriptor]
         return request
     }
+    
+    class func findActiveBridge() -> NSFetchRequest<HueBridge> {
+        let request: NSFetchRequest<HueBridge> = HueBridge.fetchRequest()
+        request.predicate = NSPredicate(format: "active == true")
+        request.fetchLimit = 1
+        request.fetchBatchSize = 1
+        request.returnsDistinctResults = true
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        return request
+    }
 }
