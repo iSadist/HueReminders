@@ -35,6 +35,8 @@ struct NewReminderViewContent: View {
         
         // Setup subscriber
         viewModel.isNameValid
+            .combineLatest(viewModel.selectedLightPublisher)
+            .map { $0.0 && $0.1 }
             .receive(on: RunLoop.main)
             .assign(to: \.valid, on: viewModel)
             .store(in: &cancellables)
