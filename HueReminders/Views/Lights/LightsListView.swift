@@ -17,18 +17,7 @@ struct LightsListView: View {
         List(viewModel.lights) { light in
             LightRowView(light)
                 .onTapGesture {
-                    guard let ip = self.bridge.address, let username = self.bridge.username else { return }
-                    let url = URL(string: "http://\(ip)/api/\(username)/lights/\(light.id)/state")!
-                    var request = URLRequest(url: url)
-                    request.httpMethod = "PUT"
-
-                    let parameterDictionary = ["on": !light.on]
-                    let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
-                    request.httpBody = httpBody
-
-                    let task = URLSession.shared.dataTask(with: request)
-                    task.resume()
-
+                    HueAPI.toggleOnState(for: light, self.bridge)
                     self.viewModel.fetchData(request: self.lightsRequest)
             }
         }

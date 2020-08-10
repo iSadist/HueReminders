@@ -27,6 +27,9 @@ struct NewReminderView: View {
         newReminder.active = false
         newReminder.bridge = activeBridge.sorted().first
         
+        let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder)
+        URLSession.shared.dataTask(with: request).resume()
+        
         try? managedObjectContext.save()
         self.presentation.wrappedValue.dismiss()
     }
