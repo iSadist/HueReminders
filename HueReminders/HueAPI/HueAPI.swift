@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class HueAPI {
     static func connect(to ipaddress: String) -> URLRequest {
@@ -36,15 +37,31 @@ class HueAPI {
     static func setSchedule(on bridge: HueBridge, reminder: Reminder) -> URLRequest {
         guard let ip = bridge.address, let id = bridge.username else { fatalError("Missing ip or username") }
         guard let time = reminder.time else { fatalError("Missing time on reminder") }
+        guard let lightID = reminder.lightID else { fatalError("Missing light id")}
         let url = URL(string: "http://\(ip)/api/\(id)/schedules")!
         var request = URLRequest(url: url)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let dateString = formatter.string(from: time)
+        
+        var hue: CGFloat = 0
+        var sat: CGFloat = 0
+        var bri: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        let color = ReminderColor.allCases[Int(reminder.color)].getColor()
+        color.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+        
+        // Convert to Hue API values
+        hue *= 65535
+        sat *= 254
+        bri *= 254
+        
+        print("\(hue) \(sat) \(bri) \(alpha)")
     
-        let body = ["alert": "lselect"]
-        let command = ["address": "/api/\(id)/lights/1/state", "method": "PUT", "body": body] as [String: Any]
+        let body = ["on": true, "hue": Int(hue), "sat": Int(sat), "bri": Int(bri)] as [String: Any]
+        let command = ["address": "/api/\(id)/lights/\(lightID)/state", "method": "PUT", "body": body] as [String: Any]
         let parameters = [
             "name": reminder.name ?? "Timed trigger",
             "description": "Created by HueReminders app",

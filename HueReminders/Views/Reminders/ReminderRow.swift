@@ -14,6 +14,19 @@ enum WeekDay: String, CaseIterable {
 
 enum ReminderColor: String, CaseIterable {
     case White, Blue, Red, Green, Yellow, Pink, Purple, Orange // swiftlint:disable identifier_name
+    
+    func getColor() -> UIColor {
+        switch self {
+        case .White: return .white
+        case .Blue: return .blue
+        case .Red: return .red
+        case .Green: return .green
+        case .Yellow: return .yellow
+        case .Pink: return .systemPink
+        case .Purple: return .purple
+        case .Orange: return .orange
+        }
+    }
 }
 
 private let rectWidth: CGFloat = 100
@@ -46,6 +59,7 @@ struct ReminderRow: View {
             Text(ReminderColor.allCases[Int(reminder.color)].rawValue)
             Text(WeekDay.allCases[Int(reminder.day)].rawValue)
             Text("\(formatter.string(from: reminder.time!))")
+            Text(reminder.lightID ?? "")
         }
         .animation(.interactiveSpring())
         .gesture(
@@ -84,6 +98,7 @@ struct ReminderRow_Previews: PreviewProvider {
         reminder.day = 1
         reminder.name = "Reminder"
         reminder.time = Date()
+        reminder.lightID = "1"
         return ReminderRow(reminder: reminder)
             .previewLayout(.fixed(width: 400, height: 70))
     }

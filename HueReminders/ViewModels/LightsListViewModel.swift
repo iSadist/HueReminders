@@ -3,45 +3,6 @@ import SwiftUI
 import Foundation
 import UIKit
 
-struct HueLightInfo: Comparable, Identifiable {
-    static func < (lhs: HueLightInfo, rhs: HueLightInfo) -> Bool {
-        lhs.name < rhs.name
-    }
-
-    var id: String
-    var name: String
-    var on: Bool
-    var color: Color
-}
-
-struct HueLightResponse: Decodable {
-    var state: HueLightState
-//    var swupdate: Any
-    var type: String
-    var name: String
-    var modelid: String
-    var manufacturername: String
-    var productname: String
-//    var capabilities: Any
-//    var config: Any
-    var uniqueid: String
-    var swversion: String
-}
-
-struct HueLightState: Decodable {
-    var on: Bool
-    var bri: Int
-    var hue: Int
-    var sat: Int
-    var effect: String
-    var xy: [Double]
-    var ct: Int
-    var alert: String
-    var colormode: String
-    var mode: String
-    var reachable: Bool
-}
-
 typealias JSONValues = [String: HueLightResponse]
 
 class LightListViewModel: ObservableObject {
