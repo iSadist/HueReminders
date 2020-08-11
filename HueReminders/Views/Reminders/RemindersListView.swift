@@ -19,6 +19,7 @@ struct RemindersListView: View {
 }
 
 private struct RemindersListContent: View {
+    @FetchRequest(fetchRequest: HueBridge.findActiveBridge()) var activeBridge: FetchedResults<HueBridge>
     @Environment(\.managedObjectContext) var managedObjectContext
     var reminders: [Reminder]
     
@@ -33,8 +34,17 @@ private struct RemindersListContent: View {
                 }.onDelete { indexSet in
                     if let index = indexSet.first {
                         let reminder = self.reminders[index]
-                        self.managedObjectContext.delete(reminder)
-                        try? self.managedObjectContext.save()
+                        let bridge = self.activeBridge.sorted().first!
+                        let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder)
+                        let task = URLSession.shared.dataTask(with: request) { _, _, _ in
+                            // TODO: Handle data, response and error
+
+                            DispatchQueue.main.async {
+                                self.managedObjectContext.delete(reminder)
+                                try? self.managedObjectContext.save()
+                            }
+                        }
+                        task.resume()
                     }
                 }
             }

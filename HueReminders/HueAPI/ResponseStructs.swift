@@ -47,3 +47,18 @@ struct HueLightState: Decodable {
     var mode: String
     var reachable: Bool
 }
+
+struct HueSchedulesResponse: Decodable {
+    var success: HueScheduleSuccess?
+    var error: HueScheduleError?
+}
+
+struct HueScheduleSuccess: Decodable {
+    var id: String
+}
+
+struct HueScheduleError: Decodable {
+    var type: Int
+    var address: String
+    var description: String
+}

@@ -75,4 +75,13 @@ class HueAPI {
         request.httpMethod = "POST"
         return request
     }
+    
+    static func deleteSchedule(on bridge: HueBridge, reminder: Reminder) -> URLRequest {
+            guard let ip = bridge.address, let id = bridge.username else { fatalError("Missing ip or username") }
+            guard let scheduleID = reminder.scheduleID else { fatalError("Missing scheduleID on reminder") }
+            let url = URL(string: "http://\(ip)/api/\(id)/schedules/\(scheduleID)")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            return request
+    }
 }

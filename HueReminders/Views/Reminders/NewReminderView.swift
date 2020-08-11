@@ -53,10 +53,30 @@ struct NewReminderViewContent: View {
         newReminder.lightID = "\(viewModel.selectedLight)"
         
         let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder)
-        URLSession.shared.dataTask(with: request).resume()
-        
-        try? managedObjectContext.save()
-        self.presentation.wrappedValue.dismiss()
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // TODO: Handle response and error
+            let decoder = JSONDecoder.init()
+            let responses = try! decoder.decode([HueSchedulesResponse].self, from: data!)
+            
+            if let error = responses.first?.error {
+                print("Error occurred - Type: \(error.type), Description: \(error.description), Address: \(error.address)")
+                // TODO: Show error message to user
+                return
+            }
+            
+            if let success = responses.first?.success {
+                newReminder.scheduleID = success.id
+                
+                // Return to the list view
+                DispatchQueue.main.async {
+                    try? self.managedObjectContext.save()
+                    self.presentation.wrappedValue.dismiss()
+                }
+            }
+            
+        }
+            
+        task.resume()
     }
     
     var body: some View {
