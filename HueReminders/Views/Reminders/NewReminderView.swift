@@ -113,6 +113,12 @@ struct NewReminderViewContent: View {
 
 struct NewReminderView_Previews: PreviewProvider {
     static var previews: some View {
-        NewReminderView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let bridge = HueBridge(context: context)
+        bridge.active = true
+        bridge.address = "192.168.1.2"
+        bridge.name = "Bridge"
+        bridge.username = "fe9c003c-a646-430f-a189-516620fc5555"
+        return NewReminderViewContent(bridge: bridge)
     }
 }
