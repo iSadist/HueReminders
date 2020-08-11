@@ -48,7 +48,7 @@ struct NewReminderViewContent: View {
         newReminder.color = Int16(viewModel.color)
         newReminder.day = Int16(viewModel.day)
         newReminder.time = viewModel.time
-        newReminder.active = false
+        newReminder.active = true
         newReminder.bridge = activeBridge
         newReminder.lightID = "\(viewModel.selectedLight)"
         
