@@ -34,6 +34,21 @@ class HueAPI {
         task.resume()
     }
     
+    static func toggleActive(for reminder: Reminder, _ bridge: HueBridge) {
+        guard let ip = bridge.address, let username = bridge.username else { fatalError("Missing ip or username") }
+        guard let scheduleID = reminder.scheduleID else { fatalError("Missing schedule ID on Reminder") }
+        let url = URL(string: "http://\(ip)/api/\(username)/schedules/\(scheduleID)/")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+
+        let parameterDictionary = ["status": reminder.active ? "enabled" : "disabled"]
+        let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
+        request.httpBody = httpBody
+
+        let task = URLSession.shared.dataTask(with: request)
+        task.resume()
+    }
+    
     static func setSchedule(on bridge: HueBridge, reminder: Reminder) -> URLRequest {
         guard let ip = bridge.address, let id = bridge.username else { fatalError("Missing ip or username") }
         guard let time = reminder.time else { fatalError("Missing time on reminder") }

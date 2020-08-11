@@ -40,6 +40,7 @@
 		59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3924B629560088ACD1 /* ListViewModel.swift */; };
 		59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */; };
 		59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7839524D18B2B0010D0CF /* LightsListView.swift */; };
+		59F13AC024E2A28700F2D99F /* ReminderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		59C82D3924B629560088ACD1 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSelectView.swift; sourceTree = "<group>"; };
 		59E7839524D18B2B0010D0CF /* LightsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListView.swift; sourceTree = "<group>"; };
+		59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRowViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				59C82D3924B629560088ACD1 /* ListViewModel.swift */,
 				592B427124C9839200D73CFF /* ConnectViewModel.swift */,
 				599824B224D1D37100AB4A41 /* LightsListViewModel.swift */,
+				59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				59C82D3224B5A65F0088ACD1 /* NewReminderViewModel.swift in Sources */,
 				59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */,
 				5909BD0D24CF70C0000265BB /* Findable.swift in Sources */,
+				59F13AC024E2A28700F2D99F /* ReminderRowViewModel.swift in Sources */,
 				59C6ABA624DC08D7005F611B /* Badge.swift in Sources */,
 				5909BD1124D057A6000265BB /* BridgeRowView.swift in Sources */,
 				595D61F024CED6C900F93423 /* HueBridge.swift in Sources */,

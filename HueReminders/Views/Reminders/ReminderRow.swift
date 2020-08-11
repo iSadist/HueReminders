@@ -31,38 +31,34 @@ enum ReminderColor: String, CaseIterable {
 
 struct ReminderRow: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    var reminder: Reminder
-
-    @State var active = false
+    @ObservedObject var viewModel: ReminderRowViewModel
     
-    var color: Color {
-        return Color(ReminderColor.allCases[Int(reminder.color)].getColor())
+    var onToggle: ((Reminder) -> Void)?
+    
+    init(viewModel: ReminderRowViewModel, onToggle: ((Reminder) -> Void)?) {
+        self.viewModel = viewModel
+        self.onToggle = onToggle
     }
-    
-    var formatter: DateFormatter = {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "hh:mm"
-        return timeFormatter
-    }()
     
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
-            Text(reminder.name!)
-            Text(WeekDay.allCases[Int(reminder.day)].rawValue)
-            Text("\(formatter.string(from: reminder.time!))")
-            Text(reminder.lightID ?? "")
+            Text(viewModel.name)
+            Text(viewModel.day)
+            Text(viewModel.time)
+            Text(viewModel.lightID)
             
             Spacer()
             
-            Toggle(isOn: $active) {
+            Toggle(isOn: $viewModel.isActive) {
                 Text("").hidden()
             }.frame(alignment: .center)
+            .onTapGesture {
+                self.viewModel.reminder.active = !self.viewModel.isActive // TODO: Do this in the viewModel instead
+                self.onToggle?(self.viewModel.reminder)
+            }
         }
         .padding()
-        .background(color) // TODO: Set the foreground color to either white or black depending on the background
-        .onAppear {
-            self.active = self.reminder.active
-        }
+            .background(viewModel.color) // TODO: Set the foreground color to either white or black depending on the background
     }
 }
 
@@ -76,7 +72,9 @@ struct ReminderRow_Previews: PreviewProvider {
         reminder.name = "Reminder"
         reminder.time = Date()
         reminder.lightID = "1"
-        return ReminderRow(reminder: reminder)
+        
+        let viewModel = ReminderRowViewModel(reminder)
+        return ReminderRow(viewModel: viewModel, onToggle: nil)
             .previewLayout(.fixed(width: 400, height: 70))
     }
 }

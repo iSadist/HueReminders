@@ -23,12 +23,16 @@ private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var reminders: [Reminder]
     
+    func onToggle(reminder: Reminder) {
+        HueAPI.toggleActive(for: reminder, self.activeBridge.sorted().first!)
+    }
+
     var body: some View {
         NavigationView {
             List {
                 ForEach(reminders) { reminder in
 //                NavigationLink(destination: InspectReminderView(reminder)) {
-                    ReminderRow(reminder: reminder)
+                    ReminderRow(viewModel: ReminderRowViewModel(reminder), onToggle: self.onToggle)
                         .frame(height: 57)
 //                }
                 }.onDelete { indexSet in
