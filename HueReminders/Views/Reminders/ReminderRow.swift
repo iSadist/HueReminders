@@ -29,17 +29,14 @@ enum ReminderColor: String, CaseIterable {
     }
 }
 
-private let rectWidth: CGFloat = 100
-
 struct ReminderRow: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var reminder: Reminder
-    
-    @State var offset = CGSize(width: -rectWidth, height: 0)
+
     @State var active = false
     
     var color: Color {
-        return active ? Color.green : Color.red
+        return Color(ReminderColor.allCases[Int(reminder.color)].getColor())
     }
     
     var formatter: DateFormatter = {
@@ -49,40 +46,20 @@ struct ReminderRow: View {
     }()
     
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 10) {
-            Text("")
-                .frame(width: rectWidth, height: 70, alignment: .center)
-                .background(color)
-                .foregroundColor(Color.black)
-
+        HStack(alignment: .center, spacing: 10) {
             Text(reminder.name!)
-            Text(ReminderColor.allCases[Int(reminder.color)].rawValue)
             Text(WeekDay.allCases[Int(reminder.day)].rawValue)
             Text("\(formatter.string(from: reminder.time!))")
             Text(reminder.lightID ?? "")
+            
+            Spacer()
+            
+            Toggle(isOn: $active) {
+                Text("").hidden()
+            }.frame(alignment: .center)
         }
-        .animation(.interactiveSpring())
-        .gesture(
-            DragGesture(minimumDistance: 5)
-                .onChanged { gesture in
-                    if gesture.translation.width > rectWidth - 10 {
-                        return
-                    }
-                    
-                    self.offset.width = gesture.translation.width - rectWidth
-                }
-                .onEnded({ gesture in
-                    if gesture.translation.width > 100 {
-                        self.offset.width = -rectWidth
-                        self.active = !self.active
-                        self.reminder.active = self.active
-                        try? self.managedObjectContext.save()
-                        return
-                    }
-                    
-                    self.offset.width = -rectWidth
-                })
-        ).offset(x: self.offset.width, y: 0)
+        .padding()
+        .background(color) // TODO: Set the foreground color to either white or black depending on the background
         .onAppear {
             self.active = self.reminder.active
         }
