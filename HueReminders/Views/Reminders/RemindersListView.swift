@@ -11,20 +11,22 @@ import Combine
 
 struct RemindersListView: View {
     @FetchRequest(fetchRequest: Reminder.findAll()) var reminders: FetchedResults<Reminder>
+    @FetchRequest(fetchRequest: HueBridge.findActiveBridge()) var activeBridge: FetchedResults<HueBridge>
     @ObservedObject private var listViewModel = ListViewModel()
 
     var body: some View {
-        RemindersListContent(reminders: reminders.sorted())
+        RemindersListContent(activeBridge: self.activeBridge.sorted().first!,
+                             reminders: reminders.sorted().filter {$0.bridge?.active ?? false })
     }
 }
 
 private struct RemindersListContent: View {
-    @FetchRequest(fetchRequest: HueBridge.findActiveBridge()) var activeBridge: FetchedResults<HueBridge>
     @Environment(\.managedObjectContext) var managedObjectContext
+    var activeBridge: HueBridge
     var reminders: [Reminder]
     
     func onToggle(reminder: Reminder) {
-        HueAPI.toggleActive(for: reminder, self.activeBridge.sorted().first!)
+        HueAPI.toggleActive(for: reminder, self.activeBridge)
     }
 
     var body: some View {
@@ -38,8 +40,13 @@ private struct RemindersListContent: View {
                 }.onDelete { indexSet in
                     if let index = indexSet.first {
                         let reminder = self.reminders[index]
-                        let bridge = self.activeBridge.sorted().first!
-                        let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder)
+                        let bridge = self.activeBridge
+                        guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
+                            // Just delete the reminder if can't send a delete request
+                            self.managedObjectContext.delete(reminder)
+                            try? self.managedObjectContext.save()
+                            return
+                        }
                         let task = URLSession.shared.dataTask(with: request) { _, _, _ in
                             // TODO: Handle data, response and error
 
@@ -81,6 +88,11 @@ struct ContentView_Previews: PreviewProvider {
         reminder2.name = "Go to bed"
         reminder2.time = Date()
         
-        return RemindersListContent(reminders: [reminder, reminder2])
+        let bridge = HueBridge(context: context)
+        bridge.active = true
+        bridge.address = "192.168.1.2"
+        bridge.name = "Bridge"
+        
+        return RemindersListContent(activeBridge: bridge, reminders: [reminder, reminder2])
     }
 }

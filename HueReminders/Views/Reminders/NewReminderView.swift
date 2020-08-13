@@ -16,6 +16,7 @@ struct NewReminderView: View {
     private var cancellables = Set<AnyCancellable>()
     
     var body: some View {
+        // BUG: Does not update to the active bridge
         NewReminderViewContent(bridge: activeBridge.sorted().first!)
     }
 }
@@ -52,7 +53,7 @@ struct NewReminderViewContent: View {
         newReminder.bridge = activeBridge
         newReminder.lightID = "\(viewModel.selectedLight)"
         
-        // Move this code to an interactor
+        // TODO: Move this code to an interactor
         let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             // TODO: Handle response and error

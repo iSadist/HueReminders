@@ -19,4 +19,14 @@ final class Reminder: NSManagedObject, Identifiable, Findable, Comparable {
         request.sortDescriptors = [sortDescriptor]
         return request
     }
+    
+    class func findForActiveBridge() -> NSFetchRequest<Reminder> {
+        let predicate = NSPredicate(format: "bridge.active == true")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let request: NSFetchRequest<Reminder> = Reminder.fetchRequest()
+        request.predicate = predicate
+        request.sortDescriptors = [sortDescriptor]
+        request.returnsDistinctResults = true
+        return request
+    }
 }

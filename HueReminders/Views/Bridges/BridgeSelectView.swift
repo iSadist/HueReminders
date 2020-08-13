@@ -33,6 +33,7 @@ struct BridgeSelectViewContent: View {
                         .onTapGesture {
                             self.bridges.forEach { $0.active = false }
                             bridge.active = true
+                            try? self.managedObjectContext.save()
                     }
                 }.onDelete { indexSet in
                     let bridge = self.bridges[indexSet.first!]

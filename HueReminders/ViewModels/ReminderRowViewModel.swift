@@ -27,10 +27,10 @@ class ReminderRowViewModel: ObservableObject {
     }()
     
     init(_ reminder: Reminder) {
-        name = reminder.name!
+        name = reminder.name ?? "Unknown name"
         color = Color(ReminderColor.allCases[Int(reminder.color)].getColor())
         day = WeekDay.allCases[Int(reminder.day)].rawValue
-        time = "\(formatter.string(from: reminder.time!))"
+        time = "\(formatter.string(from: reminder.time ?? Date()))"
         lightID = reminder.lightID ?? ""
         isActive = reminder.active
         self.reminder = reminder
