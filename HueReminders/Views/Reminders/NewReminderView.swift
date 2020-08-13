@@ -52,6 +52,7 @@ struct NewReminderViewContent: View {
         newReminder.bridge = activeBridge
         newReminder.lightID = "\(viewModel.selectedLight)"
         
+        // Move this code to an interactor
         let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             // TODO: Handle response and error
@@ -75,8 +76,26 @@ struct NewReminderViewContent: View {
             }
             
         }
-            
         task.resume()
+        
+        // Add a push notification
+        let content = UNMutableNotificationContent()
+        content.title = viewModel.name
+        content.body = "Triggered by HueReminders"
+        content.sound = UNNotificationSound.default
+        
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                                             from: viewModel.time)
+        print(dateComponents)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let uuidString = UUID().uuidString // Save this to be able to cancel the
+        let notificationRequest = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(notificationRequest) { (error) in
+            if error != nil {
+               print("Error while setting the push notification: \(error!)")
+            }
+        }
     }
     
     var body: some View {

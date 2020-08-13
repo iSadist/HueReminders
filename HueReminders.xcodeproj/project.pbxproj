@@ -41,6 +41,7 @@
 		59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */; };
 		59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7839524D18B2B0010D0CF /* LightsListView.swift */; };
 		59F13AC024E2A28700F2D99F /* ReminderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */; };
+		59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSelectView.swift; sourceTree = "<group>"; };
 		59E7839524D18B2B0010D0CF /* LightsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListView.swift; sourceTree = "<group>"; };
 		59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRowViewModel.swift; sourceTree = "<group>"; };
+		59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 				59173A9C24B763F50009A73C /* ViewModels */,
 				59173A9B24B763E50009A73C /* Views */,
 				59C82CFE24B5A26B0088ACD1 /* AppDelegate.swift */,
+				59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */,
 				59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */,
 				59C82D0724B5A26C0088ACD1 /* Assets.xcassets */,
 				59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */,
@@ -459,6 +462,7 @@
 				5909BD0F24CF761E000265BB /* HueAPI.swift in Sources */,
 				5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */,
 				59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */,
+				59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */,
 				59C6ABA424DBEFD9005F611B /* LightRowView.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */,
