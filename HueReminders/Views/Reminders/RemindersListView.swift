@@ -11,51 +11,55 @@ import Combine
 
 struct RemindersListView: View {
     @FetchRequest(fetchRequest: Reminder.findAll()) var reminders: FetchedResults<Reminder>
-    @FetchRequest(fetchRequest: HueBridge.findActiveBridge()) var activeBridge: FetchedResults<HueBridge>
+    @FetchRequest(fetchRequest: HueBridge.findAll()) var activeBridge: FetchedResults<HueBridge>
     @ObservedObject private var listViewModel = ListViewModel()
 
     var body: some View {
-        RemindersListContent(activeBridge: self.activeBridge.sorted().first!,
-                             reminders: reminders.sorted().filter {$0.bridge?.active ?? false })
+        RemindersListContent(bridges: self.activeBridge.sorted(),
+                             reminders: reminders.sorted())
     }
 }
 
 private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    var activeBridge: HueBridge
+    var bridges: [HueBridge]
     var reminders: [Reminder]
     
     func onToggle(reminder: Reminder) {
-        HueAPI.toggleActive(for: reminder, self.activeBridge)
+        HueAPI.toggleActive(for: reminder, self.bridges.first!) // Not correct
     }
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(reminders) { reminder in
-//                NavigationLink(destination: InspectReminderView(reminder)) {
-                    ReminderRow(viewModel: ReminderRowViewModel(reminder), onToggle: self.onToggle)
-                        .frame(height: 57)
-//                }
-                }.onDelete { indexSet in
-                    if let index = indexSet.first {
-                        let reminder = self.reminders[index]
-                        let bridge = self.activeBridge
-                        guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
-                            // Just delete the reminder if can't send a delete request
-                            self.managedObjectContext.delete(reminder)
-                            try? self.managedObjectContext.save()
-                            return
-                        }
-                        let task = URLSession.shared.dataTask(with: request) { _, _, _ in
-                            // TODO: Handle data, response and error
-
-                            DispatchQueue.main.async {
+                ForEach(bridges) { bridge in
+                    if self.bridges.count > 1 {
+                        Text(bridge.name!).font(.title)
+                    }
+                    ForEach(self.reminders.filter { $0.bridge == bridge }) { reminder in
+    //                NavigationLink(destination: InspectReminderView(reminder)) {
+                        ReminderRow(viewModel: ReminderRowViewModel(reminder), onToggle: self.onToggle)
+    //                }
+                    }.onDelete { indexSet in
+                        if let index = indexSet.first {
+                            let reminder = self.reminders[index]
+                            let bridge = self.bridges.first! // Not correct
+                            guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
+                                // Just delete the reminder if can't send a delete request
                                 self.managedObjectContext.delete(reminder)
                                 try? self.managedObjectContext.save()
+                                return
                             }
+                            let task = URLSession.shared.dataTask(with: request) { _, _, _ in
+                                // TODO: Handle data, response and error
+
+                                DispatchQueue.main.async {
+                                    self.managedObjectContext.delete(reminder)
+                                    try? self.managedObjectContext.save()
+                                }
+                            }
+                            task.resume()
                         }
-                        task.resume()
                     }
                 }
             }
@@ -74,6 +78,16 @@ private struct RemindersListContent: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let bridge = HueBridge(context: context)
+        bridge.active = true
+        bridge.address = "192.168.1.2"
+        bridge.name = "First floor"
+        
+        let bridge2 = HueBridge(context: context)
+        bridge2.active = false
+        bridge2.address = "192.168.1.2"
+        bridge2.name = "Second floor"
+        
         let reminder = Reminder(context: context)
         reminder.active = true
         reminder.color = 1
@@ -83,16 +97,22 @@ struct ContentView_Previews: PreviewProvider {
         
         let reminder2 = Reminder(context: context)
         reminder2.active = false
-        reminder2.color = 1
-        reminder2.day = 1
+        reminder2.color = 6
+        reminder2.day = 4
         reminder2.name = "Go to bed"
         reminder2.time = Date()
         
-        let bridge = HueBridge(context: context)
-        bridge.active = true
-        bridge.address = "192.168.1.2"
-        bridge.name = "Bridge"
+        let reminder3 = Reminder(context: context)
+        reminder3.active = false
+        reminder3.color = 6
+        reminder3.day = 4
+        reminder3.name = "Go to bed"
+        reminder3.time = Date().advanced(by: 1)
         
-        return RemindersListContent(activeBridge: bridge, reminders: [reminder, reminder2])
+        bridge.addToReminder(reminder)
+        bridge.addToReminder(reminder2)
+        bridge2.addToReminder(reminder3)
+        
+        return RemindersListContent(bridges: [bridge, bridge2], reminders: [reminder, reminder2, reminder3])
     }
 }

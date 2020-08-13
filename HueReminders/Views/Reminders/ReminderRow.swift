@@ -41,24 +41,30 @@ struct ReminderRow: View {
     }
     
     var body: some View {
-        HStack(alignment: .center, spacing: 10) {
-            Text(viewModel.name)
-            Text(viewModel.day)
-            Text(viewModel.time)
-            Text(viewModel.lightID)
-            
-            Spacer()
-            
-            Toggle(isOn: $viewModel.isActive) {
-                Text("").hidden()
-            }.frame(alignment: .center)
-            .onTapGesture {
-                self.viewModel.reminder.active = !self.viewModel.isActive // TODO: Do this in the viewModel instead
-                self.onToggle?(self.viewModel.reminder)
+        ZStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(viewModel.name)
+                    .bold()
+                HStack(alignment: .center, spacing: 10) {
+                    Text(viewModel.day)
+                    Text(viewModel.time)
+                    Text(viewModel.lightID)
+                    Spacer()
+                }
+            }
+            VStack(alignment: .trailing, spacing: 0) {
+                Toggle(isOn: $viewModel.isActive) {
+                    Text("").hidden()
+                }.frame(alignment: .center)
+                    .onTapGesture {
+                        self.viewModel.reminder.active = !self.viewModel.isActive // TODO: Do this in the viewModel instead
+                        self.onToggle?(self.viewModel.reminder)
+                }
             }
         }
         .padding()
-            .background(viewModel.color) // TODO: Set the foreground color to either white or black depending on the background
+        .background(viewModel.color) // TODO: Set the foreground color to either white or black depending on the background
+        .cornerRadius(10)
     }
 }
 
