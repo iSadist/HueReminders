@@ -19,6 +19,7 @@ class ReminderRowViewModel: ObservableObject {
     @Published var isActive: Bool
     
     var reminder: Reminder
+    var bridge: HueBridge
     
     private var formatter: DateFormatter = {
         let timeFormatter = DateFormatter()
@@ -26,7 +27,7 @@ class ReminderRowViewModel: ObservableObject {
         return timeFormatter
     }()
     
-    init(_ reminder: Reminder) {
+    init(_ reminder: Reminder, _ bridge: HueBridge) {
         name = reminder.name ?? "Unknown name"
         color = Color(ReminderColor.allCases[Int(reminder.color)].getColor())
         day = WeekDay.allCases[Int(reminder.day)].rawValue
@@ -34,5 +35,6 @@ class ReminderRowViewModel: ObservableObject {
         lightID = reminder.lightID ?? ""
         isActive = reminder.active
         self.reminder = reminder
+        self.bridge = bridge
     }
 }

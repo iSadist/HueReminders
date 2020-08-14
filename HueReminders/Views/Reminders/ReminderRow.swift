@@ -32,12 +32,14 @@ enum ReminderColor: String, CaseIterable {
 struct ReminderRow: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var viewModel: ReminderRowViewModel
+
+    func sendToggleRequestToHue() {
+        print(viewModel.reminder, viewModel.bridge)
+        HueAPI.toggleActive(for: viewModel.reminder, viewModel.bridge)
+    }
     
-    var onToggle: ((Reminder) -> Void)?
-    
-    init(viewModel: ReminderRowViewModel, onToggle: ((Reminder) -> Void)?) {
+    init(viewModel: ReminderRowViewModel) {
         self.viewModel = viewModel
-        self.onToggle = onToggle
     }
     
     var body: some View {
@@ -58,7 +60,7 @@ struct ReminderRow: View {
                 }.frame(alignment: .center)
                     .onTapGesture {
                         self.viewModel.reminder.active = !self.viewModel.isActive // TODO: Do this in the viewModel instead
-                        self.onToggle?(self.viewModel.reminder)
+                        self.sendToggleRequestToHue()
                 }
             }
         }
@@ -78,9 +80,9 @@ struct ReminderRow_Previews: PreviewProvider {
         reminder.name = "Reminder"
         reminder.time = Date()
         reminder.lightID = "1"
-        
-        let viewModel = ReminderRowViewModel(reminder)
-        return ReminderRow(viewModel: viewModel, onToggle: nil)
+        let bridge = HueBridge(context: context)
+        let viewModel = ReminderRowViewModel(reminder, bridge)
+        return ReminderRow(viewModel: viewModel)
             .previewLayout(.fixed(width: 400, height: 70))
     }
 }

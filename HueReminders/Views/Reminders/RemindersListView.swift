@@ -24,10 +24,6 @@ private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var bridges: [HueBridge]
     var reminders: [Reminder]
-    
-    func onToggle(reminder: Reminder) {
-        HueAPI.toggleActive(for: reminder, self.bridges.first!) // Not correct
-    }
 
     var body: some View {
         NavigationView {
@@ -38,12 +34,13 @@ private struct RemindersListContent: View {
                     }
                     ForEach(self.reminders.filter { $0.bridge == bridge }) { reminder in
     //                NavigationLink(destination: InspectReminderView(reminder)) {
-                        ReminderRow(viewModel: ReminderRowViewModel(reminder), onToggle: self.onToggle)
+                        ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
     //                }
                     }.onDelete { indexSet in
                         if let index = indexSet.first {
-                            let reminder = self.reminders[index]
-                            let bridge = self.bridges.first! // Not correct
+                            let remindersForBridge = self.reminders.filter { $0.bridge == bridge }
+                            let reminder = remindersForBridge[index]
+                            
                             guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
                                 // Just delete the reminder if can't send a delete request
                                 self.managedObjectContext.delete(reminder)
