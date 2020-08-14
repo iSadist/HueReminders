@@ -11,13 +11,13 @@ import SwiftUI
 import Combine
 
 struct NewReminderView: View {
-    @FetchRequest(fetchRequest: HueBridge.findActiveBridge()) var activeBridge: FetchedResults<HueBridge>
+    @FetchRequest(fetchRequest: HueBridge.findAll()) var bridges: FetchedResults<HueBridge>
     
     private var cancellables = Set<AnyCancellable>()
     
     var body: some View {
         // BUG: Does not update to the active bridge
-        NewReminderViewContent(bridge: activeBridge.sorted().first!)
+        NewReminderViewContent(bridges: bridges.sorted())
     }
 }
 
@@ -26,13 +26,13 @@ struct NewReminderViewContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var viewModel: NewReminderViewModel
 
-    var activeBridge: HueBridge
+    var bridges: [HueBridge]
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(bridge: HueBridge) {
-        activeBridge = bridge
-        viewModel = NewReminderViewModel(lightsRequest: HueAPI.getLights(bridge: activeBridge))
+    init(bridges: [HueBridge]) {
+        self.bridges = bridges
+        viewModel = NewReminderViewModel()
         
         // Setup subscriber
         viewModel.isNameValid
@@ -50,8 +50,8 @@ struct NewReminderViewContent: View {
         newReminder.day = Int16(viewModel.day)
         newReminder.time = viewModel.time
         newReminder.active = true
-        newReminder.bridge = activeBridge
         newReminder.lightID = "\(viewModel.selectedLight)"
+        viewModel.bridge?.addToReminder(newReminder)
         
         // TODO: Move this code to an interactor
         let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder)
@@ -125,13 +125,33 @@ struct NewReminderViewContent: View {
             }
             
             Section {
+                Text("Hue Bridge")
+                    .bold()
+                ForEach(bridges) { bridge in
+                    HStack {
+                        Text("\(bridge.name ?? "")")
+                        Spacer()
+                        
+                        if bridge.name == self.viewModel.bridge?.name {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                        }
+                    }
+                    .onTapGesture {
+                        self.viewModel.bridge = bridge
+                        self.viewModel.fetchLights()
+                    }
+                }
+            }
+            
+            Section {
                 Text("Light to blink").bold()
                 ForEach(self.viewModel.lights) { light in
                     HStack {
-                        Text("\(light.name)").onTapGesture {
-                            self.viewModel.selectedLight = light.id
-                        }
-                        
+                        Text("\(light.name)")
+                            .onTapGesture {
+                                self.viewModel.selectedLight = light.id
+                            }
                         Spacer()
                         
                         if light.id == self.viewModel.selectedLight {
@@ -159,6 +179,6 @@ struct NewReminderView_Previews: PreviewProvider {
         bridge.address = "192.168.1.2"
         bridge.name = "Bridge"
         bridge.username = "fe9c003c-a646-430f-a189-516620fc5555"
-        return NewReminderViewContent(bridge: bridge)
+        return NewReminderViewContent(bridges: [bridge])
     }
 }

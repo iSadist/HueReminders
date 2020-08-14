@@ -10,6 +10,7 @@ class NewReminderViewModel: ObservableObject {
     @Published var time = Date()
     @Published var selectedLight = ""
     @Published var lights: [HueLightInfo] = []
+    @Published var bridge: HueBridge?
 
     // Output
     @Published var valid = true
@@ -33,11 +34,9 @@ class NewReminderViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     
-    init(lightsRequest: URLRequest) {
-        fetchLights(request: lightsRequest)
-    }
-    
-    func fetchLights(request: URLRequest) {
+    func fetchLights() {
+        guard let bridge = self.bridge else { return }
+        let request = HueAPI.getLights(bridge: bridge)
         lightsDataTask = URLSession.shared.dataTaskPublisher(for: request)
             .map { $0.data }
             .decode(type: JSONValues.self, decoder: JSONDecoder())
