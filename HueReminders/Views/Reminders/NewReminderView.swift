@@ -138,6 +138,8 @@ struct NewReminderViewContent: View {
                         }
                     }
                     .onTapGesture {
+                        guard self.viewModel.bridge != bridge else { return }
+                        self.viewModel.selectedLight = ""
                         self.viewModel.bridge = bridge
                         self.viewModel.fetchLights()
                     }
