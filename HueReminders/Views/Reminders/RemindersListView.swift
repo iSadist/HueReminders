@@ -23,7 +23,7 @@ struct RemindersListView: View {
 private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var bridges: [HueBridge]
-    @State var reminders: [Reminder]
+    var reminders: [Reminder]
     
     func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge) {
         guard let index = source.first else { return }
@@ -44,8 +44,6 @@ private struct RemindersListContent: View {
         } else {
             return
         }
-
-        reminders.sort()
     }
     
     func delete(indexSet: IndexSet, _ bridge: HueBridge) {
