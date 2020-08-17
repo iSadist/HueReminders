@@ -13,9 +13,21 @@ struct RemindersListView: View {
     @FetchRequest(fetchRequest: Reminder.findAll()) var reminders: FetchedResults<Reminder>
     @FetchRequest(fetchRequest: HueBridge.findAll()) var activeBridge: FetchedResults<HueBridge>
     @ObservedObject private var listViewModel = ListViewModel()
+    
+    func setReminderPosition() {
+        let remindersWithoutPosition = reminders.filter { $0.position == -1 }
+        for reminder in remindersWithoutPosition {
+            if let lastPosition = reminders.filter({ $0.bridge == reminder.bridge }).max()?.position {
+                reminder.position = lastPosition + 1
+            } else {
+                reminder.position = 0
+            }
+        }
+    }
 
     var body: some View {
-        RemindersListContent(bridges: self.activeBridge.sorted(),
+        setReminderPosition()
+        return RemindersListContent(bridges: self.activeBridge.sorted(),
                              reminders: reminders.sorted())
     }
 }
@@ -44,6 +56,8 @@ private struct RemindersListContent: View {
         } else {
             return
         }
+        
+        try? managedObjectContext.save()
     }
     
     func delete(indexSet: IndexSet, _ bridge: HueBridge) {
