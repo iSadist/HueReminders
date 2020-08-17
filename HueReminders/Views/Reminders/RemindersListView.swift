@@ -12,7 +12,6 @@ import Combine
 struct RemindersListView: View {
     @FetchRequest(fetchRequest: Reminder.findAll()) var reminders: FetchedResults<Reminder>
     @FetchRequest(fetchRequest: HueBridge.findAll()) var activeBridge: FetchedResults<HueBridge>
-    @ObservedObject private var listViewModel = ListViewModel()
     
     func setReminderPosition() {
         let remindersWithoutPosition = reminders.filter { $0.position == -1 }
@@ -27,20 +26,19 @@ struct RemindersListView: View {
 
     var body: some View {
         setReminderPosition()
-        return RemindersListContent(bridges: self.activeBridge.sorted(),
-                             reminders: reminders.sorted())
+        let viewModel = ListViewModel(reminders: reminders.sorted(), bridges: self.activeBridge.sorted())
+        return RemindersListContent(viewModel: viewModel)
     }
 }
 
 private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    var bridges: [HueBridge]
-    var reminders: [Reminder]
+    @ObservedObject var viewModel: ListViewModel
     
     func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge) {
         guard let index = source.first else { return }
         // TODO: Refactor this code into some utility
-        let filteredReminders = self.reminders.filter { $0.bridge == bridge }
+        let filteredReminders = self.viewModel.reminders.filter { $0.bridge == bridge }
         let movedReminder = filteredReminders[index]
 
         if index > destination {
@@ -62,7 +60,7 @@ private struct RemindersListContent: View {
     
     func delete(indexSet: IndexSet, _ bridge: HueBridge) {
         if let index = indexSet.first {
-            let remindersForBridge = self.reminders.filter { $0.bridge == bridge }
+            let remindersForBridge = self.viewModel.reminders.filter { $0.bridge == bridge }
             let reminder = remindersForBridge[index]
             
             guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
@@ -84,16 +82,18 @@ private struct RemindersListContent: View {
     }
 
     var body: some View {
-        NavigationView {
+        let bridges: [HueBridge] = viewModel.bridges
+        let reminders: [Reminder] = viewModel.reminders
+        
+        return
             List {
                 ForEach(bridges) { bridge in
-                    if self.bridges.count > 1 {
+                    if bridges.count > 1 {
                         Text(bridge.name!).font(.title)
                     }
-                    ForEach(self.reminders.filter { $0.bridge == bridge }) { reminder in
-    //                NavigationLink(destination: InspectReminderView(reminder)) {
+
+                    ForEach(reminders.filter { $0.bridge == bridge }) { reminder in
                         ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
-    //                }
                     }
                     .onMove(perform: { self.move(from: $0, to: $1, bridge) })
                     .onDelete { self.delete(indexSet: $0, bridge) }
@@ -107,7 +107,6 @@ private struct RemindersListContent: View {
                                 }
                 )
             )
-        }
     }
 }
 
@@ -149,6 +148,8 @@ struct ContentView_Previews: PreviewProvider {
         bridge.addToReminder(reminder2)
         bridge2.addToReminder(reminder3)
         
-        return RemindersListContent(bridges: [bridge, bridge2], reminders: [reminder, reminder2, reminder3])
+        let viewModel = ListViewModel(reminders: [reminder, reminder2, reminder3], bridges: [bridge, bridge2])
+        
+        return RemindersListContent(viewModel: viewModel)
     }
 }

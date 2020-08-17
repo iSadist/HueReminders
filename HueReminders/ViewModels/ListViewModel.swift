@@ -9,5 +9,11 @@
 import Combine
 
 class ListViewModel: ObservableObject {
-    @Published var reminders: [Reminder] = []
+    @Published var reminders: [Reminder]
+    @Published var bridges: [HueBridge]
+    
+    init(reminders: [Reminder], bridges: [HueBridge]) {
+        self.reminders = reminders
+        self.bridges = bridges
+    }
 }
