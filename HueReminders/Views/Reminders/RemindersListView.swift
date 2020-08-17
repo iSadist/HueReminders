@@ -23,7 +23,53 @@ struct RemindersListView: View {
 private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var bridges: [HueBridge]
-    var reminders: [Reminder]
+    @State var reminders: [Reminder]
+    
+    func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge) {
+        guard let index = source.first else { return }
+        // TODO: Refactor this code into some utility
+        let filteredReminders = self.reminders.filter { $0.bridge == bridge }
+        let movedReminder = filteredReminders[index]
+
+        if index > destination {
+            filteredReminders.filter {
+                $0.position < index && $0.position >= destination
+            }.forEach { $0.position += 1 }
+            movedReminder.position = Int16(destination)
+        } else if index < destination {
+            filteredReminders.filter {
+                $0.position > index && $0.position < destination
+            }.forEach { $0.position -= 1 }
+            movedReminder.position = destination == 0 ? 0 : Int16(destination - 1)
+        } else {
+            return
+        }
+
+        reminders.sort()
+    }
+    
+    func delete(indexSet: IndexSet, _ bridge: HueBridge) {
+        if let index = indexSet.first {
+            let remindersForBridge = self.reminders.filter { $0.bridge == bridge }
+            let reminder = remindersForBridge[index]
+            
+            guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
+                // Just delete the reminder if can't send a delete request
+                self.managedObjectContext.delete(reminder)
+                try? self.managedObjectContext.save()
+                return
+            }
+            let task = URLSession.shared.dataTask(with: request) { _, _, _ in
+                // TODO: Handle data, response and error
+
+                DispatchQueue.main.async {
+                    self.managedObjectContext.delete(reminder)
+                    try? self.managedObjectContext.save()
+                }
+            }
+            task.resume()
+        }
+    }
 
     var body: some View {
         NavigationView {
@@ -36,28 +82,9 @@ private struct RemindersListContent: View {
     //                NavigationLink(destination: InspectReminderView(reminder)) {
                         ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
     //                }
-                    }.onDelete { indexSet in
-                        if let index = indexSet.first {
-                            let remindersForBridge = self.reminders.filter { $0.bridge == bridge }
-                            let reminder = remindersForBridge[index]
-                            
-                            guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
-                                // Just delete the reminder if can't send a delete request
-                                self.managedObjectContext.delete(reminder)
-                                try? self.managedObjectContext.save()
-                                return
-                            }
-                            let task = URLSession.shared.dataTask(with: request) { _, _, _ in
-                                // TODO: Handle data, response and error
-
-                                DispatchQueue.main.async {
-                                    self.managedObjectContext.delete(reminder)
-                                    try? self.managedObjectContext.save()
-                                }
-                            }
-                            task.resume()
-                        }
                     }
+                    .onMove(perform: { self.move(from: $0, to: $1, bridge) })
+                    .onDelete { self.delete(indexSet: $0, bridge) }
                 }
             }
             .navigationBarTitle("Reminders")

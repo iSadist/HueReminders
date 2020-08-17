@@ -17,6 +17,7 @@
         <attribute name="lightID" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="outdated" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 16" minValueString="0" usesScalarValueType="YES"/>
         <attribute name="scheduleID" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="bridge" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HueBridge" inverseName="reminder" inverseEntity="HueBridge"/>
@@ -24,6 +25,6 @@
     <elements>
         <element name="HueBridge" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="HueLight" positionX="-63" positionY="9" width="128" height="58"/>
-        <element name="Reminder" positionX="-63" positionY="9" width="128" height="178"/>
+        <element name="Reminder" positionX="-63" positionY="9" width="128" height="193"/>
     </elements>
 </model>

@@ -10,7 +10,7 @@ import CoreData
 
 final class Reminder: NSManagedObject, Identifiable, Findable, Comparable {
     static func < (lhs: Reminder, rhs: Reminder) -> Bool {
-        lhs.name! < rhs.name!
+        lhs.position < rhs.position
     }
     
     class func findAll() -> NSFetchRequest<Reminder> {
