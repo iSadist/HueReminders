@@ -24,12 +24,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let hueBridges = try! context.fetch(HueBridge.findAll())
 
-            var selectedView = MainTab.Bridge
+            var selectedView = MainTab.Setup
 
             if hueBridges.count > 0 {
-                selectedView = MainTab.Bridge
+                selectedView = MainTab.Reminders
             } else {
-                selectedView = MainTab.Connect
+                selectedView = MainTab.Setup
             }
 
             let mainView = MainContainerView(selectedView).environment(\.managedObjectContext, context)

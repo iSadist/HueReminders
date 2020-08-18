@@ -25,10 +25,6 @@ struct BridgeSelectViewContent: View {
         NavigationView {
             List {
                 ForEach(bridges) { bridge in
-//                    NavigationLink(destination: LightsListView(HueAPI.getLights(bridge: bridge), hueBridge: bridge),
-//                                   tag: bridge.name ?? "",
-//                                   selection: self.setActive()) {
-//                    }
                     BridgeRowView(bridge)
                         .onTapGesture {
                             self.bridges.forEach { $0.active = false }
@@ -42,7 +38,10 @@ struct BridgeSelectViewContent: View {
                 }
             }
             .navigationBarTitle("Hue Bridges")
-            .navigationBarItems(leading: EditButton())
+            .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: ConnectView(), label: {
+                Image(systemName: "plus")
+                    .imageScale(.large)
+            }))
         }
     }
 }

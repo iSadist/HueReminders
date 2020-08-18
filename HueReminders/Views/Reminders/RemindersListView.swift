@@ -104,7 +104,8 @@ private struct RemindersListContent: View {
                 .navigationBarItems(leading: EditButton(),
                                     trailing: NavigationLink(destination: NewReminderView(),
                                                              label: {
-                                                                Text("Add")
+                                                                Image(systemName: "plus")
+                                                                    .imageScale(.large)
                                     }
                     )
                 )

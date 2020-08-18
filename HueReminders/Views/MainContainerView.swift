@@ -9,14 +9,14 @@
 import SwiftUI
 
 enum MainTab: String {
-    case Bridge, Reminders, Connect
+    case Lights, Setup, Reminders
 }
 
 struct MainContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    private var initialView: MainTab = .Bridge
-    @State private var selectedView: MainTab = .Bridge
+    private var initialView: MainTab = .Setup
+    @State private var selectedView: MainTab = .Setup
 
     init(_ initialView: MainTab) {
         self.initialView = initialView
@@ -24,24 +24,24 @@ struct MainContainerView: View {
 
     var body: some View {
         TabView(selection: $selectedView) {
-            BridgeSelectView()
+            LightsListView()
                 .tabItem {
-                    Image(systemName: "b.circle")
-                    Text("Bridges")
+                    Image(systemName: "lightbulb")
+                    Text("Lights")
                 }
-                .tag(MainTab.Bridge)
+                .tag(MainTab.Lights)
             RemindersListView()
                 .tabItem {
                     Image(systemName: "alarm")
                     Text("Reminders")
                 }
                 .tag(MainTab.Reminders)
-            ConnectView()
+            BridgeSelectView()
                 .tabItem {
-                    Image(systemName: "link")
-                    Text("Connect")
+                    Image(systemName: "gear")
+                    Text("Setup")
                 }
-                .tag(MainTab.Connect)
+                .tag(MainTab.Setup)
         }.onAppear {
             self.selectedView = self.initialView
         }
@@ -50,6 +50,6 @@ struct MainContainerView: View {
 
 struct MainContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        MainContainerView(MainTab.Connect)
+        MainContainerView(MainTab.Setup)
     }
 }

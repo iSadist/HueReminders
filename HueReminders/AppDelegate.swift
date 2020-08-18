@@ -12,12 +12,14 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let userNotificationDelegate = UserNotificationCenterDelegate()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UNUserNotificationCenter.current().delegate = UserNotificationCenterDelegate()
+        UNUserNotificationCenter.current().delegate = userNotificationDelegate
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, _) in
             print("UserNotifications granted: \(granted)")
         }
