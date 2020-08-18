@@ -86,27 +86,29 @@ private struct RemindersListContent: View {
         let reminders: [Reminder] = viewModel.reminders
         
         return
-            List {
-                ForEach(bridges) { bridge in
-                    if bridges.count > 1 {
-                        Text(bridge.name!).font(.title)
+            NavigationView {
+                List {
+                    ForEach(bridges) { bridge in
+                        if bridges.count > 1 {
+                            Text(bridge.name!).font(.title)
+                        }
+                        
+                        ForEach(reminders.filter { $0.bridge == bridge }) { reminder in
+                            ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
+                        }
+                        .onMove(perform: { self.move(from: $0, to: $1, bridge) })
+                        .onDelete { self.delete(indexSet: $0, bridge) }
                     }
-
-                    ForEach(reminders.filter { $0.bridge == bridge }) { reminder in
-                        ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
-                    }
-                    .onMove(perform: { self.move(from: $0, to: $1, bridge) })
-                    .onDelete { self.delete(indexSet: $0, bridge) }
                 }
-            }
-            .navigationBarTitle("Reminders")
-            .navigationBarItems(leading: EditButton(),
-                                trailing: NavigationLink(destination: NewReminderView(),
-                                                         label: {
-                                                            Text("Add")
-                                }
+                .navigationBarTitle("Reminders")
+                .navigationBarItems(leading: EditButton(),
+                                    trailing: NavigationLink(destination: NewReminderView(),
+                                                             label: {
+                                                                Text("Add")
+                                    }
+                    )
                 )
-            )
+            }
     }
 }
 
