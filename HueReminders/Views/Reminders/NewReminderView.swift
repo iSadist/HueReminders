@@ -44,40 +44,47 @@ struct NewReminderViewContent: View {
     }
     
     func addPressed() {
+        // Create a wrapper function for doing this. Make it conform to a protocol
+        var tasks = [URLSessionDataTask]()
+        
         let newReminder = Reminder(context: managedObjectContext)
         newReminder.name = viewModel.name
         newReminder.color = Int16(viewModel.color)
         newReminder.day = Int16(viewModel.day)
         newReminder.time = viewModel.time
         newReminder.active = true
-        newReminder.lightID = "\(viewModel.selectedLight)"
         viewModel.bridge?.addToReminder(newReminder)
         
-        // TODO: Move this code to an interactor
-        let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            // TODO: Handle response and error
-            let decoder = JSONDecoder.init()
-            let responses = try! decoder.decode([HueSchedulesResponse].self, from: data!)
+        for light in viewModel.selectedLights {
+            let hueLight = HueLight(context: managedObjectContext)
+            hueLight.lightID = light
+            newReminder.addToLight(hueLight)
             
-            if let error = responses.first?.error {
-                print("Error occurred - Type: \(error.type), Description: \(error.description), Address: \(error.address)")
-                // TODO: Show error message to user
-                return
-            }
-            
-            if let success = responses.first?.success {
-                newReminder.scheduleID = success.id
+            // TODO: Move this code to an interactor
+            let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder, light: hueLight)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                // TODO: Handle response and error
+                let decoder = JSONDecoder.init()
+                let responses = try! decoder.decode([HueSchedulesResponse].self, from: data!)
                 
-                // Return to the list view
-                DispatchQueue.main.async {
-                    try? self.managedObjectContext.save()
-                    self.presentation.wrappedValue.dismiss()
+                if let error = responses.first?.error {
+                    print("Error occurred - Type: \(error.type), Description: \(error.description), Address: \(error.address)")
+                    // TODO: Show error message to user
+                    return
+                }
+                
+                if let success = responses.first?.success {
+                    hueLight.scheduleID = success.id
+                    
+                    // Return to the list view
+                    DispatchQueue.main.async {
+                        try? self.managedObjectContext.save()
+                        self.presentation.wrappedValue.dismiss() // Only return when the last one is saved
+                    }
                 }
             }
-            
+            tasks.append(task)
         }
-        task.resume()
         
         // Add a push notification
         let content = UNMutableNotificationContent()
@@ -87,7 +94,6 @@ struct NewReminderViewContent: View {
         
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
                                                              from: viewModel.time)
-        print(dateComponents)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let uuidString = UUID().uuidString // Save this to be able to cancel the
         let notificationRequest = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
@@ -97,6 +103,8 @@ struct NewReminderViewContent: View {
                print("Error while setting the push notification: \(error!)")
             }
         }
+        
+        tasks.forEach { $0.resume() }
     }
     
     var body: some View {
@@ -139,7 +147,7 @@ struct NewReminderViewContent: View {
                     }
                     .onTapGesture {
                         guard self.viewModel.bridge != bridge else { return }
-                        self.viewModel.selectedLight = ""
+                        self.viewModel.selectedLights.removeAll()
                         self.viewModel.bridge = bridge
                         self.viewModel.fetchLights()
                     }
@@ -152,11 +160,15 @@ struct NewReminderViewContent: View {
                     HStack {
                         Text("\(light.name)")
                             .onTapGesture {
-                                self.viewModel.selectedLight = light.id
+                                if self.viewModel.selectedLights.contains(light.id) {
+                                    self.viewModel.selectedLights.remove(light.id)
+                                } else {
+                                    self.viewModel.selectedLights.insert(light.id)
+                                }
                             }
                         Spacer()
                         
-                        if light.id == self.viewModel.selectedLight {
+                        if self.viewModel.selectedLights.contains(light.id) {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(.green)
                         }

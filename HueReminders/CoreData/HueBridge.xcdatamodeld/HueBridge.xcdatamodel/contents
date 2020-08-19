@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="HueBridge" representedClassName=".HueBridge" syncable="YES" codeGenerationType="category">
         <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="address" optional="YES" attributeType="String"/>
@@ -8,23 +8,24 @@
         <relationship name="reminder" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reminder" inverseName="bridge" inverseEntity="Reminder"/>
     </entity>
     <entity name="HueLight" representedClassName=".HueLight" syncable="YES" codeGenerationType="category">
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="lightID" optional="YES" attributeType="String"/>
+        <attribute name="scheduleID" optional="YES" attributeType="String"/>
+        <relationship name="reminder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reminder" inverseName="light" inverseEntity="Reminder"/>
     </entity>
     <entity name="Reminder" representedClassName=".Reminder" syncable="YES" codeGenerationType="category">
         <attribute name="active" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="lightID" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="outdated" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="position" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES"/>
-        <attribute name="scheduleID" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="bridge" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HueBridge" inverseName="reminder" inverseEntity="HueBridge"/>
+        <relationship name="light" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HueLight" inverseName="reminder" inverseEntity="HueLight"/>
     </entity>
     <elements>
         <element name="HueBridge" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="HueLight" positionX="-63" positionY="9" width="128" height="58"/>
-        <element name="Reminder" positionX="-63" positionY="9" width="128" height="193"/>
+        <element name="HueLight" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="Reminder" positionX="-63" positionY="9" width="128" height="178"/>
     </elements>
 </model>

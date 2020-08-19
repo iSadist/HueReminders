@@ -50,7 +50,6 @@ struct ReminderRow: View {
                 HStack(alignment: .center, spacing: 10) {
                     Text(viewModel.day)
                     Text(viewModel.time)
-                    Text(viewModel.lightID)
                     Spacer()
                 }
             }
@@ -79,7 +78,6 @@ struct ReminderRow_Previews: PreviewProvider {
         reminder.day = 1
         reminder.name = "Reminder"
         reminder.time = Date()
-        reminder.lightID = "1"
         let bridge = HueBridge(context: context)
         let viewModel = ReminderRowViewModel(reminder, bridge)
         return ReminderRow(viewModel: viewModel)

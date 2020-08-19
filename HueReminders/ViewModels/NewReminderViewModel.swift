@@ -8,7 +8,7 @@ class NewReminderViewModel: ObservableObject {
     @Published var color = 0
     @Published var day = 0
     @Published var time = Date()
-    @Published var selectedLight = ""
+    @Published var selectedLights: Set<String> = []
     @Published var lights: [HueLightInfo] = []
     @Published var bridge: HueBridge?
 
@@ -25,9 +25,9 @@ class NewReminderViewModel: ObservableObject {
     var lightsDataTask: AnyPublisher<[HueLightInfo], Never>?
     
     var selectedLightPublisher: AnyPublisher<Bool, Never> {
-        $selectedLight
-            .map { name in
-                return name.count > 0
+        $selectedLights
+            .map { light in
+                return light.count > 0
             }
             .eraseToAnyPublisher()
     }

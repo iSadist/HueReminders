@@ -15,7 +15,6 @@ class ReminderRowViewModel: ObservableObject {
     @Published var color: Color
     @Published var day: String
     @Published var time: String
-    @Published var lightID: String
     @Published var isActive: Bool
     
     var reminder: Reminder
@@ -32,7 +31,6 @@ class ReminderRowViewModel: ObservableObject {
         color = Color(ReminderColor.allCases[Int(reminder.color)].getColor())
         day = WeekDay.allCases[Int(reminder.day)].rawValue
         time = "\(formatter.string(from: reminder.time ?? Date()))"
-        lightID = reminder.lightID ?? ""
         isActive = reminder.active
         self.reminder = reminder
         self.bridge = bridge

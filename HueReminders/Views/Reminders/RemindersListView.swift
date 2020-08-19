@@ -62,22 +62,22 @@ private struct RemindersListContent: View {
         if let index = indexSet.first {
             let remindersForBridge = self.viewModel.reminders.filter { $0.bridge == bridge }
             let reminder = remindersForBridge[index]
+            let requests = HueAPI.deleteSchedule(on: bridge, reminder: reminder)
             
-            guard let request = HueAPI.deleteSchedule(on: bridge, reminder: reminder) else {
-                // Just delete the reminder if can't send a delete request
-                self.managedObjectContext.delete(reminder)
-                try? self.managedObjectContext.save()
-                return
-            }
-            let task = URLSession.shared.dataTask(with: request) { _, _, _ in
-                // TODO: Handle data, response and error
+            for request in requests {
+                let task = URLSession.shared.dataTask(with: request) { _, _, _ in
+                    // TODO: Handle data, response and error
 
-                DispatchQueue.main.async {
-                    self.managedObjectContext.delete(reminder)
-                    try? self.managedObjectContext.save()
                 }
+                task.resume()
             }
-            task.resume()
+
+            if let lights = reminder.light {
+                reminder.removeFromLight(lights)
+            }
+            reminder.removeFromLight(reminder.light!)
+            self.managedObjectContext.delete(reminder)
+            try? self.managedObjectContext.save()
         }
     }
 

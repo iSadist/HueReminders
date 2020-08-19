@@ -35,24 +35,27 @@ class HueAPI {
     }
     
     static func toggleActive(for reminder: Reminder, _ bridge: HueBridge) {
-        guard let ip = bridge.address, let username = bridge.username else { fatalError("Missing ip or username") }
-        guard let scheduleID = reminder.scheduleID else { fatalError("Missing schedule ID on Reminder") }
-        let url = URL(string: "http://\(ip)/api/\(username)/schedules/\(scheduleID)/")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "PUT"
-
-        let parameterDictionary = ["status": reminder.active ? "enabled" : "disabled"]
-        let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
-        request.httpBody = httpBody
-
-        let task = URLSession.shared.dataTask(with: request)
-        task.resume()
+        guard let lights = reminder.light as? Set<HueLight> else { fatalError("Missing lights") }
+        for light in lights {
+            guard let ip = bridge.address, let username = bridge.username else { fatalError("Missing ip or username") }
+            guard let scheduleID = light.scheduleID else { fatalError("Missing schedule ID on Reminder") }
+            let url = URL(string: "http://\(ip)/api/\(username)/schedules/\(scheduleID)/")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            
+            let parameterDictionary = ["status": reminder.active ? "enabled" : "disabled"]
+            let httpBody = try! JSONSerialization.data(withJSONObject: parameterDictionary)
+            request.httpBody = httpBody
+            
+            let task = URLSession.shared.dataTask(with: request)
+            task.resume()
+        }
     }
     
-    static func setSchedule(on bridge: HueBridge, reminder: Reminder) -> URLRequest {
+    static func setSchedule(on bridge: HueBridge, reminder: Reminder, light: HueLight) -> URLRequest {
         guard let ip = bridge.address, let id = bridge.username else { fatalError("Missing ip or username") }
         guard let time = reminder.time else { fatalError("Missing time on reminder") }
-        guard let lightID = reminder.lightID else { fatalError("Missing light id")}
+        guard let lightID = light.lightID else { fatalError("Missing light id")}
         let url = URL(string: "http://\(ip)/api/\(id)/schedules")!
         var request = URLRequest(url: url)
         
@@ -91,12 +94,18 @@ class HueAPI {
         return request
     }
     
-    static func deleteSchedule(on bridge: HueBridge, reminder: Reminder) -> URLRequest? {
+    static func deleteSchedule(on bridge: HueBridge, reminder: Reminder) -> [URLRequest] {
+        var requests = [URLRequest]()
+        guard let lights = reminder.light as? Set<HueLight> else { fatalError("Missing lights") }
+        for light in lights {
             guard let ip = bridge.address, let id = bridge.username else { fatalError("Missing ip or username") }
-            guard let scheduleID = reminder.scheduleID else { return nil } // Can't do anything if missing schedule id
+            guard let scheduleID = light.scheduleID else { continue }
             let url = URL(string: "http://\(ip)/api/\(id)/schedules/\(scheduleID)")!
             var request = URLRequest(url: url)
             request.httpMethod = "DELETE"
-            return request
+            requests.append(request)
+        }
+        
+        return requests
     }
 }
