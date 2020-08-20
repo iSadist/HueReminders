@@ -30,11 +30,15 @@ struct SyncView: View {
     }
     
     var body: some View {
-        List(alignment: .leading) {
-            Text("")
-            ForEach(self.viewModel.calendars) { calendar in
-                CalendarRow(viewModel: calendar)
+        VStack {
+            List {
+                Text("Calendars")
+                    .font(.title)
+                ForEach(self.viewModel.calendars) { calendar in
+                    CalendarRow(viewModel: calendar)
+                }
             }
+            Text("Start syncing")
         }
     }
 }
