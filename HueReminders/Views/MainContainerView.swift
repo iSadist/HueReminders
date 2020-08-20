@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum MainTab: String {
-    case Lights, Setup, Reminders
+    case Lights, Setup, Sync, Reminders
 }
 
 struct MainContainerView: View {
@@ -36,6 +36,12 @@ struct MainContainerView: View {
                     Text("Reminders")
                 }
                 .tag(MainTab.Reminders)
+            SyncView()
+                .tabItem {
+                    Image(systemName: "arrow.2.circlepath")
+                    Text("Sync")
+                }
+                .tag(MainTab.Sync)
             BridgeSelectView()
                 .tabItem {
                     Image(systemName: "gear")
