@@ -30,11 +30,19 @@ struct SyncView: View {
     }
     
     var body: some View {
+        SyncViewContent(calendars: viewModel.calendars)
+    }
+}
+
+struct SyncViewContent: View {
+    var calendars: [CalendarRowModel]
+
+    var body: some View {
         VStack {
             List {
                 Text("Calendars")
                     .font(.title)
-                ForEach(self.viewModel.calendars) { calendar in
+                ForEach(self.calendars) { calendar in
                     CalendarRow(viewModel: calendar)
                 }
             }
@@ -45,6 +53,13 @@ struct SyncView: View {
 
 struct SyncView_Previews: PreviewProvider {
     static var previews: some View {
-        SyncView()
+        let calendars = [
+            CalendarRowModel(title: "Work", color: .green),
+            CalendarRowModel(title: "Birthdays", color: .red),
+            CalendarRowModel(title: "Holidays", color: .yellow),
+            CalendarRowModel(title: "Fun", color: .blue)
+        ]
+        
+        return SyncViewContent(calendars: calendars)
     }
 }
