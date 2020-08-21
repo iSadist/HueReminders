@@ -21,16 +21,33 @@ class CalendarRowModel: ObservableObject, Identifiable {
         title = calendar.title
         color = UIColor(cgColor: calendar.cgColor)
     }
+    
+    var isSelected: AnyPublisher<Bool, Never> {
+        $selected
+            .map { $0 }
+            .eraseToAnyPublisher()
+    }
 }
 
 class SyncViewModel: ObservableObject {
     @Published var calendars: [CalendarRowModel] = []
-
+    @Published var readyToStart: Bool
+    
+    var selectedCalendarsPublisher: AnyPublisher<Bool, Never>?
+    private var cancellables = Set<AnyCancellable>()
     var store: EKEventStore // TODO: Perhaps create an Event Store class to perform some of these things? Could maybe be a singleton class?
 
     init() {
+        readyToStart = false
         store = EKEventStore()
+        
         self.setupCalendar()
+    }
+    
+    func setupPublisher() -> AnyPublisher<Bool, Never> {
+        let publishers = self.calendars.map { $0.isSelected }
+        let sequence = Publishers.MergeMany(publishers).eraseToAnyPublisher()
+        return sequence
     }
     
     func setupCalendar() { // TODO: Also move this out of the View model
@@ -38,15 +55,10 @@ class SyncViewModel: ObservableObject {
             print("Calendar access granted: \(granted)")
             
             if error != nil {
-                print(error)
+                print(error.debugDescription)
             }
             
-            let calendars = self.store.calendars(for: .event)
-            
-            for calendar in calendars {
-                let row = CalendarRowModel(calendar: calendar)
-                self.calendars.append(row)
-            }
+            self.populateCalendar()
         }
     }
     
@@ -57,5 +69,12 @@ class SyncViewModel: ObservableObject {
             let row = CalendarRowModel(calendar: calendar)
             self.calendars.append(row)
         }
+        
+        // TOOO: This wouldn't have to be done like this if the calendars where passed into the model instead
+        selectedCalendarsPublisher = setupPublisher()
+        selectedCalendarsPublisher!
+            .receive(on: RunLoop.main)
+            .assign(to: \.readyToStart, on: self)
+            .store(in: &cancellables)
     }
 }

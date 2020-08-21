@@ -9,26 +9,27 @@
 import SwiftUI
 import EventKit
 import UIKit
+import Combine
 
 struct CalendarRow: View {
     @ObservedObject var viewModel: CalendarRowModel
     
     var body: some View {
         HStack {
-            Text(viewModel.title)
-            Spacer()
             Rectangle()
                 .frame(width: 50.0)
                 .foregroundColor(Color(viewModel.color))
+            Text(viewModel.title)
+            Spacer()
             if viewModel.selected {
                 Image(systemName: "checkmark.circle")
                     .foregroundColor(.green)
             } else {
                 Image(systemName: "checkmark.circle").hidden()
             }
-        }
-        .onTapGesture {
-            self.viewModel.selected = !self.viewModel.selected
+            Toggle(isOn: $viewModel.selected) {
+                Text("").hidden()
+            }
         }
     }
 }
@@ -41,12 +42,14 @@ struct SyncView: View {
     }
     
     var body: some View {
-        SyncViewContent(calendars: viewModel.calendars)
+        SyncViewContent(calendars: viewModel.calendars, buttonDisabled: !viewModel.readyToStart)
+            .padding()
     }
 }
 
 struct SyncViewContent: View {
     var calendars: [CalendarRowModel]
+    var buttonDisabled: Bool
 
     var body: some View {
         VStack {
@@ -60,7 +63,11 @@ struct SyncViewContent: View {
                         CalendarRow(viewModel: calendar)
                     }
                 }
-                Text("Start syncing")
+                Button(action: {
+                    print("Start syncing...")
+                }) {
+                    Text("Start syncing")
+                }.disabled(buttonDisabled)
             }
         }
     }
@@ -86,6 +93,6 @@ struct SyncView_Previews: PreviewProvider {
             CalendarRowModel(calendar: holidays)
         ]
         
-        return SyncViewContent(calendars: calendars)
+        return SyncViewContent(calendars: calendars, buttonDisabled: false)
     }
 }
