@@ -135,6 +135,11 @@ struct NewReminderViewContent: View {
             Section {
                 Text("Hue Bridge")
                     .bold()
+                
+                if bridges.isEmpty {
+                    EmptyView(text: "No connected bridge found. Go to setup to connect.")
+                }
+                
                 ForEach(bridges) { bridge in
                     HStack {
                         Text("\(bridge.name ?? "")")
@@ -154,23 +159,30 @@ struct NewReminderViewContent: View {
                 }
             }
             
-            Section {
-                Text("Light to blink").bold()
-                ForEach(self.viewModel.lights) { light in
-                    HStack {
-                        Text("\(light.name)")
-                            .onTapGesture {
-                                if self.viewModel.selectedLights.contains(light.id) {
-                                    self.viewModel.selectedLights.remove(light.id)
-                                } else {
-                                    self.viewModel.selectedLights.insert(light.id)
-                                }
+            if self.viewModel.bridge != nil {
+                Section {
+                    Text("Light to blink").bold()
+                    
+                    if self.viewModel.lights.isEmpty {
+                        EmptyView(text: "No lights found for the selected bridge")
+                    }
+
+                    ForEach(self.viewModel.lights) { light in
+                        HStack {
+                            Text("\(light.name)")
+                                .onTapGesture {
+                                    if self.viewModel.selectedLights.contains(light.id) {
+                                        self.viewModel.selectedLights.remove(light.id)
+                                    } else {
+                                        self.viewModel.selectedLights.insert(light.id)
+                                    }
                             }
-                        Spacer()
-                        
-                        if self.viewModel.selectedLights.contains(light.id) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                            Spacer()
+                            
+                            if self.viewModel.selectedLights.contains(light.id) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                            }
                         }
                     }
                 }

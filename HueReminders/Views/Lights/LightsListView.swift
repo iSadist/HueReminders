@@ -12,11 +12,16 @@ struct LightsListView: View {
 struct LightSectionView: View {
     var bridges: [HueBridge]
 
+    @ViewBuilder
     var body: some View {
-        List {
-            ForEach(bridges) { bridge in
-                Text(bridge.name!).font(.title)
-                LightListContentView(bridge: bridge)
+        if bridges.isEmpty {
+            EmptyView(text: "Connect to a Hue Bridge to see lights")
+        } else {
+            List {
+                ForEach(bridges) { bridge in
+                    Text(bridge.name!).font(.title)
+                    LightListContentView(bridge: bridge)
+                }
             }
         }
     }
@@ -33,12 +38,17 @@ struct LightListContentView: View {
         self.viewModel = LightListViewModel(request: self.lightsRequest)
     }
 
+    @ViewBuilder
     var body: some View {
-        ForEach(viewModel.lights) { light in
-            LightRowView(light)
-                .onTapGesture {
-                    HueAPI.toggleOnState(for: light, self.bridge)
-                    self.viewModel.fetchData(request: self.lightsRequest)
+        if viewModel.lights.isEmpty {
+            EmptyView(text: "No lights found")
+        } else {
+            ForEach(viewModel.lights) { light in
+                LightRowView(light)
+                    .onTapGesture {
+                        HueAPI.toggleOnState(for: light, self.bridge)
+                        self.viewModel.fetchData(request: self.lightsRequest)
+                }
             }
         }
     }

@@ -93,11 +93,15 @@ private struct RemindersListContent: View {
                             Text(bridge.name!).font(.title)
                         }
                         
-                        ForEach(reminders.filter { $0.bridge == bridge }) { reminder in
-                            ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
+                        if reminders.filter { $0.bridge == bridge }.isEmpty {
+                            Text("No reminders found").font(.caption)
+                        } else {
+                            ForEach(reminders.filter { $0.bridge == bridge }) { reminder in
+                                ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
+                            }
+                            .onMove(perform: { self.move(from: $0, to: $1, bridge) })
+                            .onDelete { self.delete(indexSet: $0, bridge) }
                         }
-                        .onMove(perform: { self.move(from: $0, to: $1, bridge) })
-                        .onDelete { self.delete(indexSet: $0, bridge) }
                     }
                 }
                 .navigationBarTitle("Reminders")
@@ -126,6 +130,11 @@ struct ContentView_Previews: PreviewProvider {
         bridge2.address = "192.168.1.2"
         bridge2.name = "Second floor"
         
+        let bridge3 = HueBridge(context: context)
+        bridge3.active = false
+        bridge3.address = "192.168.1.3"
+        bridge3.name = "Basement"
+        
         let reminder = Reminder(context: context)
         reminder.active = true
         reminder.color = 1
@@ -151,7 +160,7 @@ struct ContentView_Previews: PreviewProvider {
         bridge.addToReminder(reminder2)
         bridge2.addToReminder(reminder3)
         
-        let viewModel = ListViewModel(reminders: [reminder, reminder2, reminder3], bridges: [bridge, bridge2])
+        let viewModel = ListViewModel(reminders: [reminder, reminder2, reminder3], bridges: [bridge, bridge2, bridge3])
         
         return RemindersListContent(viewModel: viewModel)
     }

@@ -24,6 +24,9 @@ struct BridgeSelectViewContent: View {
     var body: some View {
         NavigationView {
             List {
+                if bridges.isEmpty {
+                    EmptyView(text: "Tap the + to connect to a Hue Bridge")
+                }
                 ForEach(bridges) { bridge in
                     BridgeRowView(bridge)
                         .onTapGesture {

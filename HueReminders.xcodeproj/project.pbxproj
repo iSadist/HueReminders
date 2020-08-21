@@ -14,6 +14,7 @@
 		5909BD1124D057A6000265BB /* BridgeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD1024D057A6000265BB /* BridgeRowView.swift */; };
 		590F453A24D8351300F38AD7 /* MainContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F453924D8351300F38AD7 /* MainContainerView.swift */; };
 		59173A9E24B764800009A73C /* InspectReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59173A9D24B764800009A73C /* InspectReminder.swift */; };
+		591C895424EFDAC1005BA7B1 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591C895324EFDAC1005BA7B1 /* EmptyView.swift */; };
 		592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592B427124C9839200D73CFF /* ConnectViewModel.swift */; };
 		592BFC5624DA8C9800FF19A9 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592BFC5524DA8C9800FF19A9 /* Reminder.swift */; };
 		592DD9B924E143B600B8309A /* ResponseStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DD9B824E143B600B8309A /* ResponseStructs.swift */; };
@@ -72,6 +73,7 @@
 		5909BD1024D057A6000265BB /* BridgeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeRowView.swift; sourceTree = "<group>"; };
 		590F453924D8351300F38AD7 /* MainContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerView.swift; sourceTree = "<group>"; };
 		59173A9D24B764800009A73C /* InspectReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectReminder.swift; sourceTree = "<group>"; };
+		591C895324EFDAC1005BA7B1 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		592B427124C9839200D73CFF /* ConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewModel.swift; sourceTree = "<group>"; };
 		592BFC5524DA8C9800FF19A9 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		592DD9B824E143B600B8309A /* ResponseStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStructs.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				592BFC5724DA94B200FF19A9 /* Reminders */,
 				59C6C6F924BC6F8600A8F258 /* ConnectView.swift */,
 				590F453924D8351300F38AD7 /* MainContainerView.swift */,
+				591C895324EFDAC1005BA7B1 /* EmptyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */,
 				59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */,
 				59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */,
+				591C895424EFDAC1005BA7B1 /* EmptyView.swift in Sources */,
 				59C82D0624B5A26B0088ACD1 /* RemindersListView.swift in Sources */,
 				595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */,
 				59C6C6FF24BC7A4F00A8F258 /* ConnectController.swift in Sources */,
