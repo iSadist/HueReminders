@@ -7,9 +7,11 @@
 //
 
 import SwiftUI
+import EventKit
+import UIKit
 
 struct CalendarRow: View {
-    var viewModel: CalendarRowModel
+    @ObservedObject var viewModel: CalendarRowModel
     
     var body: some View {
         HStack {
@@ -18,6 +20,15 @@ struct CalendarRow: View {
             Rectangle()
                 .frame(width: 50.0)
                 .foregroundColor(Color(viewModel.color))
+            if viewModel.selected {
+                Image(systemName: "checkmark.circle")
+                    .foregroundColor(.green)
+            } else {
+                Image(systemName: "checkmark.circle").hidden()
+            }
+        }
+        .onTapGesture {
+            self.viewModel.selected = !self.viewModel.selected
         }
     }
 }
@@ -57,11 +68,22 @@ struct SyncViewContent: View {
 
 struct SyncView_Previews: PreviewProvider {
     static var previews: some View {
+        let work = EKCalendar(for: .event, eventStore: .init())
+        work.title = "Work"
+        work.cgColor = UIColor.green.cgColor
+
+        let birthdays = EKCalendar(for: .event, eventStore: .init())
+        birthdays.title = "Birthdays"
+        birthdays.cgColor = UIColor.blue.cgColor
+
+        let holidays = EKCalendar(for: .event, eventStore: .init())
+        holidays.title = "Holidays"
+        holidays.cgColor = UIColor.red.cgColor
+
         let calendars = [
-            CalendarRowModel(title: "Work", color: .green),
-            CalendarRowModel(title: "Birthdays", color: .red),
-            CalendarRowModel(title: "Holidays", color: .yellow),
-            CalendarRowModel(title: "Fun", color: .blue)
+            CalendarRowModel(calendar: work),
+            CalendarRowModel(calendar: birthdays),
+            CalendarRowModel(calendar: holidays)
         ]
         
         return SyncViewContent(calendars: calendars)

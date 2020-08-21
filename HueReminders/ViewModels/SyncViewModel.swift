@@ -11,10 +11,16 @@ import Combine
 import EventKit
 import UIKit
 
-struct CalendarRowModel: Identifiable {
+class CalendarRowModel: ObservableObject, Identifiable {
     var id = UUID()
-    var title: String
-    var color: UIColor
+    @Published var title: String
+    @Published var color: UIColor
+    @Published var selected: Bool = false
+    
+    init(calendar: EKCalendar) {
+        title = calendar.title
+        color = UIColor(cgColor: calendar.cgColor)
+    }
 }
 
 class SyncViewModel: ObservableObject {
@@ -38,7 +44,7 @@ class SyncViewModel: ObservableObject {
             let calendars = self.store.calendars(for: .event)
             
             for calendar in calendars {
-                let row = CalendarRowModel(title: calendar.title, color: UIColor(cgColor: calendar.cgColor))
+                let row = CalendarRowModel(calendar: calendar)
                 self.calendars.append(row)
             }
         }
@@ -48,7 +54,7 @@ class SyncViewModel: ObservableObject {
         let calendars = store.calendars(for: .event)
         
         for calendar in calendars {
-            let row = CalendarRowModel(title: calendar.title, color: UIColor(cgColor: calendar.cgColor))
+            let row = CalendarRowModel(calendar: calendar)
             self.calendars.append(row)
         }
     }
