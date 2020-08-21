@@ -39,14 +39,18 @@ struct SyncViewContent: View {
 
     var body: some View {
         VStack {
-            List {
-                Text("Calendars")
-                    .font(.title)
-                ForEach(self.calendars) { calendar in
-                    CalendarRow(viewModel: calendar)
+            if self.calendars.isEmpty {
+                EmptyView(text: "No calendars available. Make sure to allow it in the privacy settings")
+            } else {
+                List {
+                    Text("Calendars")
+                        .font(.title)
+                    ForEach(self.calendars) { calendar in
+                        CalendarRow(viewModel: calendar)
+                    }
                 }
+                Text("Start syncing")
             }
-            Text("Start syncing")
         }
     }
 }

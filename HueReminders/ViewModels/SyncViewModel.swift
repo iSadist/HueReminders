@@ -34,8 +34,17 @@ class SyncViewModel: ObservableObject {
             if error != nil {
                 print(error)
             }
+            
+            let calendars = self.store.calendars(for: .event)
+            
+            for calendar in calendars {
+                let row = CalendarRowModel(title: calendar.title, color: UIColor(cgColor: calendar.cgColor))
+                self.calendars.append(row)
+            }
         }
-        
+    }
+    
+    func populateCalendar() {
         let calendars = store.calendars(for: .event)
         
         for calendar in calendars {
