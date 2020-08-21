@@ -42,7 +42,7 @@ struct SyncView: View {
     }
     
     var body: some View {
-        SyncViewContent(calendars: viewModel.calendars, buttonDisabled: !viewModel.readyToStart)
+        SyncViewContent(calendars: viewModel.calendars, buttonDisabled: !viewModel.readyToStart, date: $viewModel.date)
             .padding()
     }
 }
@@ -50,6 +50,7 @@ struct SyncView: View {
 struct SyncViewContent: View {
     var calendars: [CalendarRowModel]
     var buttonDisabled: Bool
+    var date: Binding<Date>
 
     var body: some View {
         VStack {
@@ -63,6 +64,9 @@ struct SyncViewContent: View {
                         CalendarRow(viewModel: calendar)
                     }
                 }
+                
+                DatePicker("Sync to", selection: date, displayedComponents: [DatePickerComponents.date])
+                
                 Button(action: {
                     print("Start syncing...")
                 }) {
@@ -93,6 +97,12 @@ struct SyncView_Previews: PreviewProvider {
             CalendarRowModel(calendar: holidays)
         ]
         
-        return SyncViewContent(calendars: calendars, buttonDisabled: false)
+        let date: Binding<Date> = Binding<Date>(get: { () -> Date in
+            Date()
+        }) { (_) in
+            print("set")
+        }
+
+        return SyncViewContent(calendars: calendars, buttonDisabled: false, date: date)
     }
 }

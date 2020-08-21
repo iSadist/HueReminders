@@ -32,14 +32,22 @@ class CalendarRowModel: ObservableObject, Identifiable {
 class SyncViewModel: ObservableObject {
     @Published var calendars: [CalendarRowModel] = []
     @Published var readyToStart: Bool
+    @Published var date: Date
     
     var selectedCalendarsPublisher: AnyPublisher<Bool, Never>?
+    var validDatePublisher: AnyPublisher<Bool, Never> {
+        $date
+            .map { $0.compare(Date()).rawValue > 0 }
+            .eraseToAnyPublisher()
+    }
+    
     private var cancellables = Set<AnyCancellable>()
     var store: EKEventStore // TODO: Perhaps create an Event Store class to perform some of these things? Could maybe be a singleton class?
 
     init() {
         readyToStart = false
         store = EKEventStore()
+        date = Date()
         
         self.setupCalendar()
     }
@@ -72,7 +80,10 @@ class SyncViewModel: ObservableObject {
         
         // TOOO: This wouldn't have to be done like this if the calendars where passed into the model instead
         selectedCalendarsPublisher = setupPublisher()
-        selectedCalendarsPublisher!
+        selectedCalendarsPublisher!.combineLatest(validDatePublisher)
+            .map({ (first,second) -> Bool in
+                first && second
+            })
             .receive(on: RunLoop.main)
             .assign(to: \.readyToStart, on: self)
             .store(in: &cancellables)
