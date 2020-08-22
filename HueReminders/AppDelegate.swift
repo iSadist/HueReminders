@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import Intents
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,11 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
+        // Request Notifications permission
         UNUserNotificationCenter.current().delegate = userNotificationDelegate
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, _) in
             print("UserNotifications granted: \(granted)")
+        }
+        
+        // Request Siri permission
+        INPreferences.requestSiriAuthorization { (status) in
+            let response = "Siri access "
+            switch status {
+            case .authorized: print(response + "Authorized")
+            case .denied, .restricted: print(response + "Denied")
+            case .notDetermined: print(response + "Pending")
+            default: print("Unknown response from Siri Authorization request")
+            }
         }
         
         return true
