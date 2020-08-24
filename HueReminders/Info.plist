@@ -20,6 +20,15 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>The calendar items are used to sync them over to HueReminders</string>
+	<key>NSSiriUsageDescription</key>
+	<string>Used for creating HueReminders with your voice</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>DisableRemindersIntent</string>
+		<string>GetRemindersIntent</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -43,6 +52,8 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSPersistentHistoryTrackingKey</key>
+	<string>historyTracking</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -53,10 +64,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCalendarsUsageDescription</key>
-	<string>The calendar items are used to sync them over to HueReminders</string>
-	<key>NSSiriUsageDescription</key>
-	<string>Used for creating HueReminders with your voice</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -8,27 +8,6 @@
 
 import SwiftUI
 
-enum WeekDay: String, CaseIterable {
-    case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday // swiftlint:disable identifier_name
-}
-
-enum ReminderColor: String, CaseIterable {
-    case White, Blue, Red, Green, Yellow, Pink, Purple, Orange // swiftlint:disable identifier_name
-    
-    func getColor() -> UIColor {
-        switch self {
-        case .White: return .white
-        case .Blue: return .blue
-        case .Red: return .red
-        case .Green: return .green
-        case .Yellow: return .yellow
-        case .Pink: return .systemPink
-        case .Purple: return .purple
-        case .Orange: return .orange
-        }
-    }
-}
-
 struct ReminderRow: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var viewModel: ReminderRowViewModel
@@ -59,6 +38,7 @@ struct ReminderRow: View {
                 }.frame(alignment: .center)
                     .onTapGesture {
                         self.viewModel.reminder.active = !self.viewModel.isActive // TODO: Do this in the viewModel instead
+                        try? self.managedObjectContext.save()
                         self.sendToggleRequestToHue()
                 }
             }

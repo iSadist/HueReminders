@@ -23,18 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, _) in
             print("UserNotifications granted: \(granted)")
         }
-        
-        // Request Siri permission
-        INPreferences.requestSiriAuthorization { (status) in
-            let response = "Siri access "
-            switch status {
-            case .authorized: print(response + "Authorized")
-            case .denied, .restricted: print(response + "Denied")
-            case .notDetermined: print(response + "Pending")
-            default: print("Unknown response from Siri Authorization request")
-            }
-        }
-        
+        AppIntent.requestAccess()
+        AppIntent.getReminders()
+
         return true
     }
 
@@ -57,14 +48,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentCloudKitContainer = {
+    lazy var persistentContainer: SharedPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentCloudKitContainer(name: "HueBridge")
+        let container = SharedPersistentContainer(name: containerName)
+        
+        guard let description = container.persistentStoreDescriptions.first else {
+            fatalError("No description found")
+        }
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             print(storeDescription)
             if let error = error as NSError? {

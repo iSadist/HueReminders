@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>INEnums</key>
+	<array/>
+	<key>INIntentDefinitionModelVersion</key>
+	<string>1.1</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>dfiYiL</string>
+	<key>INIntentDefinitionSystemVersion</key>
+	<string>19G2021</string>
+	<key>INIntentDefinitionToolsBuildVersion</key>
+	<string>11E708</string>
+	<key>INIntentDefinitionToolsVersion</key>
+	<string>11.6</string>
+	<key>INIntents</key>
+	<array>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>download</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescription</key>
+			<string>Get the number of reminders</string>
+			<key>INIntentDescriptionID</key>
+			<string>d5FPyU</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Get Reminders</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>7rITgL</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>GetReminders</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Get Reminders</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>HQEd2T</string>
+				</dict>
+			</dict>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>There are ${amount} active reminders.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>qbR6Na</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>There are ${amount} active reminders.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>Tani6J</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Could not complete request</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>U0eDI6</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Could not complete request</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>2ATpYG</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>2</integer>
+				<key>INIntentResponseOutput</key>
+				<string>amount</string>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Amount</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>o2RoVH</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>amount</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Get Reminders</string>
+			<key>INIntentTitleID</key>
+			<string>liLXxX</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Get</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>set</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescription</key>
+			<string>Disable all the reminders</string>
+			<key>INIntentDescriptionID</key>
+			<string>dMJsny</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Disable reminders</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>EVBfi6</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>DisableReminders</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Disable reminders</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>pXu5xR</string>
+				</dict>
+			</dict>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>${numberOfReminders} reminders were disabled.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>9B0X41</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>${numberOfReminders} reminders were disabled.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>MClMpz</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Could not complete the request</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>hbNpV2</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Could not complete the request</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>p5FOeM</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>4</integer>
+				<key>INIntentResponseOutput</key>
+				<string>numberOfReminders</string>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Number Of Reminders</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>9aYPVT</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>numberOfReminders</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>4</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Disable Reminders</string>
+			<key>INIntentTitleID</key>
+			<string>QdrB7h</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Set</string>
+		</dict>
+	</array>
+	<key>INTypes</key>
+	<array/>
+</dict>
+</plist>
