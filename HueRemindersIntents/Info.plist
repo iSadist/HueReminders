@@ -20,8 +20,6 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSPersistentHistoryTrackingKey</key>
-	<string>historyTracking</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -33,6 +31,7 @@
 			<key>IntentsSupported</key>
 			<array>
 				<string>DisableRemindersIntent</string>
+				<string>EnableRemindersIntent</string>
 				<string>GetRemindersIntent</string>
 			</array>
 		</dict>
@@ -41,5 +40,7 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).IntentHandler</string>
 	</dict>
+	<key>NSPersistentHistoryTrackingKey</key>
+	<string>historyTracking</string>
 </dict>
 </plist>

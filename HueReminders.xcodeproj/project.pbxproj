@@ -40,6 +40,7 @@
 		5961EA7224F3E4F1007D20ED /* DisableRemindersIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7124F3E4F1007D20ED /* DisableRemindersIntentHandler.swift */; };
 		5961EA7424F3E9FB007D20ED /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7324F3E9FB007D20ED /* PersistentContainer.swift */; };
 		5961EA7624F3FEF2007D20ED /* GetRemindersIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */; };
+		5961EA7824F40553007D20ED /* EnableRemindersIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */; };
 		599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599824B224D1D37100AB4A41 /* LightsListViewModel.swift */; };
 		59A227EC24EE612B00AF2E75 /* SyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A227EB24EE612B00AF2E75 /* SyncView.swift */; };
 		59A227EF24EE72B500AF2E75 /* SyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A227EE24EE72B500AF2E75 /* SyncViewModel.swift */; };
@@ -133,6 +134,7 @@
 		5961EA7124F3E4F1007D20ED /* DisableRemindersIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableRemindersIntentHandler.swift; sourceTree = "<group>"; };
 		5961EA7324F3E9FB007D20ED /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRemindersIntentHandler.swift; sourceTree = "<group>"; };
+		5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableRemindersIntentHandler.swift; sourceTree = "<group>"; };
 		59744F6924F12BCC0018FFCA /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		599824B224D1D37100AB4A41 /* LightsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListViewModel.swift; sourceTree = "<group>"; };
 		59A227EB24EE612B00AF2E75 /* SyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncView.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				5961EA6624F3E256007D20ED /* HueRemindersIntents.entitlements */,
 				5961EA5D24F3E24B007D20ED /* IntentHandler.swift */,
 				5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */,
+				5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */,
 				5961EA7124F3E4F1007D20ED /* DisableRemindersIntentHandler.swift */,
 				5961EA7324F3E9FB007D20ED /* PersistentContainer.swift */,
 				5961EA4B24F3E06E007D20ED /* Intents.intentdefinition */,
@@ -592,6 +595,7 @@
 				5961EA6B24F3E295007D20ED /* Findable.swift in Sources */,
 				5961EA6D24F3E2AD007D20ED /* Enums.swift in Sources */,
 				5961EA7424F3E9FB007D20ED /* PersistentContainer.swift in Sources */,
+				5961EA7824F40553007D20ED /* EnableRemindersIntentHandler.swift in Sources */,
 				5961EA7224F3E4F1007D20ED /* DisableRemindersIntentHandler.swift in Sources */,
 				5961EA6F24F3E2DE007D20ED /* Intents.intentdefinition in Sources */,
 				5961EA7624F3FEF2007D20ED /* GetRemindersIntentHandler.swift in Sources */,

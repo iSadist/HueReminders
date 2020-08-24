@@ -20,6 +20,10 @@ class IntentHandler: INExtension {
             return GetRemindersIntentHandler()
         }
         
+        if intent is EnableRemindersIntent {
+            return EnableRemindersIntentHandler()
+        }
+        
         return self
     }
 }

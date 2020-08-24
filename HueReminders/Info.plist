@@ -22,11 +22,14 @@
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>The calendar items are used to sync them over to HueReminders</string>
+	<key>NSPersistentHistoryTrackingKey</key>
+	<string>historyTracking</string>
 	<key>NSSiriUsageDescription</key>
 	<string>Used for creating HueReminders with your voice</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>DisableRemindersIntent</string>
+		<string>EnableRemindersIntent</string>
 		<string>GetRemindersIntent</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
@@ -52,8 +55,6 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>NSPersistentHistoryTrackingKey</key>
-	<string>historyTracking</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

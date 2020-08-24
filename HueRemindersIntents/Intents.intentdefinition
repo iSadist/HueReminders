@@ -218,6 +218,107 @@
 			<key>INIntentVerb</key>
 			<string>Set</string>
 		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>set</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescription</key>
+			<string>Enable all existing reminders</string>
+			<key>INIntentDescriptionID</key>
+			<string>tPdtyJ</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Enable reminders</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>xwMD9I</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>EnableReminders</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Enable reminders</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>gwBW7A</string>
+				</dict>
+			</dict>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>${amount}reminders were changed.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>oKRmAO</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>${amount}reminders were changed.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>fh79RV</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Could not enable any reminders.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>7eVXLu</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Could not enable any reminders.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>l5MWT9</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>2</integer>
+				<key>INIntentResponseOutput</key>
+				<string>amount</string>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Amount</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>LPrBgH</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>amount</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Enable Reminders</string>
+			<key>INIntentTitleID</key>
+			<string>tAhRjn</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Set</string>
+		</dict>
 	</array>
 	<key>INTypes</key>
 	<array/>
