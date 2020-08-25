@@ -16,7 +16,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.core-data</string>
+		<string>group.JSV.core.data.HueReminders</string>
 	</array>
 </dict>
 </plist>

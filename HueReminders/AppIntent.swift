@@ -21,18 +21,4 @@ class AppIntent {
             }
         }
     }
-    
-    class func getReminders() {
-        let intent = GetRemindersIntent()
-        intent.suggestedInvocationPhrase = "Get the number of reminders in Hue"
-        
-        let interaction = INInteraction(intent: intent, response: nil)
-        interaction.donate { (error) in
-            if error != nil {
-                print("There was an interaction error with GetRemindersIntent")
-            } else {
-                print("Donated GetReminders interaction successfully")
-            }
-        }
-    }
 }

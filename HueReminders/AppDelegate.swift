@@ -24,8 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("UserNotifications granted: \(granted)")
         }
         AppIntent.requestAccess()
-        AppIntent.getReminders()
 
+        return true
+    }
+    
+    // MARK: Intents UI
+    
+    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         return true
     }
 

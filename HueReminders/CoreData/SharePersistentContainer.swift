@@ -11,7 +11,7 @@ import CoreData
 
 class SharedPersistentContainer: NSPersistentCloudKitContainer {
     override open class func defaultDirectoryURL() -> URL {
-        var storeURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.core-data")
+        var storeURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: coreDataGroupName)
         storeURL = storeURL?.appendingPathComponent("HueReminders.sqlite")
         return storeURL!
     }
