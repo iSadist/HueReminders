@@ -68,6 +68,11 @@
 		59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */; };
 		59F5C6A024F4FA86009FF6BE /* NSUserActivity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C69F24F4FA86009FF6BE /* NSUserActivity+Extensions.swift */; };
 		59F5C6A124F4FFF6009FF6BE /* NSUserActivity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C69F24F4FA86009FF6BE /* NSUserActivity+Extensions.swift */; };
+		59F5C6A524F52EBF009FF6BE /* CreateReminderIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C6A424F52EBF009FF6BE /* CreateReminderIntentHandler.swift */; };
+		59F5C6A824F537C4009FF6BE /* AddRemindersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C6A724F537C4009FF6BE /* AddRemindersInteractor.swift */; };
+		59F5C6A924F53EFA009FF6BE /* AddRemindersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C6A724F537C4009FF6BE /* AddRemindersInteractor.swift */; };
+		59F5C6AA24F53F1B009FF6BE /* HueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0E24CF761E000265BB /* HueAPI.swift */; };
+		59F5C6AB24F53F2A009FF6BE /* ResponseStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DD9B824E143B600B8309A /* ResponseStructs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +175,8 @@
 		59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRowViewModel.swift; sourceTree = "<group>"; };
 		59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterDelegate.swift; sourceTree = "<group>"; };
 		59F5C69F24F4FA86009FF6BE /* NSUserActivity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Extensions.swift"; sourceTree = "<group>"; };
+		59F5C6A424F52EBF009FF6BE /* CreateReminderIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderIntentHandler.swift; sourceTree = "<group>"; };
+		59F5C6A724F537C4009FF6BE /* AddRemindersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemindersInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +316,7 @@
 				5961EA6624F3E256007D20ED /* HueRemindersIntents.entitlements */,
 				5961EA5D24F3E24B007D20ED /* IntentHandler.swift */,
 				5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */,
+				59F5C6A424F52EBF009FF6BE /* CreateReminderIntentHandler.swift */,
 				5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */,
 				5961EA7124F3E4F1007D20ED /* DisableRemindersIntentHandler.swift */,
 				5961EA7324F3E9FB007D20ED /* PersistentContainer.swift */,
@@ -362,6 +370,7 @@
 		59C82CFD24B5A26B0088ACD1 /* HueReminders */ = {
 			isa = PBXGroup;
 			children = (
+				59F5C6A624F537AE009FF6BE /* Interactors */,
 				592DD9B724E1439500B8309A /* HueAPI */,
 				5906D6DF24DD2C9200CB9294 /* HueReminders.entitlements */,
 				595D61EE24CED64300F93423 /* CoreData */,
@@ -406,6 +415,14 @@
 				59C82D2524B5A26D0088ACD1 /* Info.plist */,
 			);
 			path = HueRemindersUITests;
+			sourceTree = "<group>";
+		};
+		59F5C6A624F537AE009FF6BE /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				59F5C6A724F537C4009FF6BE /* AddRemindersInteractor.swift */,
+			);
+			path = Interactors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -592,17 +609,21 @@
 			files = (
 				59F5C6A024F4FA86009FF6BE /* NSUserActivity+Extensions.swift in Sources */,
 				5961EA5E24F3E24B007D20ED /* IntentHandler.swift in Sources */,
+				59F5C6A524F52EBF009FF6BE /* CreateReminderIntentHandler.swift in Sources */,
+				59F5C6AA24F53F1B009FF6BE /* HueAPI.swift in Sources */,
 				5961EA6E24F3E2AF007D20ED /* Strings.swift in Sources */,
 				5961EA6824F3E28E007D20ED /* HueBridge.swift in Sources */,
 				5961EA6724F3E28B007D20ED /* HueBridge.xcdatamodeld in Sources */,
 				5961EA6924F3E290007D20ED /* HueLight.swift in Sources */,
 				5961EA6C24F3E297007D20ED /* SharePersistentContainer.swift in Sources */,
 				5961EA6B24F3E295007D20ED /* Findable.swift in Sources */,
+				59F5C6A924F53EFA009FF6BE /* AddRemindersInteractor.swift in Sources */,
 				5961EA6D24F3E2AD007D20ED /* Enums.swift in Sources */,
 				5961EA7424F3E9FB007D20ED /* PersistentContainer.swift in Sources */,
 				5961EA7824F40553007D20ED /* EnableRemindersIntentHandler.swift in Sources */,
 				5961EA7224F3E4F1007D20ED /* DisableRemindersIntentHandler.swift in Sources */,
 				5961EA6F24F3E2DE007D20ED /* Intents.intentdefinition in Sources */,
+				59F5C6AB24F53F2A009FF6BE /* ResponseStructs.swift in Sources */,
 				5961EA7624F3FEF2007D20ED /* GetRemindersIntentHandler.swift in Sources */,
 				5961EA6A24F3E293007D20ED /* Reminder.swift in Sources */,
 			);
@@ -632,6 +653,7 @@
 				59A227EC24EE612B00AF2E75 /* SyncView.swift in Sources */,
 				591C895624F00261005BA7B1 /* CalendarView.swift in Sources */,
 				59C82CFF24B5A26B0088ACD1 /* AppDelegate.swift in Sources */,
+				59F5C6A824F537C4009FF6BE /* AddRemindersInteractor.swift in Sources */,
 				59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */,
 				59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */,
 				591C895424EFDAC1005BA7B1 /* EmptyView.swift in Sources */,

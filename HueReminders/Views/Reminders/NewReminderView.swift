@@ -28,11 +28,13 @@ struct NewReminderViewContent: View {
 
     var bridges: [HueBridge]
     
+    private var interactor: AddReminderInteracting
     private var cancellables = Set<AnyCancellable>()
     
     init(bridges: [HueBridge]) {
         self.bridges = bridges
         viewModel = NewReminderViewModel()
+        interactor = AddReminderInteractor()
         
         // Setup subscriber
         viewModel.isNameValid
@@ -44,67 +46,16 @@ struct NewReminderViewContent: View {
     }
     
     func addPressed() {
-        // Create a wrapper function for doing this. Make it conform to a protocol
-        var tasks = [URLSessionDataTask]()
-        
-        let newReminder = Reminder(context: managedObjectContext)
-        newReminder.name = viewModel.name
-        newReminder.color = Int16(viewModel.color)
-        newReminder.day = Int16(viewModel.day)
-        newReminder.time = viewModel.time
-        newReminder.active = true
-        viewModel.bridge?.addToReminder(newReminder)
-        
-        for light in viewModel.selectedLights {
-            let hueLight = HueLight(context: managedObjectContext)
-            hueLight.lightID = light
-            newReminder.addToLight(hueLight)
-            
-            // TODO: Move this code to an interactor
-            let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder, light: hueLight)
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                // TODO: Handle response and error
-                let decoder = JSONDecoder.init()
-                let responses = try! decoder.decode([HueSchedulesResponse].self, from: data!)
-                
-                if let error = responses.first?.error {
-                    print("Error occurred - Type: \(error.type), Description: \(error.description), Address: \(error.address)")
-                    // TODO: Show error message to user
-                    return
-                }
-                
-                if let success = responses.first?.success {
-                    hueLight.scheduleID = success.id
-                    
-                    // Return to the list view
-                    DispatchQueue.main.async {
-                        try? self.managedObjectContext.save()
-                        self.presentation.wrappedValue.dismiss() // Only return when the last one is saved
-                    }
-                }
-            }
-            tasks.append(task)
+        guard let bridge = viewModel.bridge else { return }
+        interactor.add(managedObjectContext: managedObjectContext,
+                       name: viewModel.name,
+                       color: Int16(viewModel.color),
+                       day: Int16(viewModel.day),
+                       time: viewModel.time, bridge: bridge, lightIDs: viewModel.selectedLights) { success in
+                        if success {
+                            self.presentation.wrappedValue.dismiss()                        
+                        }
         }
-        
-        // Add a push notification
-        let content = UNMutableNotificationContent()
-        content.title = viewModel.name
-        content.body = "Triggered by HueReminders"
-        content.sound = UNNotificationSound.default
-        
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                             from: viewModel.time)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let uuidString = UUID().uuidString // Save this to be able to cancel the
-        let notificationRequest = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(notificationRequest) { (error) in
-            if error != nil {
-               print("Error while setting the push notification: \(error!)")
-            }
-        }
-        
-        tasks.forEach { $0.resume() }
     }
     
     var body: some View {
