@@ -11,29 +11,6 @@ import EventKit
 import UIKit
 import Combine
 
-struct CalendarRow: View {
-    @ObservedObject var viewModel: CalendarRowModel
-    
-    var body: some View {
-        HStack {
-            Rectangle()
-                .frame(width: 50.0)
-                .foregroundColor(Color(viewModel.color))
-            Text(viewModel.title)
-            Spacer()
-            if viewModel.selected {
-                Image(systemName: "checkmark.circle")
-                    .foregroundColor(.green)
-            } else {
-                Image(systemName: "checkmark.circle").hidden()
-            }
-            Toggle(isOn: $viewModel.selected) {
-                Text("").hidden()
-            }
-        }
-    }
-}
-
 struct SyncView: View {
     @ObservedObject var viewModel: SyncViewModel
     
@@ -43,7 +20,6 @@ struct SyncView: View {
     
     var body: some View {
         SyncViewContent(calendars: viewModel.calendars, buttonDisabled: !viewModel.readyToStart, date: $viewModel.date)
-            .padding()
     }
 }
 
@@ -57,15 +33,25 @@ struct SyncViewContent: View {
             if self.calendars.isEmpty {
                 EmptyView(text: "No calendars available. Make sure to allow it in the privacy settings")
             } else {
-                List {
-                    Text("Calendars")
-                        .font(.title)
-                    ForEach(self.calendars) { calendar in
-                        CalendarRow(viewModel: calendar)
+                Form {
+                    Section {
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text("Calendars")
+                                .font(.title)
+                            Text("Select the ones to sync")
+                                .font(.subheadline)
+                        }
+                        List {
+                            ForEach(self.calendars) { calendar in
+                                CalendarRow(viewModel: calendar)
+                            }
+                        }
                     }
-                }
-                
-                DatePicker("Sync to", selection: date, displayedComponents: [DatePickerComponents.date])
+                    
+                    Section {
+                        DatePicker("Sync end date", selection: date, displayedComponents: [.date])
+                    }
+                }.background(Color.white)
                 
                 Button(action: {
                     print("Start syncing...")
@@ -73,6 +59,8 @@ struct SyncViewContent: View {
                     Text("Start syncing")
                 }.disabled(buttonDisabled)
             }
+        }.onAppear {
+            UITableView.appearance().backgroundColor = .clear
         }
     }
 }
@@ -90,9 +78,12 @@ struct SyncView_Previews: PreviewProvider {
         let holidays = EKCalendar(for: .event, eventStore: .init())
         holidays.title = "Holidays"
         holidays.cgColor = UIColor.red.cgColor
+        
+        let selectedCalendarRowModel = CalendarRowModel(calendar: work)
+        selectedCalendarRowModel.selected = true
 
         let calendars = [
-            CalendarRowModel(calendar: work),
+            selectedCalendarRowModel,
             CalendarRowModel(calendar: birthdays),
             CalendarRowModel(calendar: holidays)
         ]

@@ -41,6 +41,9 @@
 		5961EA7424F3E9FB007D20ED /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7324F3E9FB007D20ED /* PersistentContainer.swift */; };
 		5961EA7624F3FEF2007D20ED /* GetRemindersIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */; };
 		5961EA7824F40553007D20ED /* EnableRemindersIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */; };
+		598C0D3D24F655FC004C477D /* CalendarConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C0D3C24F655FC004C477D /* CalendarConfigurationView.swift */; };
+		598C0D3F24F65BF4004C477D /* CalendarRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C0D3E24F65BF4004C477D /* CalendarRow.swift */; };
+		598C0D4124F6662F004C477D /* LightListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C0D4024F6662F004C477D /* LightListInteractor.swift */; };
 		599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599824B224D1D37100AB4A41 /* LightsListViewModel.swift */; };
 		59A227EC24EE612B00AF2E75 /* SyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A227EB24EE612B00AF2E75 /* SyncView.swift */; };
 		59A227EF24EE72B500AF2E75 /* SyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A227EE24EE72B500AF2E75 /* SyncViewModel.swift */; };
@@ -143,6 +146,9 @@
 		5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRemindersIntentHandler.swift; sourceTree = "<group>"; };
 		5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableRemindersIntentHandler.swift; sourceTree = "<group>"; };
 		59744F6924F12BCC0018FFCA /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		598C0D3C24F655FC004C477D /* CalendarConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationView.swift; sourceTree = "<group>"; };
+		598C0D3E24F65BF4004C477D /* CalendarRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRow.swift; sourceTree = "<group>"; };
+		598C0D4024F6662F004C477D /* LightListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightListInteractor.swift; sourceTree = "<group>"; };
 		599824B224D1D37100AB4A41 /* LightsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListViewModel.swift; sourceTree = "<group>"; };
 		59A227EB24EE612B00AF2E75 /* SyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncView.swift; sourceTree = "<group>"; };
 		59A227EE24EE72B500AF2E75 /* SyncViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewModel.swift; sourceTree = "<group>"; };
@@ -332,6 +338,8 @@
 			children = (
 				59A227EB24EE612B00AF2E75 /* SyncView.swift */,
 				591C895524F00261005BA7B1 /* CalendarView.swift */,
+				598C0D3C24F655FC004C477D /* CalendarConfigurationView.swift */,
+				598C0D3E24F65BF4004C477D /* CalendarRow.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -421,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				59F5C6A724F537C4009FF6BE /* AddRemindersInteractor.swift */,
+				598C0D4024F6662F004C477D /* LightListInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -645,6 +654,7 @@
 				59F5C6A124F4FFF6009FF6BE /* NSUserActivity+Extensions.swift in Sources */,
 				5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */,
 				59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */,
+				598C0D4124F6662F004C477D /* LightListInteractor.swift in Sources */,
 				59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */,
 				59C6ABA424DBEFD9005F611B /* LightRowView.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
@@ -657,6 +667,7 @@
 				59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */,
 				59C6C6FC24BC774A00A8F258 /* ActivityIndicator.swift in Sources */,
 				591C895424EFDAC1005BA7B1 /* EmptyView.swift in Sources */,
+				598C0D3F24F65BF4004C477D /* CalendarRow.swift in Sources */,
 				5961EA7024F3E2E2007D20ED /* Intents.intentdefinition in Sources */,
 				5961EA1E24F3BF89007D20ED /* Strings.swift in Sources */,
 				59C82D0624B5A26B0088ACD1 /* RemindersListView.swift in Sources */,
@@ -673,6 +684,7 @@
 				5961EA0324F3AD9F007D20ED /* AppIntent.swift in Sources */,
 				595D61F024CED6C900F93423 /* HueBridge.swift in Sources */,
 				59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */,
+				598C0D3D24F655FC004C477D /* CalendarConfigurationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

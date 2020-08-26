@@ -24,7 +24,7 @@ struct MainContainerView: View {
 
     var body: some View {
         TabView(selection: $selectedView) {
-            LightsListView()
+            LightsListView(interactor: LightListInteractor())
                 .tabItem {
                     Image(systemName: "lightbulb")
                     Text("Lights")

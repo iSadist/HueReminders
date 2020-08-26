@@ -46,6 +46,7 @@ struct NewReminderViewContent: View {
     }
     
     func addPressed() {
+        // TODO: Move code to interactor
         guard let bridge = viewModel.bridge else { return }
         interactor.add(managedObjectContext: managedObjectContext,
                        name: viewModel.name,
@@ -53,7 +54,7 @@ struct NewReminderViewContent: View {
                        day: Int16(viewModel.day),
                        time: viewModel.time, bridge: bridge, lightIDs: viewModel.selectedLights) { success in
                         if success {
-                            self.presentation.wrappedValue.dismiss()                        
+                            self.presentation.wrappedValue.dismiss()
                         }
         }
     }
@@ -102,6 +103,7 @@ struct NewReminderViewContent: View {
                         }
                     }
                     .onTapGesture {
+                        // TODO: Move code to interactor
                         guard self.viewModel.bridge != bridge else { return }
                         self.viewModel.selectedLights.removeAll()
                         self.viewModel.bridge = bridge
@@ -122,6 +124,7 @@ struct NewReminderViewContent: View {
                         HStack {
                             Text("\(light.name)")
                                 .onTapGesture {
+                                    // TODO: Move code to interactor
                                     if self.viewModel.selectedLights.contains(light.id) {
                                         self.viewModel.selectedLights.remove(light.id)
                                     } else {

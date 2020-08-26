@@ -3,14 +3,16 @@ import Combine
 
 struct LightsListView: View {
     @FetchRequest(fetchRequest: HueBridge.findAll()) var bridges: FetchedResults<HueBridge>
+    var interactor: LightListInteracting
 
     var body: some View {
-        LightSectionView(bridges: bridges.sorted())
+        LightSectionView(bridges: bridges.sorted(), interactor: self.interactor)
     }
 }
 
 struct LightSectionView: View {
     var bridges: [HueBridge]
+    var interactor: LightListInteracting
 
     @ViewBuilder
     var body: some View {
@@ -20,7 +22,7 @@ struct LightSectionView: View {
             List {
                 ForEach(bridges) { bridge in
                     Text(bridge.name!).font(.title)
-                    LightListContentView(bridge: bridge)
+                    LightListContentView(bridge: bridge, interactor: self.interactor)
                 }
             }
         }
@@ -31,8 +33,10 @@ struct LightListContentView: View {
     @ObservedObject var viewModel: LightListViewModel
     var bridge: HueBridge
     var lightsRequest: URLRequest
+    var interactor: LightListInteracting
     
-    init(bridge: HueBridge) {
+    init(bridge: HueBridge, interactor: LightListInteracting) {
+        self.interactor = interactor
         self.bridge = bridge
         self.lightsRequest = HueAPI.getLights(bridge: bridge)
         self.viewModel = LightListViewModel(request: self.lightsRequest)
@@ -46,8 +50,7 @@ struct LightListContentView: View {
             ForEach(viewModel.lights) { light in
                 LightRowView(light)
                     .onTapGesture {
-                        HueAPI.toggleOnState(for: light, self.bridge)
-                        self.viewModel.fetchData(request: self.lightsRequest)
+                        self.interactor.lightRowTapped(light: light, bridge: self.bridge, viewModel: self.viewModel)
                 }
             }
         }
@@ -60,6 +63,6 @@ struct LightsListView_Previews: PreviewProvider {
         let bridge = HueBridge(context: context)
         bridge.name = "Test bridge"
         bridge.address = "192.168.1.2"
-        return LightSectionView(bridges: [bridge])
+        return LightSectionView(bridges: [bridge], interactor: LightListInteractor())
     }
 }

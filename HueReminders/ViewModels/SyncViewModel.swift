@@ -16,6 +16,7 @@ class CalendarRowModel: ObservableObject, Identifiable {
     @Published var title: String
     @Published var color: UIColor
     @Published var selected: Bool = false
+    @Published var lights: Set<HueLight> = []
     
     init(calendar: EKCalendar) {
         title = calendar.title
