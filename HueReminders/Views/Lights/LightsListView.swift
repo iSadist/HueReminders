@@ -63,6 +63,7 @@ struct LightsListView_Previews: PreviewProvider {
         let bridge = HueBridge(context: context)
         bridge.name = "Test bridge"
         bridge.address = "192.168.1.2"
+        bridge.username = ""
         return LightSectionView(bridges: [bridge], interactor: LightListInteractor())
     }
 }

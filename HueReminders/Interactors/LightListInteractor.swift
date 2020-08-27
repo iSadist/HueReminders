@@ -17,5 +17,8 @@ public class LightListInteractor: LightListInteracting {
         let lightsRequest = HueAPI.getLights(bridge: bridge)
         HueAPI.toggleOnState(for: light, bridge)
         viewModel.fetchData(request: lightsRequest)
+        // TODO: Solve this by triggering the publisher somehow.
+        // Perhaps by making the fetch publisher subscribe to another publisher that is a toggle for "fetching lights"?
+        // Check out some Combine tutorial to learn more.
     }
 }

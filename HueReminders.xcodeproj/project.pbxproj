@@ -12,6 +12,9 @@
 		5909BD0D24CF70C0000265BB /* Findable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0C24CF70C0000265BB /* Findable.swift */; };
 		5909BD0F24CF761E000265BB /* HueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD0E24CF761E000265BB /* HueAPI.swift */; };
 		5909BD1124D057A6000265BB /* BridgeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909BD1024D057A6000265BB /* BridgeRowView.swift */; };
+		590A710E24F7A42500144FD3 /* CalendarConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A710D24F7A42500144FD3 /* CalendarConfigurationViewModel.swift */; };
+		590A711024F7A6A300144FD3 /* CalendarConfigurationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A710F24F7A6A300144FD3 /* CalendarConfigurationInteractor.swift */; };
+		590A711224F7BCD600144FD3 /* CalendarRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A711124F7BCD600144FD3 /* CalendarRowViewModel.swift */; };
 		590F453A24D8351300F38AD7 /* MainContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F453924D8351300F38AD7 /* MainContainerView.swift */; };
 		59173A9E24B764800009A73C /* InspectReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59173A9D24B764800009A73C /* InspectReminder.swift */; };
 		591C895424EFDAC1005BA7B1 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591C895324EFDAC1005BA7B1 /* EmptyView.swift */; };
@@ -123,6 +126,9 @@
 		5909BD0C24CF70C0000265BB /* Findable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Findable.swift; sourceTree = "<group>"; };
 		5909BD0E24CF761E000265BB /* HueAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueAPI.swift; sourceTree = "<group>"; };
 		5909BD1024D057A6000265BB /* BridgeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeRowView.swift; sourceTree = "<group>"; };
+		590A710D24F7A42500144FD3 /* CalendarConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationViewModel.swift; sourceTree = "<group>"; };
+		590A710F24F7A6A300144FD3 /* CalendarConfigurationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationInteractor.swift; sourceTree = "<group>"; };
+		590A711124F7BCD600144FD3 /* CalendarRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRowViewModel.swift; sourceTree = "<group>"; };
 		590F453924D8351300F38AD7 /* MainContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerView.swift; sourceTree = "<group>"; };
 		59173A9D24B764800009A73C /* InspectReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectReminder.swift; sourceTree = "<group>"; };
 		591C895324EFDAC1005BA7B1 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -251,6 +257,8 @@
 				599824B224D1D37100AB4A41 /* LightsListViewModel.swift */,
 				59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */,
 				59A227EE24EE72B500AF2E75 /* SyncViewModel.swift */,
+				590A710D24F7A42500144FD3 /* CalendarConfigurationViewModel.swift */,
+				590A711124F7BCD600144FD3 /* CalendarRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -430,6 +438,7 @@
 			children = (
 				59F5C6A724F537C4009FF6BE /* AddRemindersInteractor.swift */,
 				598C0D4024F6662F004C477D /* LightListInteractor.swift */,
+				590A710F24F7A6A300144FD3 /* CalendarConfigurationInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -642,6 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				590A711024F7A6A300144FD3 /* CalendarConfigurationInteractor.swift in Sources */,
 				592B427224C9839200D73CFF /* ConnectViewModel.swift in Sources */,
 				592DD9B924E143B600B8309A /* ResponseStructs.swift in Sources */,
 				59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */,
@@ -651,6 +661,7 @@
 				590F453A24D8351300F38AD7 /* MainContainerView.swift in Sources */,
 				5909BD0F24CF761E000265BB /* HueAPI.swift in Sources */,
 				59A227EF24EE72B500AF2E75 /* SyncViewModel.swift in Sources */,
+				590A710E24F7A42500144FD3 /* CalendarConfigurationViewModel.swift in Sources */,
 				59F5C6A124F4FFF6009FF6BE /* NSUserActivity+Extensions.swift in Sources */,
 				5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */,
 				59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */,
@@ -659,6 +670,7 @@
 				59C6ABA424DBEFD9005F611B /* LightRowView.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */,
+				590A711224F7BCD600144FD3 /* CalendarRowViewModel.swift in Sources */,
 				59C6C6FA24BC6F8600A8F258 /* ConnectView.swift in Sources */,
 				59A227EC24EE612B00AF2E75 /* SyncView.swift in Sources */,
 				591C895624F00261005BA7B1 /* CalendarView.swift in Sources */,

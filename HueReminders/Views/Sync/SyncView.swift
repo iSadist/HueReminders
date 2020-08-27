@@ -33,31 +33,39 @@ struct SyncViewContent: View {
             if self.calendars.isEmpty {
                 EmptyView(text: "No calendars available. Make sure to allow it in the privacy settings")
             } else {
-                Form {
-                    Section {
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text("Calendars")
-                                .font(.title)
-                            Text("Select the ones to sync")
-                                .font(.subheadline)
-                        }
-                        List {
-                            ForEach(self.calendars) { calendar in
-                                CalendarRow(viewModel: calendar)
+                NavigationView {
+                    Form {
+                        Section {
+                            List {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("Calendars")
+                                        .font(.title)
+                                        .bold()
+                                    Text("Select the ones to sync")
+                                        .font(.subheadline)
+                                }
+                                ForEach(self.calendars) { calendar in
+                                    NavigationLink(destination: CalendarConfigurationListView(interactor: CalendarConfigurationInterator(), model: calendar)) {
+                                        CalendarRow(viewModel: calendar)
+                                    }
+                                }
                             }
                         }
-                    }
-                    
-                    Section {
-                        DatePicker("Sync end date", selection: date, displayedComponents: [.date])
-                    }
-                }.background(Color.white)
-                
-                Button(action: {
-                    print("Start syncing...")
-                }) {
-                    Text("Start syncing")
-                }.disabled(buttonDisabled)
+                        
+                        Section {
+                            DatePicker("Sync end date", selection: date, displayedComponents: [.date])
+                        }
+                        
+                        Button(action: {
+                            print("Start syncing...")
+                        }) {
+                            Text("Start syncing")
+                        }.disabled(buttonDisabled)
+                        
+                    }.background(Color.white)
+                    .navigationBarTitle("Calendars")
+                    .navigationBarHidden(true)
+                }
             }
         }.onAppear {
             UITableView.appearance().backgroundColor = .clear

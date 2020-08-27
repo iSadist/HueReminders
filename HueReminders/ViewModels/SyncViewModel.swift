@@ -11,25 +11,6 @@ import Combine
 import EventKit
 import UIKit
 
-class CalendarRowModel: ObservableObject, Identifiable {
-    var id = UUID()
-    @Published var title: String
-    @Published var color: UIColor
-    @Published var selected: Bool = false
-    @Published var lights: Set<HueLight> = []
-    
-    init(calendar: EKCalendar) {
-        title = calendar.title
-        color = UIColor(cgColor: calendar.cgColor)
-    }
-    
-    var isSelected: AnyPublisher<Bool, Never> {
-        $selected
-            .map { $0 }
-            .eraseToAnyPublisher()
-    }
-}
-
 class SyncViewModel: ObservableObject {
     @Published var calendars: [CalendarRowModel] = []
     @Published var readyToStart: Bool
