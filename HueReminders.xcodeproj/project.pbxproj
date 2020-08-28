@@ -24,6 +24,8 @@
 		592DD9B924E143B600B8309A /* ResponseStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DD9B824E143B600B8309A /* ResponseStructs.swift */; };
 		595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */; };
 		595D61F024CED6C900F93423 /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EF24CED6C900F93423 /* HueBridge.swift */; };
+		5961E06924F95018009770AF /* SyncInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961E06824F95018009770AF /* SyncInteractor.swift */; };
+		5961E06B24F966D6009770AF /* CalendarSyncModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961E06A24F966D6009770AF /* CalendarSyncModel.swift */; };
 		5961EA0324F3AD9F007D20ED /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA0224F3AD9F007D20ED /* AppIntent.swift */; };
 		5961EA1824F3BD90007D20ED /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA1724F3BD90007D20ED /* Enums.swift */; };
 		5961EA1E24F3BF89007D20ED /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA1D24F3BF89007D20ED /* Strings.swift */; };
@@ -138,6 +140,8 @@
 		592DD9B824E143B600B8309A /* ResponseStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStructs.swift; sourceTree = "<group>"; };
 		595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueBridge.xcdatamodel; sourceTree = "<group>"; };
 		595D61EF24CED6C900F93423 /* HueBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueBridge.swift; sourceTree = "<group>"; };
+		5961E06824F95018009770AF /* SyncInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInteractor.swift; sourceTree = "<group>"; };
+		5961E06A24F966D6009770AF /* CalendarSyncModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncModel.swift; sourceTree = "<group>"; };
 		5961EA0224F3AD9F007D20ED /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		5961EA1724F3BD90007D20ED /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		5961EA1D24F3BF89007D20ED /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				59C82D0024B5A26B0088ACD1 /* SceneDelegate.swift */,
 				5961EA1724F3BD90007D20ED /* Enums.swift */,
 				5961EA1D24F3BF89007D20ED /* Strings.swift */,
+				5961E06A24F966D6009770AF /* CalendarSyncModel.swift */,
 				59C82D0724B5A26C0088ACD1 /* Assets.xcassets */,
 				59C82D0C24B5A26C0088ACD1 /* LaunchScreen.storyboard */,
 				59C82D0F24B5A26C0088ACD1 /* Info.plist */,
@@ -439,6 +444,7 @@
 				59F5C6A724F537C4009FF6BE /* AddRemindersInteractor.swift */,
 				598C0D4024F6662F004C477D /* LightListInteractor.swift */,
 				590A710F24F7A6A300144FD3 /* CalendarConfigurationInteractor.swift */,
+				5961E06824F95018009770AF /* SyncInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -693,8 +699,10 @@
 				59C6ABA624DC08D7005F611B /* Badge.swift in Sources */,
 				5961EA1824F3BD90007D20ED /* Enums.swift in Sources */,
 				5909BD1124D057A6000265BB /* BridgeRowView.swift in Sources */,
+				5961E06B24F966D6009770AF /* CalendarSyncModel.swift in Sources */,
 				5961EA0324F3AD9F007D20ED /* AppIntent.swift in Sources */,
 				595D61F024CED6C900F93423 /* HueBridge.swift in Sources */,
+				5961E06924F95018009770AF /* SyncInteractor.swift in Sources */,
 				59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */,
 				598C0D3D24F655FC004C477D /* CalendarConfigurationView.swift in Sources */,
 			);

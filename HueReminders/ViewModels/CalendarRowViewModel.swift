@@ -18,9 +18,12 @@ class CalendarRowModel: ObservableObject, Identifiable {
     @Published var selected: Bool = false
     @Published var lights: Set<HueLight> = []
     
+    var calendar: EKCalendar
+    
     init(calendar: EKCalendar) {
         title = calendar.title
         color = UIColor(cgColor: calendar.cgColor)
+        self.calendar = calendar
     }
     
     var isSelected: AnyPublisher<Bool, Never> {

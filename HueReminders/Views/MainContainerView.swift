@@ -36,7 +36,7 @@ struct MainContainerView: View {
                     Text("Reminders")
                 }
                 .tag(MainTab.Reminders)
-            SyncView()
+            SyncView(viewModel: SyncViewModel(), interactor: SyncInteractor())
                 .tabItem {
                     Image(systemName: "arrow.2.circlepath")
                     Text("Sync")

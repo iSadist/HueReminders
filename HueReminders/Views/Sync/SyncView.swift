@@ -13,13 +13,13 @@ import Combine
 
 struct SyncView: View {
     @ObservedObject var viewModel: SyncViewModel
-    
-    init() {
-        viewModel = SyncViewModel()
-    }
-    
+    var interactor: SyncInteracting
+
     var body: some View {
-        SyncViewContent(calendars: viewModel.calendars, buttonDisabled: !viewModel.readyToStart, date: $viewModel.date)
+        SyncViewContent(calendars: viewModel.calendars,
+                        buttonDisabled: !viewModel.readyToStart,
+                        date: $viewModel.date,
+                        interactor: interactor)
     }
 }
 
@@ -27,6 +27,7 @@ struct SyncViewContent: View {
     var calendars: [CalendarRowModel]
     var buttonDisabled: Bool
     var date: Binding<Date>
+    var interactor: SyncInteracting
 
     var body: some View {
         VStack {
@@ -57,7 +58,9 @@ struct SyncViewContent: View {
                         }
                         
                         Button(action: {
-                            print("Start syncing...")
+                            self.interactor.sync(self.calendars.filter({ $0.selected == true })
+                                .map({CalendarSyncModel(calendar: $0.calendar, lights: Array($0.lights), color: $0.color, endDate: self.date.wrappedValue)}))
+                            // TODO: Some of this should maybe be hndled in the interactor
                         }) {
                             Text("Start syncing")
                         }.disabled(buttonDisabled)
@@ -102,6 +105,6 @@ struct SyncView_Previews: PreviewProvider {
             print("set")
         }
 
-        return SyncViewContent(calendars: calendars, buttonDisabled: false, date: date)
+        return SyncViewContent(calendars: calendars, buttonDisabled: false, date: date, interactor: SyncInteractor())
     }
 }
