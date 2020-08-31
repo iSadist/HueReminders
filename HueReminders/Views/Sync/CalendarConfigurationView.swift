@@ -44,12 +44,14 @@ struct CalendarConfigurationView: View {
         } else {
             List {
                 ForEach(bridges) { bridge in
-                    Text(bridge.name!).font(.title)
+                    if self.bridges.count > 1 {
+                        Text(bridge.name!).font(.title)
+                    }
                     CalendarConfigurationContentView(viewModel: CalendarConfigurationViewModel(bridge: bridge),
                                                      selectedLights: self.model.lights,
                                                      interactor: self.interactor,
                                                      onTap: self.addLight(light:))
-                }
+                }.navigationBarTitle(model.title)
             }
         }
     }
@@ -67,7 +69,8 @@ struct CalendarConfigurationContentView: View {
             EmptyView(text: "No lights found")
         } else {
             ForEach(viewModel.lights) { light in
-                CalendarConfigurationRowView(light, selected: self.selectedLights.contains(where: { $0.lightID == light.id }))
+                CalendarConfigurationRowView(light,
+                                             selected: self.selectedLights.contains(where: { $0.lightID == light.id }))
                     .onTapGesture {
                         self.onTap(light)
                     }

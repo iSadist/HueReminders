@@ -46,7 +46,8 @@ struct SyncViewContent: View {
                                         .font(.subheadline)
                                 }
                                 ForEach(self.calendars) { calendar in
-                                    NavigationLink(destination: CalendarConfigurationListView(interactor: CalendarConfigurationInterator(), model: calendar)) {
+                                    NavigationLink(destination: CalendarConfigurationListView(interactor: CalendarConfigurationInterator(),
+                                                                                              model: calendar)) {
                                         CalendarRow(viewModel: calendar)
                                     }
                                 }
