@@ -13,6 +13,10 @@ final class HueBridge: NSManagedObject, Identifiable, Findable, Comparable {
         lhs.address! < rhs.address!
     }
     
+    static func == (lhs: HueBridge, rhs: HueBridge) -> Bool {
+        lhs.name == rhs.name && lhs.address! < rhs.address!
+    }
+    
     class func findAll() -> NSFetchRequest<HueBridge> {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         let request: NSFetchRequest<HueBridge> = HueBridge.fetchRequest()

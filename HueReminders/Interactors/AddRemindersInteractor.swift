@@ -24,7 +24,7 @@ protocol AddReminderInteracting {
 final class AddReminderInteractor: AddReminderInteracting {
     func add(managedObjectContext: NSManagedObjectContext,
              name: String,
-             color: Int16,
+             color: Int16, // TODO: This type must either be color or represented by color values
              day: Int16,
              time: Date,
              bridge: HueBridge,

@@ -25,10 +25,12 @@ struct CalendarConfigurationView: View {
     var bridges: [HueBridge]
     var interactor: CalendarConfigurationInteracting
     
-    func addLight(light: HueLightInfo) {
+    func addLight(light: HueLightInfo, bridge: HueBridge) {
         if !self.model.lights.contains(where: { $0.lightID == light.id }) {
             let hueLight = HueLight(context: self.managedObjectContext)
             hueLight.lightID = light.id
+            hueLight.bridge = bridge
+            bridge.addToLights(hueLight)
             self.model.lights.insert(hueLight)
         } else {
             if let index = self.model.lights.firstIndex(where: { $0.lightID == light.id }) {
@@ -48,9 +50,10 @@ struct CalendarConfigurationView: View {
                         Text(bridge.name!).font(.title)
                     }
                     CalendarConfigurationContentView(viewModel: CalendarConfigurationViewModel(bridge: bridge),
+                                                     bridge: bridge,
                                                      selectedLights: self.model.lights,
                                                      interactor: self.interactor,
-                                                     onTap: self.addLight(light:))
+                                                     onTap: self.addLight(light:bridge:))
                 }.navigationBarTitle(model.title)
             }
         }
@@ -59,9 +62,10 @@ struct CalendarConfigurationView: View {
 
 struct CalendarConfigurationContentView: View {
     @ObservedObject var viewModel: CalendarConfigurationViewModel
+    var bridge: HueBridge
     var selectedLights: Set<HueLight>
     var interactor: CalendarConfigurationInteracting
-    var onTap: (HueLightInfo) -> Void
+    var onTap: (HueLightInfo, HueBridge) -> Void
 
     @ViewBuilder
     var body: some View {
@@ -72,7 +76,7 @@ struct CalendarConfigurationContentView: View {
                 CalendarConfigurationRowView(light,
                                              selected: self.selectedLights.contains(where: { $0.lightID == light.id }))
                     .onTapGesture {
-                        self.onTap(light)
+                        self.onTap(light, self.bridge)
                     }
             }
         }

@@ -60,6 +60,7 @@ private struct RemindersListContent: View {
     
     func delete(indexSet: IndexSet, _ bridge: HueBridge) {
         if let index = indexSet.first {
+            // TODO: Move to interactor
             let remindersForBridge = self.viewModel.reminders.filter { $0.bridge == bridge }
             let reminder = remindersForBridge[index]
             let requests = HueAPI.deleteSchedule(on: bridge, reminder: reminder)

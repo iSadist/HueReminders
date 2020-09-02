@@ -59,8 +59,12 @@ struct SyncViewContent: View {
                         }
                         
                         Button(action: {
-                            self.interactor.sync(self.calendars.filter({ $0.selected == true })
-                                .map({CalendarSyncModel(calendar: $0.calendar, lights: Array($0.lights), color: $0.color, endDate: self.date.wrappedValue)}))
+                            let syncModels = self.calendars
+                                .filter({ $0.selected == true })
+                                .map {
+                                    CalendarSyncModel(calendar: $0.calendar, lights: Array($0.lights), color: $0.color, endDate: self.date.wrappedValue)
+                                }
+                            self.interactor.sync(syncModels)
                             // TODO: Some of this should maybe be hndled in the interactor
                         }) {
                             Text("Start syncing")

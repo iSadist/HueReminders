@@ -5,11 +5,13 @@
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="lights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HueLight" inverseName="bridge" inverseEntity="HueLight"/>
         <relationship name="reminder" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reminder" inverseName="bridge" inverseEntity="Reminder"/>
     </entity>
     <entity name="HueLight" representedClassName=".HueLight" syncable="YES" codeGenerationType="category">
         <attribute name="lightID" optional="YES" attributeType="String"/>
         <attribute name="scheduleID" optional="YES" attributeType="String"/>
+        <relationship name="bridge" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HueBridge" inverseName="lights" inverseEntity="HueBridge"/>
         <relationship name="reminder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reminder" inverseName="light" inverseEntity="Reminder"/>
     </entity>
     <entity name="Reminder" representedClassName=".Reminder" syncable="YES" codeGenerationType="category">
@@ -24,8 +26,8 @@
         <relationship name="light" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HueLight" inverseName="reminder" inverseEntity="HueLight"/>
     </entity>
     <elements>
-        <element name="HueBridge" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="HueLight" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="HueBridge" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="HueLight" positionX="-63" positionY="9" width="128" height="103"/>
         <element name="Reminder" positionX="-63" positionY="9" width="128" height="178"/>
     </elements>
 </model>
