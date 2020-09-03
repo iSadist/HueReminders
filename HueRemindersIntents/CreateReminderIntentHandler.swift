@@ -8,6 +8,7 @@
 
 import Foundation
 import Intents
+import UIKit
 
 class CreateReminderIntentHandler: NSObject, CreateReminderIntentHandling {
     private var interactor: AddReminderInteracting = AddReminderInteractor()
@@ -20,7 +21,7 @@ class CreateReminderIntentHandler: NSObject, CreateReminderIntentHandling {
         guard let time = intent.time, let date = time.date else {
             completion(.init(code: .failure, userActivity: userActivity)); return
         }
-        let color = intent.color
+        let color = ReminderColor.allCases[intent.color.rawValue].getColor()
         let context = persistentContainer.viewContext
         let bridgeRequest = HueBridge.findActiveBridge()
         let bridgeResult = try? context.fetch(bridgeRequest)
@@ -31,7 +32,7 @@ class CreateReminderIntentHandler: NSObject, CreateReminderIntentHandling {
         // Create the reminder
         interactor.add(managedObjectContext: context,
                        name: name,
-                       color: Int16(color.rawValue),
+                       color: color,
                        day: 0,
                        time: date,
                        bridge: bridge,

@@ -28,7 +28,12 @@ class ReminderRowViewModel: ObservableObject {
     
     init(_ reminder: Reminder, _ bridge: HueBridge) {
         name = reminder.name ?? "Unknown name"
-        color = Color(ReminderColor.allCases[Int(reminder.color)].getColor())
+        guard let c = reminder.color else { fatalError("missing color") }
+        let uiColor = UIColor(hue: CGFloat(c.hue),
+                         saturation: CGFloat(c.saturation),
+                         brightness: CGFloat(c.brightness),
+                         alpha: CGFloat(c.alpha))
+        color = Color(uiColor)
         day = WeekDay.allCases[Int(reminder.day)].rawValue
         time = "\(formatter.string(from: reminder.time ?? Date()))"
         isActive = reminder.active

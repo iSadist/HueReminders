@@ -54,7 +54,7 @@ struct ReminderRow_Previews: PreviewProvider {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let reminder = Reminder(context: context)
         reminder.active = true
-        reminder.color = 1
+        reminder.color = HueColor.create(context: context, color: .red)
         reminder.day = 1
         reminder.name = "Reminder"
         reminder.time = Date()

@@ -138,21 +138,21 @@ struct ContentView_Previews: PreviewProvider {
         
         let reminder = Reminder(context: context)
         reminder.active = true
-        reminder.color = 1
+        reminder.color = HueColor.create(context: context, color: .blue)
         reminder.day = 1
         reminder.name = "Wake up"
         reminder.time = Date()
         
         let reminder2 = Reminder(context: context)
         reminder2.active = false
-        reminder2.color = 6
+        reminder2.color = HueColor.create(context: context, color: .green)
         reminder2.day = 4
         reminder2.name = "Go to bed"
         reminder2.time = Date()
         
         let reminder3 = Reminder(context: context)
         reminder3.active = false
-        reminder3.color = 6
+        reminder3.color = HueColor.create(context: context, color: .yellow)
         reminder3.day = 4
         reminder3.name = "Go to bed"
         reminder3.time = Date().advanced(by: 1)

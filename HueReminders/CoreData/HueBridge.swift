@@ -8,23 +8,23 @@
 
 import CoreData
 
-final class HueBridge: NSManagedObject, Identifiable, Findable, Comparable {
-    static func < (lhs: HueBridge, rhs: HueBridge) -> Bool {
+final public class HueBridge: NSManagedObject, Identifiable, Findable, Comparable {
+    public static func < (lhs: HueBridge, rhs: HueBridge) -> Bool {
         lhs.address! < rhs.address!
     }
     
-    static func == (lhs: HueBridge, rhs: HueBridge) -> Bool {
+    public static func == (lhs: HueBridge, rhs: HueBridge) -> Bool {
         lhs.name == rhs.name && lhs.address! < rhs.address!
     }
     
-    class func findAll() -> NSFetchRequest<HueBridge> {
+    public class func findAll() -> NSFetchRequest<HueBridge> {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         let request: NSFetchRequest<HueBridge> = HueBridge.fetchRequest()
         request.sortDescriptors = [sortDescriptor]
         return request
     }
     
-    class func findActiveBridge() -> NSFetchRequest<HueBridge> {
+    public class func findActiveBridge() -> NSFetchRequest<HueBridge> {
         let request: NSFetchRequest<HueBridge> = HueBridge.fetchRequest()
         request.predicate = NSPredicate(format: "active == true")
         request.fetchLimit = 1

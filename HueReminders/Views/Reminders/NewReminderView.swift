@@ -48,9 +48,13 @@ struct NewReminderViewContent: View {
     func addPressed() {
         // TODO: Move code to interactor
         guard let bridge = viewModel.bridge else { return }
+        let colorEnum = ReminderColor.allCases[viewModel.color]
+        let color = colorEnum.getColor()
+        print("Add color: \(colorEnum.rawValue) UIColor: \(color.getHueValues())")
+
         interactor.add(managedObjectContext: managedObjectContext,
                        name: viewModel.name,
-                       color: Int16(viewModel.color),
+                       color: color,
                        day: Int16(viewModel.day),
                        time: viewModel.time, bridge: bridge, lightIDs: viewModel.selectedLights) { success in
                         if success {

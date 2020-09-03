@@ -21,31 +21,23 @@ final class SyncInteractor: SyncInteracting {
     func sync(_ models: [CalendarSyncModel]) {
         let store = EKEventStore()
 
-        // Go throught all calendars
         for model in models {
             let calendar = model.calendar
-
             let predicate = store.predicateForEvents(withStart: Date(), end: model.endDate, calendars: [calendar])
-            // Get all events up until a specific date
             let events = store.events(matching: predicate)
             
             for event in events {
                 // For every event, create a Reminder
-
-                // Must also create a reminder for every light
-                
-                let color = model.color
                 if let bridge = model.lights.first?.bridge {
-                    
-                    print("Event \(event.title), Bridge: \(bridge.name), lights: \(Set(model.lights.compactMap { $0.lightID }))")
                     addReminder.add(managedObjectContext: context,
                                     name: event.title,
-                                    color: 1,
+                                    color: model.color,
                                     day: 1,
                                     time: event.startDate,
                                     bridge: bridge,
                                     lightIDs: Set(model.lights.compactMap { $0.lightID })) { (success) in
                         print(success)
+                                        // TODO: Handle Success or failure
                     }
                 }
             }

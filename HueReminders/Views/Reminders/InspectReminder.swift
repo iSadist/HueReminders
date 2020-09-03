@@ -25,7 +25,7 @@ struct InspectReminderView: View {
         Form {
             Section {
                 Text("Color").bold()
-                Text(ReminderColor.allCases[Int(reminder.color)].rawValue)
+//                Text(ReminderColor.allCases[Int(reminder.color)].rawValue)
             }
             Section {
                 Text("Day").bold()
@@ -44,7 +44,7 @@ struct InspectReminder_Previews: PreviewProvider {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let reminder = Reminder(context: context)
         reminder.active = true
-        reminder.color = 1
+        reminder.color = HueColor.create(context: context, color: .blue)
         reminder.day = 1
         reminder.name = "Reminder"
         reminder.time = Date()

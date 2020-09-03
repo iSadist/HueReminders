@@ -10,10 +10,33 @@ import Foundation
 import CoreData
 import NotificationCenter
 
+extension UIColor { // For some reason this does not work when putting it in another file
+    func getHueValues() -> (CGFloat, CGFloat, CGFloat, CGFloat) {
+        var hue: CGFloat = 0
+        var sat: CGFloat = 0
+        var bri: CGFloat = 0
+        var alpha: CGFloat = 0
+        self.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+        return (hue, sat, bri, alpha)
+    }
+}
+
+extension HueColor { // For some reason this does not work when putting it in another file
+    static func create(context: NSManagedObjectContext, color: UIColor) -> HueColor {
+        let hueColor = HueColor(context: context)
+        let (hue, sat, bri, alpha) = color.getHueValues()
+        hueColor.hue = Float(hue)
+        hueColor.saturation = Float(sat)
+        hueColor.brightness = Float(bri)
+        hueColor.alpha = Float(alpha)
+        return hueColor
+    }
+}
+
 protocol AddReminderInteracting {
     func add(managedObjectContext: NSManagedObjectContext,
              name: String,
-             color: Int16,
+             color: UIColor,
              day: Int16,
              time: Date,
              bridge: HueBridge,
@@ -21,20 +44,21 @@ protocol AddReminderInteracting {
              completion: @escaping (Bool) -> Void)
 }
 
-final class AddReminderInteractor: AddReminderInteracting {
+class AddReminderInteractor: AddReminderInteracting {
     func add(managedObjectContext: NSManagedObjectContext,
              name: String,
-             color: Int16, // TODO: This type must either be color or represented by color values
+             color: UIColor,
              day: Int16,
              time: Date,
              bridge: HueBridge,
              lightIDs: Set<String>,
              completion: @escaping (Bool) -> Void) {
         var tasks = [URLSessionDataTask]()
-        
+
+        let hueColor = HueColor.create(context: managedObjectContext, color: color)
         let newReminder = Reminder(context: managedObjectContext)
         newReminder.name = name
-        newReminder.color = color
+        newReminder.color = hueColor
         newReminder.day = day
         newReminder.time = time
         newReminder.active = true
