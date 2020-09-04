@@ -46,6 +46,8 @@
 		5961EA7424F3E9FB007D20ED /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7324F3E9FB007D20ED /* PersistentContainer.swift */; };
 		5961EA7624F3FEF2007D20ED /* GetRemindersIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */; };
 		5961EA7824F40553007D20ED /* EnableRemindersIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */; };
+		59635CB22502406A007DD990 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59635CB12502406A007DD990 /* ProgressBar.swift */; };
+		59635CB5250245F8007DD990 /* StatefulPreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59635CB4250245F8007DD990 /* StatefulPreviewWrapper.swift */; };
 		59681C6C250036E6000F0990 /* HueColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59681C6B250036E6000F0990 /* HueColor.swift */; };
 		598C0D3D24F655FC004C477D /* CalendarConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C0D3C24F655FC004C477D /* CalendarConfigurationView.swift */; };
 		598C0D3F24F65BF4004C477D /* CalendarRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C0D3E24F65BF4004C477D /* CalendarRow.swift */; };
@@ -156,6 +158,8 @@
 		5961EA7324F3E9FB007D20ED /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		5961EA7524F3FEF2007D20ED /* GetRemindersIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRemindersIntentHandler.swift; sourceTree = "<group>"; };
 		5961EA7724F40553007D20ED /* EnableRemindersIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableRemindersIntentHandler.swift; sourceTree = "<group>"; };
+		59635CB12502406A007DD990 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		59635CB4250245F8007DD990 /* StatefulPreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreviewWrapper.swift; sourceTree = "<group>"; };
 		59681C6B250036E6000F0990 /* HueColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueColor.swift; sourceTree = "<group>"; };
 		59744F6924F12BCC0018FFCA /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		598C0D3C24F655FC004C477D /* CalendarConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationView.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 				59C6ABA524DC08D7005F611B /* Badge.swift */,
 				59C6C6FB24BC774A00A8F258 /* ActivityIndicator.swift */,
 				59C6ABA724DC2A52005F611B /* MultiColorCircle.swift */,
+				59635CB12502406A007DD990 /* ProgressBar.swift */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -346,6 +351,14 @@
 				5961EA5F24F3E24B007D20ED /* Info.plist */,
 			);
 			path = HueRemindersIntents;
+			sourceTree = "<group>";
+		};
+		59635CB3250245E4007DD990 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				59635CB4250245F8007DD990 /* StatefulPreviewWrapper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		59A227ED24EE613000AF2E75 /* Sync */ = {
@@ -393,6 +406,7 @@
 		59C82CFD24B5A26B0088ACD1 /* HueReminders */ = {
 			isa = PBXGroup;
 			children = (
+				59635CB3250245E4007DD990 /* Helpers */,
 				59F5C6A624F537AE009FF6BE /* Interactors */,
 				592DD9B724E1439500B8309A /* HueAPI */,
 				5906D6DF24DD2C9200CB9294 /* HueReminders.entitlements */,
@@ -700,6 +714,7 @@
 				5909BD0D24CF70C0000265BB /* Findable.swift in Sources */,
 				5961EA2224F3C1A1007D20ED /* SharePersistentContainer.swift in Sources */,
 				59F13AC024E2A28700F2D99F /* ReminderRowViewModel.swift in Sources */,
+				59635CB5250245F8007DD990 /* StatefulPreviewWrapper.swift in Sources */,
 				59C6ABA624DC08D7005F611B /* Badge.swift in Sources */,
 				5961EA1824F3BD90007D20ED /* Enums.swift in Sources */,
 				5909BD1124D057A6000265BB /* BridgeRowView.swift in Sources */,
@@ -708,6 +723,7 @@
 				595D61F024CED6C900F93423 /* HueBridge.swift in Sources */,
 				5961E06924F95018009770AF /* SyncInteractor.swift in Sources */,
 				59C82D0124B5A26B0088ACD1 /* SceneDelegate.swift in Sources */,
+				59635CB22502406A007DD990 /* ProgressBar.swift in Sources */,
 				598C0D3D24F655FC004C477D /* CalendarConfigurationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

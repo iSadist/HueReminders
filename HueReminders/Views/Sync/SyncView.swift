@@ -19,6 +19,7 @@ struct SyncView: View {
         SyncViewContent(calendars: viewModel.calendars,
                         buttonDisabled: !viewModel.readyToStart,
                         date: $viewModel.date,
+                        syncing: viewModel.syncing,
                         interactor: interactor)
     }
 }
@@ -27,6 +28,8 @@ struct SyncViewContent: View {
     var calendars: [CalendarRowModel]
     var buttonDisabled: Bool
     var date: Binding<Date>
+    @State var syncing: Bool
+    @State var syncProgress: Float = 0.0
     var interactor: SyncInteracting
 
     var body: some View {
@@ -58,19 +61,38 @@ struct SyncViewContent: View {
                             DatePicker("Sync end date", selection: date, displayedComponents: [.date])
                         }
                         
-                        Button(action: {
-                            let syncModels = self.calendars
-                                .filter({ $0.selected == true })
-                                .map {
-                                    CalendarSyncModel(calendar: $0.calendar, lights: Array($0.lights), color: $0.color, endDate: self.date.wrappedValue)
+                        HStack {
+                            Button(action: {
+                                self.syncing = true
+                                let syncModels = self.calendars
+                                    .filter({ $0.selected == true })
+                                    .map {
+                                        CalendarSyncModel(calendar: $0.calendar,
+                                                          lights: Array($0.lights),
+                                                          color: $0.color,
+                                                          endDate: self.date.wrappedValue)
                                 }
-                            self.interactor.sync(syncModels)
-                            // TODO: Some of this should maybe be hndled in the interactor
-                        }) {
-                            Text("Start syncing")
-                        }.disabled(buttonDisabled)
+                                self.interactor.sync(syncModels) { progress in
+                                    self.syncProgress = progress
+                                    if progress == 1.0 {
+                                        self.syncing = false
+                                    }
+                                }
+                            }) {
+                                Text("Start syncing")
+                            }.disabled(buttonDisabled)
+                            
+                            if syncing {
+                                ProgressBar(value: $syncProgress)
+                            }
+                            
+                            if syncProgress == 1.0 {
+                                Image(systemName: "checkmark.circle")
+                                    .foregroundColor(.green)
+                            }
+                        }
                         
-                    }.background(Color.white)
+                    }.background(Color(UIColor.systemBackground))
                     .navigationBarTitle("Calendars")
                     .navigationBarHidden(true)
                 }
@@ -110,6 +132,10 @@ struct SyncView_Previews: PreviewProvider {
             print("set")
         }
 
-        return SyncViewContent(calendars: calendars, buttonDisabled: false, date: date, interactor: SyncInteractor())
+        return SyncViewContent(calendars: calendars,
+                               buttonDisabled: false,
+                               date: date,
+                               syncing: true,
+                               interactor: SyncInteractor())
     }
 }
