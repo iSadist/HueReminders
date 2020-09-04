@@ -19,7 +19,6 @@ struct SyncView: View {
         SyncViewContent(calendars: viewModel.calendars,
                         buttonDisabled: !viewModel.readyToStart,
                         date: $viewModel.date,
-                        syncing: viewModel.syncing,
                         interactor: interactor)
     }
 }
@@ -28,7 +27,7 @@ struct SyncViewContent: View {
     var calendars: [CalendarRowModel]
     var buttonDisabled: Bool
     var date: Binding<Date>
-    @State var syncing: Bool
+    @State var syncing: Bool = false
     @State var syncProgress: Float = 0.0
     var interactor: SyncInteracting
 

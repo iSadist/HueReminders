@@ -63,23 +63,32 @@ private struct RemindersListContent: View {
             // TODO: Move to interactor
             let remindersForBridge = self.viewModel.reminders.filter { $0.bridge == bridge }
             let reminder = remindersForBridge[index]
-            let requests = HueAPI.deleteSchedule(on: bridge, reminder: reminder)
-            
-            for request in requests {
-                let task = URLSession.shared.dataTask(with: request) { _, _, _ in
-                    // TODO: Handle data, response and error
-
-                }
-                task.resume()
-            }
-
-            if let lights = reminder.light {
-                reminder.removeFromLight(lights)
-            }
-            reminder.removeFromLight(reminder.light!)
-            self.managedObjectContext.delete(reminder)
-            try? self.managedObjectContext.save()
+            self.delete(reminder: reminder)
         }
+    }
+    
+    func delete(reminder: Reminder) {
+        guard let bridge = reminder.bridge else { fatalError("Reminder missing bridge") }
+        let requests = HueAPI.deleteSchedule(on: bridge, reminder: reminder)
+        
+        for request in requests {
+            let task = URLSession.shared.dataTask(with: request) { _, _, _ in
+                // TODO: Handle data, response and error
+
+            }
+            task.resume()
+        }
+
+        if let lights = reminder.light {
+            reminder.removeFromLight(lights)
+        }
+        reminder.removeFromLight(reminder.light!)
+        self.managedObjectContext.delete(reminder)
+        try? self.managedObjectContext.save()
+    }
+    
+    func deleteAll() {
+        self.viewModel.reminders.forEach { self.delete(reminder: $0) }
     }
 
     var body: some View {
@@ -102,6 +111,20 @@ private struct RemindersListContent: View {
                             }
                             .onMove(perform: { self.move(from: $0, to: $1, bridge) })
                             .onDelete { self.delete(indexSet: $0, bridge) }
+                        }
+                    }
+                    
+                    if reminders.count > 1 {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                print("Removing all reminders")
+                                self.deleteAll()
+                            }) {
+                                Text("Remove all reminders")
+                                    .foregroundColor(.red)
+                            }
+                            Spacer()
                         }
                     }
                 }
