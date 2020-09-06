@@ -106,8 +106,9 @@ class AddReminderInteractor: AddReminderInteracting {
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
                                                              from: time)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let uuidString = UUID().uuidString // TODO: Save this to the reminder to be able to cancel the notification later
+        let uuidString = UUID().uuidString
         let notificationRequest = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        newReminder.localNotificationId = uuidString
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(notificationRequest) { (error) in
             if error != nil {

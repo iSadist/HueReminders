@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import NotificationCenter
 
 final public class Reminder: NSManagedObject, Identifiable, Findable, Comparable {
     public static func < (lhs: Reminder, rhs: Reminder) -> Bool {
@@ -28,5 +29,13 @@ final public class Reminder: NSManagedObject, Identifiable, Findable, Comparable
         request.sortDescriptors = [sortDescriptor]
         request.returnsDistinctResults = true
         return request
+    }
+    
+    public func removeLocalNotification() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        if let notificationID = localNotificationId {
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationID])            
+        }
     }
 }

@@ -96,9 +96,8 @@ private struct RemindersListContent: View {
             reminder.removeFromLight(lights)
         }
         reminder.removeFromLight(reminder.light!)
-        
-        // TODO: Remove the local notification
-        
+        reminder.removeLocalNotification()
+
         self.managedObjectContext.delete(reminder)
         try? self.managedObjectContext.save()
     }

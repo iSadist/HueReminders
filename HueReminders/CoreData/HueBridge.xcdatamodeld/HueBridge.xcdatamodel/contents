@@ -24,6 +24,7 @@
     <entity name="Reminder" representedClassName=".Reminder" syncable="YES" codeGenerationType="category">
         <attribute name="active" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="localNotificationId" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="outdated" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="position" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES"/>
@@ -36,6 +37,6 @@
         <element name="HueBridge" positionX="-63" positionY="-18" width="128" height="133"/>
         <element name="HueColor" positionX="-45" positionY="81" width="128" height="118"/>
         <element name="HueLight" positionX="-63" positionY="9" width="128" height="103"/>
-        <element name="Reminder" positionX="-63" positionY="9" width="128" height="178"/>
+        <element name="Reminder" positionX="-63" positionY="9" width="128" height="193"/>
     </elements>
 </model>
