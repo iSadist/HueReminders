@@ -100,13 +100,13 @@ class AddReminderInteractor: AddReminderInteracting {
         // Add a push notification
         let content = UNMutableNotificationContent()
         content.title = name
-        content.body = "Triggered by HueReminders"
+        content.body = lightIDs.reduce("Lights", { "\($0) \($1)" })
         content.sound = UNNotificationSound.default
         
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
                                                              from: time)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let uuidString = UUID().uuidString // Save this to be able to cancel the
+        let uuidString = UUID().uuidString // TODO: Save this to the reminder to be able to cancel the notification later
         let notificationRequest = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(notificationRequest) { (error) in

@@ -58,6 +58,19 @@ private struct RemindersListContent: View {
         try? managedObjectContext.save()
     }
     
+    private func validateAll() {
+        viewModel.reminders.forEach { validate(reminder: $0) }
+    }
+
+    private func validate(reminder: Reminder) {
+        if let time = reminder.time, time < Date() {
+            delete(reminder: reminder)
+            if let index = viewModel.reminders.firstIndex(of: reminder) {
+                viewModel.reminders.remove(at: index)
+            }
+        }
+    }
+
     func delete(indexSet: IndexSet, _ bridge: HueBridge) {
         if let index = indexSet.first {
             // TODO: Move to interactor
@@ -83,6 +96,9 @@ private struct RemindersListContent: View {
             reminder.removeFromLight(lights)
         }
         reminder.removeFromLight(reminder.light!)
+        
+        // TODO: Remove the local notification
+        
         self.managedObjectContext.delete(reminder)
         try? self.managedObjectContext.save()
     }
@@ -137,6 +153,9 @@ private struct RemindersListContent: View {
                                     }
                     )
                 )
+                .onAppear {
+                    self.validateAll()
+                }
             }
     }
 }

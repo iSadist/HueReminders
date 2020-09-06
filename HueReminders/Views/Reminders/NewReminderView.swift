@@ -50,7 +50,6 @@ struct NewReminderViewContent: View {
         guard let bridge = viewModel.bridge else { return }
         let colorEnum = ReminderColor.allCases[viewModel.color]
         let color = colorEnum.getColor()
-        print("Add color: \(colorEnum.rawValue) UIColor: \(color.getHueValues())")
 
         interactor.add(managedObjectContext: managedObjectContext,
                        name: viewModel.name,
