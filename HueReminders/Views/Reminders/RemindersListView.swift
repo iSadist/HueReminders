@@ -34,6 +34,7 @@ struct RemindersListView: View {
 private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var viewModel: ListViewModel
+    @State var showingAlert = false
     
     func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge) {
         guard let index = source.first else { return }
@@ -133,8 +134,7 @@ private struct RemindersListContent: View {
                         HStack {
                             Spacer()
                             Button(action: {
-                                print("Removing all reminders")
-                                self.deleteAll()
+                                self.showingAlert = true
                             }) {
                                 Text("Remove all reminders")
                                     .foregroundColor(.red)
@@ -142,6 +142,16 @@ private struct RemindersListContent: View {
                             Spacer()
                         }
                     }
+                }
+                .actionSheet(isPresented: $showingAlert) {
+                    ActionSheet(
+                        title: Text("Remove all"),
+                        message: Text("This action will permanently remove all listed reminders."),
+                        buttons: [
+                            .destructive(Text("Delete"), action: self.deleteAll),
+                            .cancel()
+                        ]
+                    )
                 }
                 .navigationBarTitle("Reminders")
                 .navigationBarItems(leading: EditButton(),
