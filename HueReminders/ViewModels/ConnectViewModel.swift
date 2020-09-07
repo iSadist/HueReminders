@@ -58,6 +58,9 @@ class ConnectViewModel: ObservableObject {
                     bridge.username = username
                     bridge.address = self.ipAddress
                     bridge.name = self.bridgeName
+                    bridge.active = true
+
+                    try? context.fetch(HueBridge.findAll()).forEach { $0.active = false } // Only one bridge should be active
                     try? context.save()
                 }
                 
