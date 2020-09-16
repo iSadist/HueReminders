@@ -1,24 +1,13 @@
-//
-//  Reminder.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-07-08.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
 
 struct ReminderRow: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var viewModel: ReminderRowViewModel
-
-    func sendToggleRequestToHue() {
-        print(viewModel.reminder, viewModel.bridge)
-        HueAPI.toggleActive(for: viewModel.reminder, viewModel.bridge)
-    }
+    var interactor: ReminderRowInteracting
     
     init(viewModel: ReminderRowViewModel) {
         self.viewModel = viewModel
+        self.interactor = ReminderRowInteractor()
     }
     
     var body: some View {
@@ -37,9 +26,7 @@ struct ReminderRow: View {
                     Text("").hidden()
                 }.frame(alignment: .center)
                     .onTapGesture {
-                        self.viewModel.reminder.active = !self.viewModel.isActive // TODO: Do this in the viewModel instead
-                        try? self.managedObjectContext.save()
-                        self.sendToggleRequestToHue()
+                        self.interactor.toggle(self.viewModel, context: self.managedObjectContext)
                 }
             }
         }
