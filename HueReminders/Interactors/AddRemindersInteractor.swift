@@ -42,6 +42,9 @@ protocol AddReminderInteracting {
              bridge: HueBridge,
              lightIDs: Set<String>,
              completion: @escaping (Bool) -> Void)
+    func toggleLightSelectedState(_ viewModel: NewReminderViewModel,
+                                  lightID: String)
+    func select(bridge: HueBridge, _ viewModel: NewReminderViewModel)
 }
 
 class AddReminderInteractor: AddReminderInteracting {
@@ -98,6 +101,7 @@ class AddReminderInteractor: AddReminderInteracting {
         }
         
         // Add a push notification
+        // TODO: -Idea- Create a class for creating and deleting push notifications
         let content = UNMutableNotificationContent()
         content.title = name
         content.body = lightIDs.reduce("Lights", { "\($0) \($1)" })
@@ -117,5 +121,22 @@ class AddReminderInteractor: AddReminderInteracting {
         }
         
         tasks.forEach { $0.resume() }
+    }
+    
+    func toggleLightSelectedState(_ viewModel: NewReminderViewModel, lightID: String) {
+        let selectedLights = viewModel.selectedLights
+
+        if selectedLights.contains(lightID) {
+            selectedLights.remove(lightID)
+        } else {
+            selectedLights.insert(lightID)
+        }
+    }
+    
+    func select(bridge: HueBridge, _ viewModel: NewReminderViewModel) {
+        guard viewModel.bridge != bridge else { return }
+        viewModel.selectedLights.removeAll()
+        viewModel.bridge = bridge
+        viewModel.fetchLights()
     }
 }

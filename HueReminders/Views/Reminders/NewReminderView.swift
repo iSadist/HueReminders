@@ -46,16 +46,18 @@ struct NewReminderViewContent: View {
     }
     
     func addPressed() {
-        // TODO: Move code to interactor
-        guard let bridge = viewModel.bridge else { return }
-        let colorEnum = ReminderColor.allCases[viewModel.color]
-        let color = colorEnum.getColor()
+        guard let bridge = viewModel.bridge else {
+            fatalError("A new reminder cannot be created without a connected bridge")
+        }
+        let color = ReminderColor.allCases[viewModel.color].getColor()
 
         interactor.add(managedObjectContext: managedObjectContext,
                        name: viewModel.name,
                        color: color,
                        day: Int16(viewModel.day),
-                       time: viewModel.time, bridge: bridge, lightIDs: viewModel.selectedLights) { success in
+                       time: viewModel.time,
+                       bridge: bridge,
+                       lightIDs: viewModel.selectedLights) { success in
                         if success {
                             self.presentation.wrappedValue.dismiss()
                         }
@@ -106,11 +108,7 @@ struct NewReminderViewContent: View {
                         }
                     }
                     .onTapGesture {
-                        // TODO: Move code to interactor
-                        guard self.viewModel.bridge != bridge else { return }
-                        self.viewModel.selectedLights.removeAll()
-                        self.viewModel.bridge = bridge
-                        self.viewModel.fetchLights()
+                        self.interactor.select(bridge: bridge, self.viewModel)
                     }
                 }
             }
@@ -127,12 +125,7 @@ struct NewReminderViewContent: View {
                         HStack {
                             Text("\(light.name)")
                                 .onTapGesture {
-                                    // TODO: Move code to interactor
-                                    if self.viewModel.selectedLights.contains(light.id) {
-                                        self.viewModel.selectedLights.remove(light.id)
-                                    } else {
-                                        self.viewModel.selectedLights.insert(light.id)
-                                    }
+                                    self.interactor.toggleLightSelectedState(self.viewModel, lightID: light.id)
                             }
                             Spacer()
                             
