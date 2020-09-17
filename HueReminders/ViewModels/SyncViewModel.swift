@@ -63,7 +63,7 @@ class SyncViewModel: ObservableObject {
         // TOOO: This wouldn't have to be done like this if the calendars where passed into the model instead
         selectedCalendarsPublisher = setupPublisher()
         selectedCalendarsPublisher!.combineLatest(validDatePublisher)
-            .map({ (first,second) -> Bool in
+            .map({ (first, second) -> Bool in
                 first && second
             })
             .receive(on: RunLoop.main)

@@ -22,7 +22,6 @@ struct LightRowView: View {
             MultiColorCircle()
                 .frame(width: 50.0)
                 .onTapGesture {
-                    // TODO: Implement in an interactor
                     print("Change the color now of \(self.light.name)")
                 }
             

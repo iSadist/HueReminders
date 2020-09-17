@@ -60,7 +60,8 @@ class ConnectViewModel: ObservableObject {
                     bridge.name = self.bridgeName
                     bridge.active = true
 
-                    try? context.fetch(HueBridge.findAll()).forEach { $0.active = false } // Only one bridge should be active
+                    try? context.fetch(HueBridge.findAll())
+                        .forEach { $0.active = false } // Only one bridge should be active
                     try? context.save()
                 }
                 

@@ -27,7 +27,9 @@ class UserNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate
         completionHandler([.alert, .sound, .badge])
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
         // TODO: Display the reminder details
         print("Just opened from a notification")
         completionHandler()

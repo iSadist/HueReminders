@@ -4,7 +4,11 @@ import CoreData
 protocol ReminderListInteracting {
     func delete(reminder: Reminder, context: NSManagedObjectContext)
     func validate(reminder: Reminder, viewModel: ListViewModel, context: NSManagedObjectContext)
-    func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge, _ viewModel: ListViewModel, _ context: NSManagedObjectContext)
+    func move(from source: IndexSet,
+              to destination: Int,
+              _ bridge: HueBridge,
+              _ viewModel: ListViewModel,
+              _ context: NSManagedObjectContext)
     func willLoad(reminders: [Reminder])
 }
 
@@ -51,9 +55,12 @@ class ReminderListInteractor: ReminderListInteracting {
         }
     }
     
-    func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge, _ viewModel: ListViewModel, _ context: NSManagedObjectContext) {
+    func move(from source: IndexSet,
+              to destination: Int,
+              _ bridge: HueBridge,
+              _ viewModel: ListViewModel,
+              _ context: NSManagedObjectContext) {
         guard let index = source.first else { return }
-        // TODO: Refactor this code into some utility
         let filteredReminders = viewModel.reminders.filter { $0.bridge == bridge }
         let movedReminder = filteredReminders[index]
 

@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-07-08.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import UIKit
 import CoreData
 import UserNotifications
@@ -34,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         return true
     }
 

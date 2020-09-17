@@ -1,11 +1,3 @@
-//
-//  CreateReminderIntentHandler.swift
-//  HueRemindersIntents
-//
-//  Created by Jan Svensson on 2020-08-25.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import Foundation
 import Intents
 import UIKit
@@ -57,7 +49,8 @@ class CreateReminderIntentHandler: NSObject, CreateReminderIntentHandling {
         completion(result)
     }
     
-    func resolveTime(for intent: CreateReminderIntent, with completion: @escaping (INDateComponentsResolutionResult) -> Void) {
+    func resolveTime(for intent: CreateReminderIntent,
+                     with completion: @escaping (INDateComponentsResolutionResult) -> Void) {
         if let time = intent.time {
             completion(INDateComponentsResolutionResult.success(with: time))
         } else {
@@ -65,7 +58,8 @@ class CreateReminderIntentHandler: NSObject, CreateReminderIntentHandling {
         }
     }
     
-    func resolveColor(for intent: CreateReminderIntent, with completion: @escaping (IntentColorResolutionResult) -> Void) {
+    func resolveColor(for intent: CreateReminderIntent,
+                      with completion: @escaping (IntentColorResolutionResult) -> Void) {
         completion(IntentColorResolutionResult.success(with: intent.color))
     }
 }

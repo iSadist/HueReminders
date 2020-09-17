@@ -1,16 +1,9 @@
-//
-//  AddRemindersInteractor.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-08-25.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import Foundation
 import CoreData
 import NotificationCenter
 
-extension UIColor { // For some reason this does not work when putting it in another file
+extension UIColor { // TODO: For some reason this does not work when putting it in another file.
+    // The reason is probably that the other file doesn't have Intents in the targets
     func getHueValues() -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         var hue: CGFloat = 0
         var sat: CGFloat = 0
@@ -21,7 +14,7 @@ extension UIColor { // For some reason this does not work when putting it in ano
     }
 }
 
-extension HueColor { // For some reason this does not work when putting it in another file
+extension HueColor { // For some reason this does not work when putting it in another file. Same reason as above
     static func create(context: NSManagedObjectContext, color: UIColor) -> HueColor {
         let hueColor = HueColor(context: context)
         let (hue, sat, bri, alpha) = color.getHueValues()
@@ -71,8 +64,7 @@ class AddReminderInteractor: AddReminderInteracting {
             let hueLight = HueLight(context: managedObjectContext)
             hueLight.lightID = light
             newReminder.addToLight(hueLight)
-            
-            // TODO: Move this code to an interactor
+
             let request = HueAPI.setSchedule(on: newReminder.bridge!, reminder: newReminder, light: hueLight)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 // TODO: Handle response and error
@@ -80,7 +72,13 @@ class AddReminderInteractor: AddReminderInteracting {
                 let responses = try! decoder.decode([HueSchedulesResponse].self, from: data!)
                 
                 if let error = responses.first?.error {
-                    print("Error occurred - Type: \(error.type), Description: \(error.description), Address: \(error.address)")
+                    print(
+                        """
+                        Error occurred - Type: \(error.type),
+                        Description: \(error.description),
+                        Address: \(error.address)
+                        """
+                    )
                     // TODO: Show error message to user
                     return
                 }
