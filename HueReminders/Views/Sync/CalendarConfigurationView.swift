@@ -1,11 +1,3 @@
-//
-//  CalendarConfigurationView.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-08-26.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
 import Combine
 
@@ -25,18 +17,8 @@ struct CalendarConfigurationView: View {
     var bridges: [HueBridge]
     var interactor: CalendarConfigurationInteracting
     
-    func addLight(light: HueLightInfo, bridge: HueBridge) {
-        if !self.model.lights.contains(where: { $0.lightID == light.id }) {
-            let hueLight = HueLight(context: self.managedObjectContext)
-            hueLight.lightID = light.id
-            hueLight.bridge = bridge
-            bridge.addToLights(hueLight)
-            self.model.lights.insert(hueLight)
-        } else {
-            if let index = self.model.lights.firstIndex(where: { $0.lightID == light.id }) {
-                self.model.lights.remove(at: index)
-            }
-        }
+    func onTapped(light: HueLightInfo, bridge: HueBridge) {
+        interactor.lightRowTapped(light: light, bridge: bridge, model: model, context: managedObjectContext)
     }
 
     @ViewBuilder
@@ -53,7 +35,7 @@ struct CalendarConfigurationView: View {
                                                      bridge: bridge,
                                                      selectedLights: self.model.lights,
                                                      interactor: self.interactor,
-                                                     onTap: self.addLight(light:bridge:))
+                                                     onTap: self.onTapped(light:bridge:))
                 }.navigationBarTitle(model.title)
             }
         }
