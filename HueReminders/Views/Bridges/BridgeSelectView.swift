@@ -1,11 +1,3 @@
-//
-//  BridgeSelectView.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-07-26.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
 
 struct BridgeSelectView: View {
@@ -20,6 +12,7 @@ struct BridgeSelectView: View {
 struct BridgeSelectViewContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var bridges: [HueBridge]
+    var interactor: BridgeSelectInteracting = BridgeSelectInteractor()
     
     var body: some View {
         NavigationView {
@@ -30,14 +23,12 @@ struct BridgeSelectViewContent: View {
                 ForEach(bridges) { bridge in
                     BridgeRowView(bridge)
                         .onTapGesture {
-                            self.bridges.forEach { $0.active = false }
-                            bridge.active = true
-                            try? self.managedObjectContext.save()
+                            self.interactor.tap(on: bridge, list: self.bridges, context: self.managedObjectContext)
                     }
                 }.onDelete { indexSet in
-                    let bridge = self.bridges[indexSet.first!]
-                    self.managedObjectContext.delete(bridge)
-                    try? self.managedObjectContext.save()
+                    self.interactor.delete(indexSet: indexSet,
+                                           bridges: self.bridges,
+                                           context: self.managedObjectContext)
                 }
             }
             .navigationBarTitle("Hue Bridges")
