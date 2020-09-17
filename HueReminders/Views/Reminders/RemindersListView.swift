@@ -1,31 +1,13 @@
-//
-//  ContentView.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-07-08.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
 import Combine
 
 struct RemindersListView: View {
     @FetchRequest(fetchRequest: Reminder.findAll()) var reminders: FetchedResults<Reminder>
     @FetchRequest(fetchRequest: HueBridge.findAll()) var activeBridge: FetchedResults<HueBridge>
-    
-    func setReminderPosition() {
-        let remindersWithoutPosition = reminders.filter { $0.position == -1 }
-        for reminder in remindersWithoutPosition {
-            if let lastPosition = reminders.filter({ $0.bridge == reminder.bridge }).max()?.position {
-                reminder.position = lastPosition + 1
-            } else {
-                reminder.position = 0
-            }
-        }
-    }
+    var interactor: ReminderListInteracting? = ReminderListInteractor()
 
     var body: some View {
-        setReminderPosition()
+        interactor?.willLoad(reminders: reminders.sorted())
         let viewModel = ListViewModel(reminders: reminders.sorted(), bridges: self.activeBridge.sorted())
         return RemindersListContent(viewModel: viewModel)
     }
@@ -34,29 +16,10 @@ struct RemindersListView: View {
 private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var viewModel: ListViewModel
-    @State var showingAlert = false
+    var interactor: ReminderListInteracting? = ReminderListInteractor()
     
     func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge) {
-        guard let index = source.first else { return }
-        // TODO: Refactor this code into some utility
-        let filteredReminders = self.viewModel.reminders.filter { $0.bridge == bridge }
-        let movedReminder = filteredReminders[index]
-
-        if index > destination {
-            filteredReminders.filter {
-                $0.position < index && $0.position >= destination
-            }.forEach { $0.position += 1 }
-            movedReminder.position = Int16(destination)
-        } else if index < destination {
-            filteredReminders.filter {
-                $0.position > index && $0.position < destination
-            }.forEach { $0.position -= 1 }
-            movedReminder.position = destination == 0 ? 0 : Int16(destination - 1)
-        } else {
-            return
-        }
-        
-        try? managedObjectContext.save()
+        self.interactor?.move(from: source, to: destination, bridge, viewModel, managedObjectContext)
     }
     
     private func validateAll() {
@@ -64,47 +27,19 @@ private struct RemindersListContent: View {
     }
 
     private func validate(reminder: Reminder) {
-        if let time = reminder.time, time < Date() {
-            delete(reminder: reminder)
-            if let index = viewModel.reminders.firstIndex(of: reminder) {
-                viewModel.reminders.remove(at: index)
-            }
-        }
+        self.interactor?.validate(reminder: reminder, viewModel: viewModel, context: managedObjectContext)
     }
 
     func delete(indexSet: IndexSet, _ bridge: HueBridge) {
         if let index = indexSet.first {
-            // TODO: Move to interactor
             let remindersForBridge = self.viewModel.reminders.filter { $0.bridge == bridge }
             let reminder = remindersForBridge[index]
-            self.delete(reminder: reminder)
+            self.interactor?.delete(reminder: reminder, context: managedObjectContext)
         }
-    }
-    
-    func delete(reminder: Reminder) {
-        guard let bridge = reminder.bridge else { fatalError("Reminder missing bridge") }
-        let requests = HueAPI.deleteSchedule(on: bridge, reminder: reminder)
-        
-        for request in requests {
-            let task = URLSession.shared.dataTask(with: request) { _, _, _ in
-                // TODO: Handle data, response and error
-
-            }
-            task.resume()
-        }
-
-        if let lights = reminder.light {
-            reminder.removeFromLight(lights)
-        }
-        reminder.removeFromLight(reminder.light!)
-        reminder.removeLocalNotification()
-
-        self.managedObjectContext.delete(reminder)
-        try? self.managedObjectContext.save()
     }
     
     func deleteAll() {
-        self.viewModel.reminders.forEach { self.delete(reminder: $0) }
+        self.viewModel.reminders.forEach { self.interactor?.delete(reminder: $0, context: self.managedObjectContext) }
     }
 
     var body: some View {
@@ -134,7 +69,7 @@ private struct RemindersListContent: View {
                         HStack {
                             Spacer()
                             Button(action: {
-                                self.showingAlert = true
+                                self.viewModel.showingAlert = true
                             }) {
                                 Text("Remove all reminders")
                                     .foregroundColor(.red)
@@ -143,7 +78,7 @@ private struct RemindersListContent: View {
                         }
                     }
                 }
-                .actionSheet(isPresented: $showingAlert) {
+                .actionSheet(isPresented: self.$viewModel.showingAlert) {
                     ActionSheet(
                         title: Text("Remove all"),
                         message: Text("This action will permanently remove all listed reminders."),

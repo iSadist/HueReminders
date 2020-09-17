@@ -23,6 +23,7 @@
 		592BFC5624DA8C9800FF19A9 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592BFC5524DA8C9800FF19A9 /* Reminder.swift */; };
 		592DD9B924E143B600B8309A /* ResponseStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DD9B824E143B600B8309A /* ResponseStructs.swift */; };
 		5943B610251228F700BABB2E /* ReminderRowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5943B60F251228F700BABB2E /* ReminderRowInteractor.swift */; };
+		5943B61225122CC900BABB2E /* RemindersListViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5943B61125122CC900BABB2E /* RemindersListViewInteractor.swift */; };
 		595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */; };
 		595D61F024CED6C900F93423 /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EF24CED6C900F93423 /* HueBridge.swift */; };
 		5961E06924F95018009770AF /* SyncInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961E06824F95018009770AF /* SyncInteractor.swift */; };
@@ -143,6 +144,7 @@
 		592BFC5524DA8C9800FF19A9 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		592DD9B824E143B600B8309A /* ResponseStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStructs.swift; sourceTree = "<group>"; };
 		5943B60F251228F700BABB2E /* ReminderRowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRowInteractor.swift; sourceTree = "<group>"; };
+		5943B61125122CC900BABB2E /* RemindersListViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersListViewInteractor.swift; sourceTree = "<group>"; };
 		595D61EB24CEB2A000F93423 /* HueBridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HueBridge.xcdatamodel; sourceTree = "<group>"; };
 		595D61EF24CED6C900F93423 /* HueBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueBridge.swift; sourceTree = "<group>"; };
 		5961E06824F95018009770AF /* SyncInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInteractor.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				590A710F24F7A6A300144FD3 /* CalendarConfigurationInteractor.swift */,
 				5961E06824F95018009770AF /* SyncInteractor.swift */,
 				5943B60F251228F700BABB2E /* ReminderRowInteractor.swift */,
+				5943B61125122CC900BABB2E /* RemindersListViewInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				59681C6C250036E6000F0990 /* HueColor.swift in Sources */,
 				59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */,
 				59C6ABA424DBEFD9005F611B /* LightRowView.swift in Sources */,
+				5943B61225122CC900BABB2E /* RemindersListViewInteractor.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */,
 				590A711224F7BCD600144FD3 /* CalendarRowViewModel.swift in Sources */,
