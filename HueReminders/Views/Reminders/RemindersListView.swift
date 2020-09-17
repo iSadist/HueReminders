@@ -55,7 +55,7 @@ private struct RemindersListContent: View {
                         }
                         
                         if reminders.filter { $0.bridge == bridge }.isEmpty {
-                            Text("No reminders found").font(.caption)
+                            Text(NSLocalizedString("REMINDERS-LIST_NO-REMINDERS-MESSAGE", comment: "")).font(.caption)
                         } else {
                             ForEach(reminders.filter { $0.bridge == bridge }) { reminder in
                                 ReminderRow(viewModel: ReminderRowViewModel(reminder, bridge))
@@ -71,7 +71,7 @@ private struct RemindersListContent: View {
                             Button(action: {
                                 self.viewModel.showingAlert = true
                             }) {
-                                Text("Remove all reminders")
+                                Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-BUTTON-TEXT", comment: ""))
                                     .foregroundColor(.red)
                             }
                             Spacer()
@@ -80,15 +80,15 @@ private struct RemindersListContent: View {
                 }
                 .actionSheet(isPresented: self.$viewModel.showingAlert) {
                     ActionSheet(
-                        title: Text("Remove all"),
-                        message: Text("This action will permanently remove all listed reminders."),
+                        title: Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-CONFIRM-TITLE", comment: "")),
+                        message: Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-CONFIRM-MESSAGE", comment: "")),
                         buttons: [
-                            .destructive(Text("Delete"), action: self.deleteAll),
+                            .destructive(Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-CONFIRM-DELETE", comment: "")), action: self.deleteAll),
                             .cancel()
                         ]
                     )
                 }
-                .navigationBarTitle("Reminders")
+                .navigationBarTitle(NSLocalizedString("REMINDERS-LIST_NAVIGATION-TITLE", comment: ""))
                 .navigationBarItems(leading: EditButton(),
                                     trailing: NavigationLink(destination: NewReminderView(),
                                                              label: {

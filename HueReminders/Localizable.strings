@@ -13,3 +13,10 @@
 "CONNECT-VIEW_BRIDGE-ADDRESS-FIELD" = "Hue Bridge address";
 "CONNECT-VIEW_CONNECT-BUTTON-TEXT" = "Connect";
 
+// Reminders list view
+"REMINDERS-LIST_NO-REMINDERS-MESSAGE" = "No reminders found";
+"REMINDERS-LIST_REMOVE-ALL-BUTTON-TEXT" = "Remove all reminders";
+"REMINDERS-LIST_REMOVE-ALL-CONFIRM-TITLE" = "Remove all";
+"REMINDERS-LIST_REMOVE-ALL-CONFIRM-MESSAGE" = "This action will permanently remove all listed reminders.";
+"REMINDERS-LIST_REMOVE-ALL-CONFIRM-DELETE" = "Delete";
+"REMINDERS-LIST_NAVIGATION-TITLE" = "Reminders";
