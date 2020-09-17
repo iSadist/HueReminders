@@ -24,6 +24,8 @@
 		592DD9B924E143B600B8309A /* ResponseStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DD9B824E143B600B8309A /* ResponseStructs.swift */; };
 		5943B610251228F700BABB2E /* ReminderRowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5943B60F251228F700BABB2E /* ReminderRowInteractor.swift */; };
 		5943B61225122CC900BABB2E /* RemindersListViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5943B61125122CC900BABB2E /* RemindersListViewInteractor.swift */; };
+		5943B61325133EC300BABB2E /* NewReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3124B5A65F0088ACD1 /* NewReminderViewModel.swift */; };
+		5943B61425133F1B00BABB2E /* LightsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599824B224D1D37100AB4A41 /* LightsListViewModel.swift */; };
 		595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EA24CEB2A000F93423 /* HueBridge.xcdatamodeld */; };
 		595D61F024CED6C900F93423 /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D61EF24CED6C900F93423 /* HueBridge.swift */; };
 		5961E06924F95018009770AF /* SyncInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961E06824F95018009770AF /* SyncInteractor.swift */; };
@@ -661,8 +663,10 @@
 				5961EA6E24F3E2AF007D20ED /* Strings.swift in Sources */,
 				5961EA6824F3E28E007D20ED /* HueBridge.swift in Sources */,
 				5961EA6724F3E28B007D20ED /* HueBridge.xcdatamodeld in Sources */,
+				5943B61425133F1B00BABB2E /* LightsListViewModel.swift in Sources */,
 				5961EA6924F3E290007D20ED /* HueLight.swift in Sources */,
 				5961EA6C24F3E297007D20ED /* SharePersistentContainer.swift in Sources */,
+				5943B61325133EC300BABB2E /* NewReminderViewModel.swift in Sources */,
 				5961EA6B24F3E295007D20ED /* Findable.swift in Sources */,
 				59F5C6A924F53EFA009FF6BE /* AddRemindersInteractor.swift in Sources */,
 				5961EA6D24F3E2AD007D20ED /* Enums.swift in Sources */,

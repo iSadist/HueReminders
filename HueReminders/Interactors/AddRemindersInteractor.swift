@@ -124,12 +124,10 @@ class AddReminderInteractor: AddReminderInteracting {
     }
     
     func toggleLightSelectedState(_ viewModel: NewReminderViewModel, lightID: String) {
-        let selectedLights = viewModel.selectedLights
-
-        if selectedLights.contains(lightID) {
-            selectedLights.remove(lightID)
+        if viewModel.selectedLights.contains(lightID) {
+            viewModel.selectedLights.remove(lightID)
         } else {
-            selectedLights.insert(lightID)
+            viewModel.selectedLights.insert(lightID)
         }
     }
     
