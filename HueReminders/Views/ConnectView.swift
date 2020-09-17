@@ -1,11 +1,3 @@
-//
-//  ConnectView.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-07-13.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
 import Combine
 import CoreGraphics
@@ -43,7 +35,7 @@ struct ConnectView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 25) {
-                Text("Before you can start to set reminders you need to connect to a Hue Bridge")
+                Text(NSLocalizedString("CONNECT-VIEW_INSTRUCTION-TEXT", comment: ""))
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(.secondary)
@@ -60,13 +52,13 @@ struct ConnectView: View {
                         .hidden()
                 }
 
-                TextField("Bridge name", text: $connectViewModel.bridgeName)
-                TextField("Hue Bridge address", text: $connectViewModel.ipAddress)
+                TextField(NSLocalizedString("CONNECT-VIEW_BRIDGE-NAME-FIELD", comment: ""), text: $connectViewModel.bridgeName)
+                TextField(NSLocalizedString("CONNECT-VIEW_BRIDGE-ADDRESS-FIELD", comment: ""), text: $connectViewModel.ipAddress)
                 Spacer()
                 Button(action: {
                     self.connectViewModel.connect(request: HueAPI.connect(to: self.connectViewModel.ipAddress))
                 }) {
-                    Text("Connect")
+                    Text(NSLocalizedString("CONNECT-VIEW_CONNECT-BUTTON-TEXT", comment: ""))
                 }
                 .disabled(!self.connectViewModel.canConnect)
             }

@@ -1,0 +1,15 @@
+// English
+
+// Tabs
+"TAB-VIEW_TAB-LIGHT" = "Lights";
+"TAB-VIEW_TAB-REMINDERS" = "Reminders";
+"TAB-VIEW_TAB-SYNC" = "Sync";
+"TAB-VIEW_TAB-SETUP" = "Setup";
+
+
+// Connect bridge view
+"CONNECT-VIEW_INSTRUCTION-TEXT" = "Before you can start to set reminders you need to connect to a Hue Bridge";
+"CONNECT-VIEW_BRIDGE-NAME-FIELD" = "Bridge name";
+"CONNECT-VIEW_BRIDGE-ADDRESS-FIELD" = "Hue Bridge address";
+"CONNECT-VIEW_CONNECT-BUTTON-TEXT" = "Connect";
+

@@ -27,25 +27,25 @@ struct MainContainerView: View {
             LightsListView(interactor: LightListInteractor())
                 .tabItem {
                     Image(systemName: "lightbulb")
-                    Text("Lights")
+                    Text(NSLocalizedString("TAB-VIEW_TAB-LIGHT", comment: ""))
                 }
                 .tag(MainTab.Lights)
             RemindersListView()
                 .tabItem {
                     Image(systemName: "alarm")
-                    Text("Reminders")
+                    Text(NSLocalizedString("TAB-VIEW_TAB-REMINDERS", comment: ""))
                 }
                 .tag(MainTab.Reminders)
             SyncView(viewModel: SyncViewModel(), interactor: SyncInteractor())
                 .tabItem {
                     Image(systemName: "arrow.2.circlepath")
-                    Text("Sync")
+                    Text(NSLocalizedString("TAB-VIEW_TAB-SYNC", comment: ""))
                 }
                 .tag(MainTab.Sync)
             BridgeSelectView()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text("Setup")
+                    Text(NSLocalizedString("TAB-VIEW_TAB-SETUP", comment: ""))
                 }
                 .tag(MainTab.Setup)
         }.onAppear {
