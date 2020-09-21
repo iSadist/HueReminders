@@ -17,7 +17,7 @@ struct LightSectionView: View {
     @ViewBuilder
     var body: some View {
         if bridges.isEmpty {
-            EmptyView(text: "Connect to a Hue Bridge to see lights")
+            EmptyView(text: NSLocalizedString("LIGHTS_NO-BRIDGES", comment: ""))
         } else {
             List {
                 ForEach(bridges) { bridge in
@@ -45,7 +45,7 @@ struct LightListContentView: View {
     @ViewBuilder
     var body: some View {
         if viewModel.lights.isEmpty {
-            EmptyView(text: "No lights found")
+            EmptyView(text: NSLocalizedString("LIGHTS_NO-LIGHTS", comment: ""))
         } else {
             ForEach(viewModel.lights) { light in
                 LightRowView(light)

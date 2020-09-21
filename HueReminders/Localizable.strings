@@ -32,3 +32,7 @@
 "NEW-REMINDER_LIGHTS-TITLE" = "Light to blink";
 "NEW-REMINDER_LIGHTS-EMPTY" = "No lights found for the selected bridge";
 "NEW-REMINDER_ADD-BUTTON-TEXT" = "Add";
+
+// Lights
+"LIGHTS_NO-BRIDGES" = "Connect to a Hue Bridge to see lights";
+"LIGHTS_NO-LIGHTS" = "No lights found";

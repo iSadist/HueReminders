@@ -52,8 +52,10 @@ struct ConnectView: View {
                         .hidden()
                 }
 
-                TextField(NSLocalizedString("CONNECT-VIEW_BRIDGE-NAME-FIELD", comment: ""), text: $connectViewModel.bridgeName)
-                TextField(NSLocalizedString("CONNECT-VIEW_BRIDGE-ADDRESS-FIELD", comment: ""), text: $connectViewModel.ipAddress)
+                TextField(NSLocalizedString("CONNECT-VIEW_BRIDGE-NAME-FIELD", comment: ""),
+                          text: $connectViewModel.bridgeName)
+                TextField(NSLocalizedString("CONNECT-VIEW_BRIDGE-ADDRESS-FIELD", comment: ""),
+                          text: $connectViewModel.ipAddress)
                 Spacer()
                 Button(action: {
                     self.connectViewModel.connect(request: HueAPI.connect(to: self.connectViewModel.ipAddress))
