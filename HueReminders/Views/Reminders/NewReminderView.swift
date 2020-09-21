@@ -41,7 +41,7 @@ struct NewReminderViewContent: View {
         guard let bridge = viewModel.bridge else {
             fatalError("A new reminder cannot be created without a connected bridge")
         }
-        let color = ReminderColor.allCases[viewModel.color].getColor()
+        let color = UIColor(viewModel.color)
 
         interactor.add(managedObjectContext: managedObjectContext,
                        name: viewModel.name,
@@ -63,12 +63,7 @@ struct NewReminderViewContent: View {
                     .autocapitalization(.none)
             }
             Section {
-                // Swap for the color picker in iOS 14. Currently in beta
-                Picker(NSLocalizedString("NEW-REMINDER_FIELD-COLOR", comment: ""), selection: $viewModel.color) {
-                    ForEach(0 ..< ReminderColor.allCases.count) { index in
-                        Text(ReminderColor.allCases[index].rawValue)
-                    }
-                }
+                ColorPicker(NSLocalizedString("NEW-REMINDER_FIELD-COLOR", comment: ""), selection: $viewModel.color)
             }
             Section {
                 Picker(NSLocalizedString("NEW-REMINDER_FIELD-DAY", comment: ""), selection: $viewModel.day) {

@@ -5,7 +5,7 @@ import SwiftUI
 class NewReminderViewModel: ObservableObject {
     // Input
     @Published var name = ""
-    @Published var color = 0
+    @Published var color: Color = .white
     @Published var day = 0
     @Published var time = Date()
     @Published var selectedLights: Set<String> = []

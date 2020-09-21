@@ -42,15 +42,15 @@ struct ConnectView: View {
                 Text(connectViewModel.informationMessage)
                     .font(.subheadline)
 
-                if connectViewModel.isLoading {
-                    ActivityIndicator()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(.orange)
-                } else {
-                    ActivityIndicator()
-                        .frame(width: 25, height: 25)
-                        .hidden()
-                }
+//                if connectViewModel.isLoading {
+//                    ActivityIndicator()
+//                        .frame(width: 25, height: 25)
+//                        .foregroundColor(.orange)
+//                } else {
+//                    ActivityIndicator()
+//                        .frame(width: 25, height: 25)
+//                        .hidden()
+//                }
 
                 TextField(NSLocalizedString("CONNECT-VIEW_BRIDGE-NAME-FIELD", comment: ""),
                           text: $connectViewModel.bridgeName)
