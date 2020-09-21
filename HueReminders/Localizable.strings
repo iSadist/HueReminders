@@ -20,3 +20,15 @@
 "REMINDERS-LIST_REMOVE-ALL-CONFIRM-MESSAGE" = "This action will permanently remove all listed reminders.";
 "REMINDERS-LIST_REMOVE-ALL-CONFIRM-DELETE" = "Delete";
 "REMINDERS-LIST_NAVIGATION-TITLE" = "Reminders";
+
+// New reminder view
+"NEW-REMINDER_NAVIGATION-TITLE" = "New reminder";
+"NEW-REMINDER_FIELD-NAME" = "Name";
+"NEW-REMINDER_FIELD-COLOR" = "Color";
+"NEW-REMINDER_FIELD-DAY" = "Day";
+"NEW-REMINDER_FIELD-TIME" = "Time";
+"NEW-REMINDER_BRIDGE-TITLE" = "Hue Bridge";
+"NEW-REMINDER_BRIDGE-EMPTY" = "No connected bridge found. Go to setup to connect.";
+"NEW-REMINDER_LIGHTS-TITLE" = "Light to blink";
+"NEW-REMINDER_LIGHTS-EMPTY" = "No lights found for the selected bridge";
+"NEW-REMINDER_ADD-BUTTON-TEXT" = "Add";

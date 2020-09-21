@@ -59,39 +59,41 @@ struct NewReminderViewContent: View {
     var body: some View {
         Form {
             Section {
-                TextField("Name", text: $viewModel.name)
+                TextField(NSLocalizedString("NEW-REMINDER_FIELD-NAME", comment: ""), text: $viewModel.name)
                     .autocapitalization(.none)
             }
             Section {
                 // Swap for the color picker in iOS 14. Currently in beta
-                Picker("Color", selection: $viewModel.color) {
+                Picker(NSLocalizedString("NEW-REMINDER_FIELD-COLOR", comment: ""), selection: $viewModel.color) {
                     ForEach(0 ..< ReminderColor.allCases.count) { index in
                         Text(ReminderColor.allCases[index].rawValue)
                     }
                 }
             }
             Section {
-                Picker("Day", selection: $viewModel.day) {
+                Picker(NSLocalizedString("NEW-REMINDER_FIELD-DAY", comment: ""), selection: $viewModel.day) {
                     ForEach(0 ..< WeekDay.allCases.count) { index in
                         Text(WeekDay.allCases[index].rawValue)
                     }
                 }
             }
             Section {
-                DatePicker("Time", selection: $viewModel.time, displayedComponents: .hourAndMinute)
+                DatePicker(NSLocalizedString("NEW-REMINDER_FIELD-TIME", comment: ""),
+                           selection: $viewModel.time,
+                           displayedComponents: .hourAndMinute)
             }
             
             Section {
-                Text("Hue Bridge")
+                Text(NSLocalizedString("NEW-REMINDER_BRIDGE-TITLE", comment: ""))
                     .bold()
                 
                 if bridges.isEmpty {
-                    EmptyView(text: "No connected bridge found. Go to setup to connect.")
+                    EmptyView(text: NSLocalizedString("NEW-REMINDER_BRIDGE-EMPTY", comment: ""))
                 }
                 
                 ForEach(bridges) { bridge in
                     HStack {
-                        Text("\(bridge.name ?? "")")
+                        Text(bridge.name ?? "")
                         Spacer()
                         
                         if bridge.name == self.viewModel.bridge?.name {
@@ -107,10 +109,11 @@ struct NewReminderViewContent: View {
             
             if self.viewModel.bridge != nil {
                 Section {
-                    Text("Light to blink").bold()
+                    Text(NSLocalizedString("NEW-REMINDER_LIGHTS-TITLE", comment: ""))
+                        .bold()
                     
                     if self.viewModel.lights.isEmpty {
-                        EmptyView(text: "No lights found for the selected bridge")
+                        EmptyView(text: NSLocalizedString("NEW-REMINDER_LIGHTS-EMPTY", comment: ""))
                     }
 
                     ForEach(self.viewModel.lights) { light in
@@ -132,10 +135,11 @@ struct NewReminderViewContent: View {
             
             Section {
                 Button(action: addPressed) {
-                    Text("Add").bold()
+                    Text(NSLocalizedString("NEW-REMINDER_ADD-BUTTON-TEXT", comment: ""))
+                        .bold()
                 }.disabled(!viewModel.valid)
             }
-        }.navigationBarTitle("New reminder")
+        }.navigationBarTitle(NSLocalizedString("NEW-REMINDER_NAVIGATION-TITLE", comment: ""))
     }
 }
 
