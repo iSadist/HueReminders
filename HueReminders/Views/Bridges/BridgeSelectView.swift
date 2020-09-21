@@ -18,7 +18,7 @@ struct BridgeSelectViewContent: View {
         NavigationView {
             List {
                 if bridges.isEmpty {
-                    EmptyView(text: "Tap the + to connect to a Hue Bridge")
+                    EmptyView(text: NSLocalizedString("BRIDGE-SELECT_NO-BRIDGE", comment: ""))
                 }
                 ForEach(bridges) { bridge in
                     BridgeRowView(bridge)
@@ -31,7 +31,7 @@ struct BridgeSelectViewContent: View {
                                            context: self.managedObjectContext)
                 }
             }
-            .navigationBarTitle("Hue Bridges")
+            .navigationBarTitle(NSLocalizedString("BRIDGE-SELECT_NAVIGATION-TITLE", comment: ""))
             .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: ConnectView(), label: {
                 Image(systemName: "plus")
                     .imageScale(.large)

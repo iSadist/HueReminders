@@ -36,3 +36,18 @@
 // Lights
 "LIGHTS_NO-BRIDGES" = "Connect to a Hue Bridge to see lights";
 "LIGHTS_NO-LIGHTS" = "No lights found";
+
+// Bridges List View
+"BRIDGE-SELECT_NO-BRIDGE" = "Tap the + to connect to a Hue Bridge";
+"BRIDGE-SELECT_NAVIGATION-TITLE" = "Hue Bridges";
+
+// Sync View
+"SYNC_NO-CALENDARS" = "No calendars available. Make sure to allow it in the privacy settings";
+"SYNC_CALENDARS-TITLE" = "Calendars";
+"SYNC_CALENDARS-SUB-TITLE" = "Select the ones to sync";
+"SYNC_END-DATE" = "Sync end date";
+"SYNC_START" = "Start syncing";
+"SYNC_NAVIGATION-TITLE" = "Calendars";
+"SYNC_CONFIGURATION_NO-BRIDGES" = "Connect to a Hue Bridge to see lights";
+"SYNC_CONFIGURATION_NO-LIGHTS" = "No lights found";
+"SYNC_CALENDAR-SELECTED" = "lights selected";

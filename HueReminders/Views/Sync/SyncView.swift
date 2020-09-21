@@ -34,17 +34,17 @@ struct SyncViewContent: View {
     var body: some View {
         VStack {
             if self.calendars.isEmpty {
-                EmptyView(text: "No calendars available. Make sure to allow it in the privacy settings")
+                EmptyView(text: NSLocalizedString("SYNC_NO-CALENDARS", comment: ""))
             } else {
                 NavigationView {
                     Form {
                         Section {
                             List {
                                 VStack(alignment: .leading, spacing: 0) {
-                                    Text("Calendars")
+                                    Text(NSLocalizedString("SYNC_CALENDARS-TITLE", comment: ""))
                                         .font(.title)
                                         .bold()
-                                    Text("Select the ones to sync")
+                                    Text(NSLocalizedString("SYNC_CALENDARS-SUB-TITLE", comment: ""))
                                         .font(.subheadline)
                                 }
                                 ForEach(self.calendars) { calendar in
@@ -59,7 +59,9 @@ struct SyncViewContent: View {
                         }
                         
                         Section {
-                            DatePicker("Sync end date", selection: date, displayedComponents: [.date])
+                            DatePicker(NSLocalizedString("SYNC_END-DATE", comment: ""),
+                                       selection: date,
+                                       displayedComponents: [.date])
                         }
                         
                         HStack {
@@ -80,7 +82,7 @@ struct SyncViewContent: View {
                                     }
                                 }
                             }) {
-                                Text("Start syncing")
+                                Text(NSLocalizedString("SYNC_START", comment: ""))
                             }.disabled(buttonDisabled)
                             
                             if syncing {
@@ -94,7 +96,7 @@ struct SyncViewContent: View {
                         }
                         
                     }.background(Color(UIColor.systemBackground))
-                    .navigationBarTitle("Calendars")
+                    .navigationBarTitle(NSLocalizedString("SYNC_NAVIGATION-TITLE", comment: ""))
                     .navigationBarHidden(true)
                 }
             }

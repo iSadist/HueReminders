@@ -23,7 +23,7 @@ struct CalendarRow: View {
                 .foregroundColor(Color(viewModel.color))
             Text(viewModel.title).lineLimit(1)
             Spacer()
-            Text("\(viewModel.lights.count) lights selected")
+            Text("\(viewModel.lights.count) \(NSLocalizedString("SYNC_CALENDAR-SELECTED", comment: ""))")
                 .font(.caption)
             Toggle(isOn: $viewModel.selected) {
                 Text("").hidden()

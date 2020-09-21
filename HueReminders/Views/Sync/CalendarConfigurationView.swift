@@ -24,7 +24,7 @@ struct CalendarConfigurationView: View {
     @ViewBuilder
     var body: some View {
         if bridges.isEmpty {
-            EmptyView(text: "Connect to a Hue Bridge to see lights")
+            EmptyView(text: NSLocalizedString("SYNC_CONFIGURATION_NO-BRIDGES", comment: ""))
         } else {
             List {
                 ForEach(bridges) { bridge in
@@ -52,7 +52,7 @@ struct CalendarConfigurationContentView: View {
     @ViewBuilder
     var body: some View {
         if viewModel.lights.isEmpty {
-            EmptyView(text: "No lights found")
+            EmptyView(text: NSLocalizedString("SYNC_CONFIGURATION_NO-LIGHTS", comment: ""))
         } else {
             ForEach(viewModel.lights) { light in
                 CalendarConfigurationRowView(light,
