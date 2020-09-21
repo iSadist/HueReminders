@@ -9,7 +9,7 @@
 import CoreData
 import NotificationCenter
 
-final public class Reminder: NSManagedObject, Identifiable, Findable, Comparable {
+final public class Reminder: NSManagedObject, Findable, Comparable {
     public static func < (lhs: Reminder, rhs: Reminder) -> Bool {
         lhs.position < rhs.position
     }

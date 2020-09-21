@@ -8,7 +8,7 @@
 
 import CoreData
 
-final public class HueBridge: NSManagedObject, Identifiable, Findable, Comparable {
+final public class HueBridge: NSManagedObject, Findable, Comparable {
     public static func < (lhs: HueBridge, rhs: HueBridge) -> Bool {
         lhs.address! < rhs.address!
     }
