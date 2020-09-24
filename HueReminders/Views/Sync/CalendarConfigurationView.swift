@@ -55,41 +55,13 @@ struct CalendarConfigurationContentView: View {
             EmptyView(text: NSLocalizedString("SYNC_CONFIGURATION_NO-LIGHTS", comment: ""))
         } else {
             ForEach(viewModel.lights) { light in
-                CalendarConfigurationRowView(light,
-                                             selected: self.selectedLights.contains(where: { $0.lightID == light.id }))
+                CalendarConfigurationRowView(CalendarConfigurationRowViewModel(light: light,
+                                                                               selectedLights: self.selectedLights))
                     .onTapGesture {
                         self.onTap(light, self.bridge)
                     }
             }
         }
-    }
-}
-
-struct CalendarConfigurationRowView: View {
-    var light: HueLightInfo
-    var selected: Bool = true
-    
-    init(_ light: HueLightInfo, selected: Bool) {
-        self.light = light
-        self.selected = selected
-    }
-    
-    var body: some View {
-        HStack {
-            Text("\(light.name)")
-            Spacer()
-            
-            if selected {
-                Image(systemName: "checkmark.circle")
-                    .imageScale(.large)
-                    .foregroundColor(.green)
-            } else {
-                Image(systemName: "checkmark.circle")
-                    .imageScale(.large)
-                    .foregroundColor(.gray)
-            }
-        }
-        .padding()
     }
 }
 

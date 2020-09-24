@@ -79,6 +79,8 @@
 		59C82D3824B61DD70088ACD1 /* NewReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3724B61DD70088ACD1 /* NewReminderView.swift */; };
 		59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C82D3924B629560088ACD1 /* ListViewModel.swift */; };
 		59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */; };
+		59DB5532251C892F00444392 /* CalendarConfigurationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB5531251C892F00444392 /* CalendarConfigurationRowView.swift */; };
+		59DB5538251C8B6900444392 /* CalendarConfigurationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB5537251C8B6900444392 /* CalendarConfigurationRowViewModel.swift */; };
 		59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7839524D18B2B0010D0CF /* LightsListView.swift */; };
 		59F13AC024E2A28700F2D99F /* ReminderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */; };
 		59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */; };
@@ -201,6 +203,8 @@
 		59C82D3724B61DD70088ACD1 /* NewReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderView.swift; sourceTree = "<group>"; };
 		59C82D3924B629560088ACD1 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSelectView.swift; sourceTree = "<group>"; };
+		59DB5531251C892F00444392 /* CalendarConfigurationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationRowView.swift; sourceTree = "<group>"; };
+		59DB5537251C8B6900444392 /* CalendarConfigurationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationRowViewModel.swift; sourceTree = "<group>"; };
 		59E7839524D18B2B0010D0CF /* LightsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListView.swift; sourceTree = "<group>"; };
 		59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRowViewModel.swift; sourceTree = "<group>"; };
 		59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterDelegate.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				59A227EE24EE72B500AF2E75 /* SyncViewModel.swift */,
 				590A710D24F7A42500144FD3 /* CalendarConfigurationViewModel.swift */,
 				590A711124F7BCD600144FD3 /* CalendarRowViewModel.swift */,
+				59DB5537251C8B6900444392 /* CalendarConfigurationRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				59A227EB24EE612B00AF2E75 /* SyncView.swift */,
 				598C0D3C24F655FC004C477D /* CalendarConfigurationView.swift */,
 				598C0D3E24F65BF4004C477D /* CalendarRow.swift */,
+				59DB5531251C892F00444392 /* CalendarConfigurationRowView.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -702,6 +708,7 @@
 				59F5C6A124F4FFF6009FF6BE /* NSUserActivity+Extensions.swift in Sources */,
 				5909BD0B24CF70A4000265BB /* HueLight.swift in Sources */,
 				59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */,
+				59DB5532251C892F00444392 /* CalendarConfigurationRowView.swift in Sources */,
 				598C0D4124F6662F004C477D /* LightListInteractor.swift in Sources */,
 				59681C6C250036E6000F0990 /* HueColor.swift in Sources */,
 				59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */,
@@ -723,6 +730,7 @@
 				59C82D0624B5A26B0088ACD1 /* RemindersListView.swift in Sources */,
 				595D61EC24CEB2A000F93423 /* HueBridge.xcdatamodeld in Sources */,
 				59C6C6FF24BC7A4F00A8F258 /* ConnectController.swift in Sources */,
+				59DB5538251C8B6900444392 /* CalendarConfigurationRowViewModel.swift in Sources */,
 				59C82D3224B5A65F0088ACD1 /* NewReminderViewModel.swift in Sources */,
 				59C82D3A24B629560088ACD1 /* ListViewModel.swift in Sources */,
 				5909BD0D24CF70C0000265BB /* Findable.swift in Sources */,
