@@ -1,19 +1,15 @@
 import SwiftUI
 
 struct BridgeRowView: View {
-    @ObservedObject private var bridge: HueBridge
-
-    init(_ bridge: HueBridge) {
-        self.bridge = bridge
-    }
+    @ObservedObject var viewModel: BridgeRowViewModel
 
     var body: some View {
         HStack {
-            Text(bridge.name ?? "")
-            Text(bridge.address ?? "")
+            Text(viewModel.name)
+            Text(viewModel.address)
             Spacer()
             
-            if bridge.active {
+            if viewModel.isActive {
                 Image(systemName: "checkmark.circle.fill")
                     .imageScale(.large)
                     .foregroundColor(.green)
@@ -30,7 +26,8 @@ struct BridgeRowView_Previews: PreviewProvider {
         bridge.name = "Test bridge"
         bridge.address = "192.168.1.2"
         bridge.active = true
-        return BridgeRowView(bridge)
+        let viewModel = BridgeRowViewModel(bridge)
+        return BridgeRowView(viewModel: viewModel)
             .previewLayout(PreviewLayout.fixed(width: 300, height: 70))
     }
 }

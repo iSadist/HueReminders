@@ -81,6 +81,7 @@
 		59D5C81B24CE281C007AC225 /* BridgeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */; };
 		59DB5532251C892F00444392 /* CalendarConfigurationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB5531251C892F00444392 /* CalendarConfigurationRowView.swift */; };
 		59DB5538251C8B6900444392 /* CalendarConfigurationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB5537251C8B6900444392 /* CalendarConfigurationRowViewModel.swift */; };
+		59DB553E251C98BE00444392 /* BridgeRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB553D251C98BE00444392 /* BridgeRowViewModel.swift */; };
 		59E7839624D18B2B0010D0CF /* LightsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7839524D18B2B0010D0CF /* LightsListView.swift */; };
 		59F13AC024E2A28700F2D99F /* ReminderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */; };
 		59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */; };
@@ -205,6 +206,7 @@
 		59D5C81A24CE281C007AC225 /* BridgeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSelectView.swift; sourceTree = "<group>"; };
 		59DB5531251C892F00444392 /* CalendarConfigurationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationRowView.swift; sourceTree = "<group>"; };
 		59DB5537251C8B6900444392 /* CalendarConfigurationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurationRowViewModel.swift; sourceTree = "<group>"; };
+		59DB553D251C98BE00444392 /* BridgeRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeRowViewModel.swift; sourceTree = "<group>"; };
 		59E7839524D18B2B0010D0CF /* LightsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsListView.swift; sourceTree = "<group>"; };
 		59F13ABF24E2A28700F2D99F /* ReminderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRowViewModel.swift; sourceTree = "<group>"; };
 		59F13AC124E3DECE00F2D99F /* UserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterDelegate.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				590A710D24F7A42500144FD3 /* CalendarConfigurationViewModel.swift */,
 				590A711124F7BCD600144FD3 /* CalendarRowViewModel.swift */,
 				59DB5537251C8B6900444392 /* CalendarConfigurationRowViewModel.swift */,
+				59DB553D251C98BE00444392 /* BridgeRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				59F13AC224E3DECE00F2D99F /* UserNotificationCenterDelegate.swift in Sources */,
 				59C6ABA424DBEFD9005F611B /* LightRowView.swift in Sources */,
 				5943B61225122CC900BABB2E /* RemindersListViewInteractor.swift in Sources */,
+				59DB553E251C98BE00444392 /* BridgeRowViewModel.swift in Sources */,
 				59173A9E24B764800009A73C /* InspectReminder.swift in Sources */,
 				599824B324D1D37100AB4A41 /* LightsListViewModel.swift in Sources */,
 				590A711224F7BCD600144FD3 /* CalendarRowViewModel.swift in Sources */,
