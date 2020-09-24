@@ -1,17 +1,10 @@
-//
-//  SyncInteractor.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-08-28.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import UIKit
 import EventKit
 import SwiftUI
 
 protocol SyncInteracting {
     func sync(_ models: [CalendarSyncModel], completion: @escaping ((Float) -> Void))
+    func destination(to calendar: CalendarRowModel) -> AnyView
 }
 
 final class SyncInteractor: SyncInteracting {
@@ -54,5 +47,9 @@ final class SyncInteractor: SyncInteracting {
                 }
             }
         }
+    }
+    
+    func destination(to calendar: CalendarRowModel) -> AnyView {
+        AnyView(CalendarConfigurationListView(interactor: CalendarConfigurationInterator(), model: calendar))
     }
 }

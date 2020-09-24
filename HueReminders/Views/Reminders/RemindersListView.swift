@@ -16,10 +16,10 @@ struct RemindersListView: View {
 private struct RemindersListContent: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var viewModel: ListViewModel
-    var interactor: ReminderListInteracting? = ReminderListInteractor()
+    var interactor: ReminderListInteracting = ReminderListInteractor()
     
     func move(from source: IndexSet, to destination: Int, _ bridge: HueBridge) {
-        self.interactor?.move(from: source, to: destination, bridge, viewModel, managedObjectContext)
+        self.interactor.move(from: source, to: destination, bridge, viewModel, managedObjectContext)
     }
     
     private func validateAll() {
@@ -27,19 +27,19 @@ private struct RemindersListContent: View {
     }
 
     private func validate(reminder: Reminder) {
-        self.interactor?.validate(reminder: reminder, viewModel: viewModel, context: managedObjectContext)
+        self.interactor.validate(reminder: reminder, viewModel: viewModel, context: managedObjectContext)
     }
 
     func delete(indexSet: IndexSet, _ bridge: HueBridge) {
         if let index = indexSet.first {
             let remindersForBridge = self.viewModel.reminders.filter { $0.bridge == bridge }
             let reminder = remindersForBridge[index]
-            self.interactor?.delete(reminder: reminder, context: managedObjectContext)
+            self.interactor.delete(reminder: reminder, context: managedObjectContext)
         }
     }
     
     func deleteAll() {
-        self.viewModel.reminders.forEach { self.interactor?.delete(reminder: $0, context: self.managedObjectContext) }
+        self.viewModel.reminders.forEach { self.interactor.delete(reminder: $0, context: self.managedObjectContext) }
     }
 
     var body: some View {
@@ -91,7 +91,7 @@ private struct RemindersListContent: View {
                 }
                 .navigationBarTitle(NSLocalizedString("REMINDERS-LIST_NAVIGATION-TITLE", comment: ""))
                 .navigationBarItems(leading: EditButton(),
-                                    trailing: NavigationLink(destination: NewReminderView(),
+                                    trailing: NavigationLink(destination: interactor.destination(),
                                                              label: {
                                                                 Image(systemName: "plus")
                                                                     .imageScale(.large)

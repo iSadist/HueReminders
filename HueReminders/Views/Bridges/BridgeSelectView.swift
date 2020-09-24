@@ -32,7 +32,7 @@ struct BridgeSelectViewContent: View {
                 }
             }
             .navigationBarTitle(NSLocalizedString("BRIDGE-SELECT_NAVIGATION-TITLE", comment: ""))
-            .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: ConnectView(), label: {
+            .navigationBarItems(leading: EditButton(), trailing: NavigationLink(destination: interactor.destination(), label: {
                 Image(systemName: "plus")
                     .imageScale(.large)
             }))

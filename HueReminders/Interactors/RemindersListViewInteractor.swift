@@ -1,3 +1,4 @@
+import SwiftUI
 import Foundation
 import CoreData
 
@@ -10,6 +11,7 @@ protocol ReminderListInteracting {
               _ viewModel: ListViewModel,
               _ context: NSManagedObjectContext)
     func willLoad(reminders: [Reminder])
+    func destination() -> AnyView
 }
 
 class ReminderListInteractor: ReminderListInteracting {
@@ -79,5 +81,9 @@ class ReminderListInteractor: ReminderListInteracting {
         }
         
         try? context.save()
+    }
+    
+    func destination() -> AnyView {
+        AnyView(NewReminderView())
     }
 }

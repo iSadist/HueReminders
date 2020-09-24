@@ -1,9 +1,11 @@
+import SwiftUI
 import Foundation
 import CoreData
 
 protocol BridgeSelectInteracting {
     func tap(on bridge: HueBridge, list: [HueBridge], context: NSManagedObjectContext)
     func delete(indexSet: IndexSet, bridges: [HueBridge], context: NSManagedObjectContext)
+    func destination() -> AnyView
 }
 
 class BridgeSelectInteractor: BridgeSelectInteracting {
@@ -17,5 +19,9 @@ class BridgeSelectInteractor: BridgeSelectInteracting {
         let bridge = bridges[indexSet.first!]
         context.delete(bridge)
         try? context.save()
+    }
+    
+    func destination() -> AnyView {
+        AnyView(ConnectView())
     }
 }
