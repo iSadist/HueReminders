@@ -1,11 +1,3 @@
-//
-//  LightRowView.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-08-06.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
 
 struct LightRowView: View {
@@ -17,7 +9,7 @@ struct LightRowView: View {
     
     var body: some View {
         HStack {
-            Text("\(light.name)")
+            Text(light.name)
             Spacer()
             MultiColorCircle()
                 .frame(width: 50.0)

@@ -83,7 +83,8 @@ private struct RemindersListContent: View {
                         title: Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-CONFIRM-TITLE", comment: "")),
                         message: Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-CONFIRM-MESSAGE", comment: "")),
                         buttons: [
-                            .destructive(Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-CONFIRM-DELETE", comment: "")), action: self.deleteAll),
+                            .destructive(Text(NSLocalizedString("REMINDERS-LIST_REMOVE-ALL-CONFIRM-DELETE", comment: "")),
+                                         action: self.deleteAll),
                             .cancel()
                         ]
                     )

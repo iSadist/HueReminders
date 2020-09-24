@@ -21,7 +21,7 @@ struct BridgeSelectViewContent: View {
                     EmptyView(text: NSLocalizedString("BRIDGE-SELECT_NO-BRIDGE", comment: ""))
                 }
                 ForEach(bridges) { bridge in
-                    BridgeRowView(bridge)
+                    BridgeRowView(viewModel: BridgeRowViewModel(bridge))
                         .onTapGesture {
                             self.interactor.tap(on: bridge, list: self.bridges, context: self.managedObjectContext)
                     }
