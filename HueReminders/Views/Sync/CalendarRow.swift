@@ -7,8 +7,6 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import EventKit
 import UIKit
 import Combine
@@ -21,7 +19,8 @@ struct CalendarRow: View {
             Rectangle()
                 .frame(width: 50.0)
                 .foregroundColor(Color(viewModel.color))
-            Text(viewModel.title).lineLimit(1)
+            Text(viewModel.title)
+                .lineLimit(1)
             Spacer()
             Text("\(viewModel.lights.count) \(NSLocalizedString("SYNC_CALENDAR-SELECTED", comment: ""))")
                 .font(.caption)

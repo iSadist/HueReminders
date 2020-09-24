@@ -1,11 +1,3 @@
-//
-//  SyncView.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-08-20.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import SwiftUI
 import EventKit
 import UIKit
@@ -19,6 +11,8 @@ struct SyncView: View {
         SyncViewContent(calendars: viewModel.calendars,
                         buttonDisabled: !viewModel.readyToStart,
                         date: $viewModel.date,
+                        syncing: viewModel.isSyncing,
+                        syncProgress: viewModel.syncProgress,
                         interactor: interactor)
     }
 }
@@ -102,6 +96,7 @@ struct SyncViewContent: View {
             }
         }.onAppear {
             UITableView.appearance().backgroundColor = .clear
+            syncProgress = 0.0
         }
     }
 }

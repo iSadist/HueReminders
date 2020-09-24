@@ -1,11 +1,3 @@
-//
-//  SyncViewModel.swift
-//  HueReminders
-//
-//  Created by Jan Svensson on 2020-08-20.
-//  Copyright © 2020 Jan Svensson. All rights reserved.
-//
-
 import Foundation
 import Combine
 import EventKit
@@ -15,6 +7,8 @@ class SyncViewModel: ObservableObject {
     @Published var calendars: [CalendarRowModel] = []
     @Published var readyToStart: Bool
     @Published var date: Date
+    @Published var isSyncing: Bool
+    @Published var syncProgress: Float
     
     var selectedCalendarsPublisher: AnyPublisher<Bool, Never>?
     var validDatePublisher: AnyPublisher<Bool, Never> {
@@ -30,6 +24,8 @@ class SyncViewModel: ObservableObject {
         readyToStart = false
         store = EKEventStore()
         date = Date()
+        isSyncing = false
+        syncProgress = 0.0
         
         self.setupCalendar()
     }
